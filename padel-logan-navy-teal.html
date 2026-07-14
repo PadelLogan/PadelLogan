@@ -1221,6 +1221,45 @@
 
         /* urgency badge sits on a white section → logo blue */
         .wl-urgency { color: var(--green-deep); border-color: rgba(15,59,89,0.35); }
+
+        /* ── FOUNDING-LIST POP-UP ──────────────────────────────── */
+        .pl-pop-overlay {
+            position: fixed; inset: 0; z-index: 10000;
+            background: rgba(8,34,48,0.72);
+            display: flex; align-items: center; justify-content: center;
+            padding: 20px;
+            opacity: 0; visibility: hidden; transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+        .pl-pop-overlay.open { opacity: 1; visibility: visible; }
+        .pl-pop {
+            position: relative; width: 100%; max-width: 440px;
+            background: var(--white); border-radius: 10px; overflow: hidden;
+            box-shadow: 0 30px 80px -20px rgba(0,0,0,0.6);
+            transform: translateY(14px) scale(0.98); transition: transform 0.35s cubic-bezier(.2,.7,.2,1);
+            font-family: 'DM Sans', sans-serif;
+        }
+        .pl-pop-overlay.open .pl-pop { transform: translateY(0) scale(1); }
+        .pl-pop-head { background: var(--green-deep); padding: 20px 44px; text-align: center; }
+        .pl-pop-head img { width: 200px; max-width: 100%; height: auto; display: inline-block; }
+        .pl-pop-body { padding: 28px 30px 30px; text-align: center; }
+        .pl-pop-eyebrow { font-size: 0.6rem; letter-spacing: 0.24em; text-transform: uppercase; color: var(--gold); font-weight: 600; margin-bottom: 0.7rem; }
+        .pl-pop-title { font-family: 'Cormorant Garamond', serif; font-size: 1.9rem; line-height: 1.1; color: var(--green-deep); margin-bottom: 0.7rem; }
+        .pl-pop-sub { font-size: 0.86rem; line-height: 1.65; color: #47586A; margin-bottom: 1.3rem; }
+        .pl-pop-form input { width: 100%; box-sizing: border-box; padding: 0.9rem 1rem; margin-bottom: 0.7rem; background: #F2F5F8; border: 1px solid rgba(15,59,89,0.18); color: var(--green-deep); font-family: 'DM Sans', sans-serif; font-size: 0.9rem; outline: none; border-radius: 4px; }
+        .pl-pop-form input:focus { border-color: var(--gold); background: #fff; }
+        .pl-pop-form button { width: 100%; padding: 0.95rem 1rem; background: var(--green-deep); color: #fff; border: none; border-radius: 4px; font-family: 'DM Sans', sans-serif; font-size: 0.72rem; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; cursor: pointer; transition: background 0.2s; }
+        .pl-pop-form button:hover { background: var(--gold); }
+        .pl-pop-fine { font-size: 0.68rem; color: #8090a0; margin-top: 0.8rem; }
+        .pl-pop-close { position: absolute; top: 10px; right: 12px; width: 30px; height: 30px; border: none; background: transparent; color: #fff; font-size: 1.5rem; line-height: 1; cursor: pointer; opacity: 0.85; }
+        .pl-pop-close:hover { opacity: 1; }
+        .pl-pop-success { display: none; }
+        .pl-pop.done .pl-pop-form, .pl-pop.done .pl-pop-sub, .pl-pop.done .pl-pop-fine { display: none; }
+        .pl-pop.done .pl-pop-success { display: block; font-size: 0.95rem; line-height: 1.6; color: var(--green-deep); }
+        .pl-pop-err { display: none; color: #c0392b; font-size: 0.75rem; margin-top: 0.6rem; }
+        @media (max-width: 480px) {
+            .pl-pop-title { font-size: 1.7rem; }
+            .pl-pop-body { padding: 24px 22px 26px; }
+        }
     </style>
 </head>
 <body>
@@ -1542,6 +1581,79 @@
         window.addEventListener('scroll', onScroll, { passive: true });
         onScroll();
     })();
+</script>
+
+<!-- ── Founding-list pop-up ── -->
+<div class="pl-pop-overlay" id="plPop" role="dialog" aria-modal="true" aria-label="Join the founding list">
+    <div class="pl-pop">
+        <button class="pl-pop-close" id="plPopClose" aria-label="Close">&times;</button>
+        <div class="pl-pop-head"><img class="pl-pop-logo" alt="Padel Logan"></div>
+        <div class="pl-pop-body">
+            <div class="pl-pop-eyebrow">Founding List</div>
+            <h2 class="pl-pop-title">Be first on the courts</h2>
+            <p class="pl-pop-sub">Join the founding list for first access to memberships, opening dates and exclusive early offers at Padel Logan, Meadowbrook.</p>
+            <form class="pl-pop-form" id="plPopForm" novalidate>
+                <input type="email" id="plPopEmail" placeholder="Your email address" autocomplete="email" required>
+                <button type="submit">Join the list</button>
+                <p class="pl-pop-err" id="plPopErr">Sorry, something went wrong. Please try again.</p>
+            </form>
+            <p class="pl-pop-fine">No spam. Unsubscribe anytime.</p>
+            <div class="pl-pop-success">You're on the list. See you on court.</div>
+        </div>
+    </div>
+</div>
+<script>
+(function () {
+    var STORE = 'pl_founding_popup_seen';
+    var overlay = document.getElementById('plPop');
+    if (!overlay) return;
+    var navLogo = document.querySelector('.nav-logo');
+    var popLogo = overlay.querySelector('.pl-pop-logo');
+    if (navLogo && popLogo) popLogo.src = navLogo.src;
+
+    var shown = false;
+    function seen() { try { return localStorage.getItem(STORE) === '1'; } catch (e) { return false; } }
+    function markSeen() { try { localStorage.setItem(STORE, '1'); } catch (e) {} }
+    function open() { if (shown || seen()) return; shown = true; overlay.classList.add('open'); }
+    function close() { overlay.classList.remove('open'); markSeen(); }
+
+    if (!seen()) {
+        setTimeout(open, 8000);
+        document.addEventListener('mouseout', function (e) { if (e.clientY <= 0) open(); });
+    }
+    document.getElementById('plPopClose').addEventListener('click', close);
+    overlay.addEventListener('click', function (e) { if (e.target === overlay) close(); });
+    document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && overlay.classList.contains('open')) close(); });
+
+    document.getElementById('plPopForm').addEventListener('submit', function (e) {
+        e.preventDefault();
+        var email = document.getElementById('plPopEmail').value.trim();
+        if (!email) return;
+        var pop = overlay.querySelector('.pl-pop');
+        var btn = this.querySelector('button');
+        btn.disabled = true; btn.textContent = 'Joining…';
+        fetch('https://a.klaviyo.com/client/subscriptions/?company_id=Ycnj4g', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json', 'revision': '2025-07-15' },
+            body: JSON.stringify({
+                data: { type: 'subscription', attributes: {
+                    custom_source: 'Padel Logan Website Popup',
+                    profile: { data: { type: 'profile', attributes: {
+                        email: email, subscriptions: { email: { marketing: { consent: 'SUBSCRIBED' } } }
+                    } } }
+                }, relationships: { list: { data: { type: 'list', id: 'UrR45w' } } } }
+            })
+        }).then(function (res) {
+            if (!res.ok) throw new Error('Klaviyo ' + res.status);
+            pop.classList.add('done'); markSeen();
+            setTimeout(close, 2800);
+        }).catch(function (err) {
+            console.error('Popup signup failed:', err);
+            btn.disabled = false; btn.textContent = 'Join the list';
+            document.getElementById('plPopErr').style.display = 'block';
+        });
+    });
+})();
 </script>
 
 </body>
