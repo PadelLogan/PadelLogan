@@ -1595,21 +1595,21 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </script>
 
 <!-- ── Founding-list pop-up ── -->
-<div class="pl-pop-overlay" id="plPop" role="dialog" aria-modal="true" aria-label="Join the founding list">
+<div class="pl-pop-overlay" id="plPop" role="dialog" aria-modal="true" aria-label="Subscribe to the Padel Logan newsletter">
     <div class="pl-pop">
         <button class="pl-pop-close" id="plPopClose" aria-label="Close">&times;</button>
         <div class="pl-pop-head"><img class="pl-pop-logo" alt="Padel Logan"></div>
         <div class="pl-pop-body">
-            <div class="pl-pop-eyebrow">Founding List</div>
+            <div class="pl-pop-eyebrow">Newsletter</div>
             <h2 class="pl-pop-title">Be first on the courts</h2>
-            <p class="pl-pop-sub">Join the founding list for first access to memberships, opening dates and exclusive early offers at Padel Logan, Meadowbrook.</p>
+            <p class="pl-pop-sub">Stay up to date with the latest news from Padel Logan. Be the first to hear about founding memberships, opening dates, pricing, special offers, and upcoming events.</p>
             <form class="pl-pop-form" id="plPopForm" novalidate>
                 <input type="email" id="plPopEmail" placeholder="Your email address" autocomplete="email" required>
-                <button type="submit">Join the list</button>
+                <button type="submit">Subscribe to Our Newsletter</button>
                 <p class="pl-pop-err" id="plPopErr">Sorry, something went wrong. Please try again.</p>
             </form>
             <p class="pl-pop-fine">No spam. Unsubscribe anytime.</p>
-            <div class="pl-pop-success">You're on the list. See you on court.</div>
+            <div class="pl-pop-success">Thanks for subscribing. See you on court.</div>
         </div>
     </div>
 </div>
@@ -1642,7 +1642,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         if (!email) return;
         var pop = overlay.querySelector('.pl-pop');
         var btn = this.querySelector('button');
-        btn.disabled = true; btn.textContent = 'Joining…';
+        btn.disabled = true; btn.textContent = 'Subscribing…';
         fetch('https://a.klaviyo.com/client/subscriptions/?company_id=Ycnj4g', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json', 'revision': '2025-07-15' },
@@ -1660,7 +1660,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             setTimeout(close, 2800);
         }).catch(function (err) {
             console.error('Popup signup failed:', err);
-            btn.disabled = false; btn.textContent = 'Join the list';
+            btn.disabled = false; btn.textContent = 'Subscribe to Our Newsletter';
             document.getElementById('plPopErr').style.display = 'block';
         });
     });
