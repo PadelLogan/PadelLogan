@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Member vs casual 1080x1080</title>
+<link rel="stylesheet" href="brand.css">
+<style>
+    .inner { padding: 74px 74px 66px; }
+    .top { display: flex; align-items: center; justify-content: space-between; gap: 20px; }
+    .top .foot-note { text-align: right; }
+    .t-serif { font-size: 66px; margin-top: 34px; }
+    .t-block { font-size: 96px; margin-top: 2px; color: var(--white); }
+
+    .compare { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; margin-top: 40px; background: rgba(234,241,246,0.18); }
+    .col { background: var(--navy); padding: 30px 30px 34px; }
+    .col.member { background: var(--white); }
+    .col-head {
+        font-family: 'Barlow Condensed', sans-serif;
+        font-size: 34px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.08em;
+        color: var(--white); padding-bottom: 18px; border-bottom: 2px solid rgba(234,241,246,0.22);
+        margin-bottom: 8px; line-height: 1.15;
+    }
+    .col.member .col-head { color: var(--navy); border-bottom-color: rgba(15,59,89,0.16); }
+    .cmp-row { padding: 22px 0; border-bottom: 2px solid rgba(234,241,246,0.14); }
+    .col.member .cmp-row { border-bottom-color: rgba(15,59,89,0.12); }
+    .cmp-row:last-child { border-bottom: none; padding-bottom: 4px; }
+    .cmp-lbl {
+        font-size: 21px; letter-spacing: 0.16em; text-transform: uppercase;
+        color: rgba(234,241,246,0.62); margin-bottom: 8px;
+    }
+    .col.member .cmp-lbl { color: var(--court); }
+    .cmp-val {
+        font-family: 'Barlow Condensed', sans-serif;
+        font-size: 54px; font-weight: 900; color: var(--white); line-height: 0.95;
+    }
+    .col.member .cmp-val { color: var(--navy); }
+    .cmp-val.free { color: #8FD3F0; }
+    .col.member .cmp-val.free { color: var(--court); }
+    .cmp-sub { font-size: 20px; color: rgba(234,241,246,0.55); margin-top: 6px; letter-spacing: 0.04em; }
+    .col.member .cmp-sub { color: var(--grey); }
+
+    .band {
+        margin-top: 36px; display: flex; align-items: center; justify-content: space-between;
+        gap: 24px; flex-wrap: wrap;
+    }
+    .band-mail {
+        font-family: 'Barlow Condensed', sans-serif; font-weight: 800; font-size: 40px;
+        color: var(--white); letter-spacing: 0.01em;
+    }
+    .band-note { font-size: 22px; color: rgba(234,241,246,0.7); letter-spacing: 0.04em; }
+</style>
+</head>
+<body>
+<div class="canvas sq">
+    <div class="court-mark">
+        <svg viewBox="0 0 200 100" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="white" stroke-width="1.2">
+            <rect x="1" y="1" width="198" height="98" stroke-width="2.2"/>
+            <line x1="100" y1="1" x2="100" y2="99" stroke-width="2"/>
+            <line x1="70" y1="1" x2="70" y2="99"/>
+            <line x1="130" y1="1" x2="130" y2="99"/>
+            <line x1="70" y1="50" x2="130" y2="50"/>
+        </svg>
+    </div>
+
+    <div class="inner">
+        <div class="top">
+            <img class="logo logo-sm" src="assets/logo.png" alt="Padel Logan">
+            <div class="foot-note">Opening 2026<br>Meadowbrook QLD</div>
+        </div>
+
+        <div class="serif t-serif">Why join as a</div>
+        <div class="block t-block">FOUNDATION MEMBER</div>
+
+        <div class="compare">
+            <div class="col member">
+                <div class="col-head">Foundation Member<br>$1,499 / 12 months</div>
+                <div class="cmp-row">
+                    <div class="cmp-lbl">Non-peak play</div>
+                    <div class="cmp-val free">Free</div>
+                </div>
+                <div class="cmp-row">
+                    <div class="cmp-lbl">Peak play</div>
+                    <div class="cmp-val">$10<span style="font-size:24px;font-weight:600;"> pp</span></div>
+                </div>
+                <div class="cmp-row">
+                    <div class="cmp-lbl">Social session</div>
+                    <div class="cmp-val">$10<span style="font-size:24px;font-weight:600;"> pp</span></div>
+                    <div class="cmp-sub">Plus launch party, a 60 min lesson, gift pack and 2 week advance booking.</div>
+                </div>
+            </div>
+
+            <div class="col">
+                <div class="col-head">Casual<br>Non-member</div>
+                <div class="cmp-row">
+                    <div class="cmp-lbl">Non-peak play</div>
+                    <div class="cmp-val">$15<span style="font-size:24px;font-weight:600;"> pp</span></div>
+                </div>
+                <div class="cmp-row">
+                    <div class="cmp-lbl">Peak play</div>
+                    <div class="cmp-val">$25<span style="font-size:24px;font-weight:600;"> pp</span></div>
+                </div>
+                <div class="cmp-row">
+                    <div class="cmp-lbl">Social session</div>
+                    <div class="cmp-val">$29<span style="font-size:24px;font-weight:600;"> pp</span></div>
+                    <div class="cmp-sub">Court hire only. $100 per court peak, $60 per court non-peak.</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="band">
+            <div class="band-mail">info@padellogan.com.au</div>
+            <div class="band-note">Email to secure your membership</div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
