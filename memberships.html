@@ -10,15 +10,15 @@
     'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
     })(window,document,'script','dataLayer','GTM-K9WSRXHC');</script>
     <!-- End Google Tag Manager -->
-    <meta name="description" content="Padel Logan memberships. Foundation Membership $1,499 for 12 months, including free non-peak court play, discounted peak play, advanced booking, launch party access, a complimentary lesson and a club gift pack.">
-    <meta property="og:title" content="Padel Logan Memberships | Foundation Membership $1,499">
-    <meta property="og:description" content="Foundation Membership: $1,499 for 12 months. Free non-peak court play, $10 peak play, 2 week advance booking, launch party access, a complimentary lesson and a club gift pack.">
+    <meta name="description" content="Padel Logan Founding Memberships. Platinum $2,750, Gold $2,150 and Silver $1,500 for 12 months. A padel membership plus unlimited golf at Meadowbrook Golf Club, with free non-peak court hire and $10 peak.">
+    <meta property="og:title" content="Padel Logan Founding Memberships | Platinum, Gold and Silver">
+    <meta property="og:description" content="Founding Memberships for 12 months: Platinum $2,750, Gold $2,150, Silver $1,500. A padel membership plus unlimited golf at Meadowbrook Golf Club, free non-peak court hire and $10 peak.">
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://padellogan.com.au/memberships.html">
+    <meta property="og:url" content="https://padellogan.com.au/memberships">
     <meta name="twitter:card" content="summary_large_image">
-    <title>Memberships | Padel Logan</title>
+    <title>Founding Memberships | Padel Logan</title>
 
-    <link rel="canonical" href="https://padellogan.com.au/memberships.html">
+    <link rel="canonical" href="https://padellogan.com.au/memberships">
 
     <!-- Favicon: "PL" mark in brand navy -->
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
@@ -202,7 +202,13 @@
         }
         .price-card {
             border: 1.5px solid var(--green-deep); padding: 2.8rem 2.4rem; position: relative;
-            background: #ffffff;
+            background: #ffffff; border-radius: 6px;
+            box-shadow:
+                0 0 0 4px rgba(30,111,148,0.07),
+                0 26px 55px -28px rgba(15,59,89,0.6),
+                0 0 58px -12px rgba(30,111,148,0.52);
+            animation: cardGlowLight 4.5s ease-in-out infinite;
+            transition: transform 0.35s ease, box-shadow 0.35s ease;
         }
         .price-flag {
             position: absolute; top: 0; left: 0; transform: translateY(-50%);
@@ -254,12 +260,84 @@
 
         /* ── NON MEMBER PRICING ── */
         .rate-grid {
-            display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px;
-            background: rgba(234,241,246,0.16); margin-top: 3.5rem;
+            display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.6rem;
+            margin-top: 3.5rem;
         }
+        /* Glowing tiles: gradient fill, lit edge, slow ambient pulse */
         .rate {
-            background: var(--mgc-ink); padding: 2.6rem 2rem;
+            position: relative;
+            background: linear-gradient(158deg, rgba(255,255,255,0.10) 0%, rgba(255,255,255,0.035) 55%, rgba(255,255,255,0.02) 100%);
+            border: 1px solid rgba(190,225,245,0.44);
+            border-radius: 8px;
+            padding: 2.6rem 2rem;
             display: flex; flex-direction: column; gap: 0.45rem;
+            box-shadow:
+                inset 0 1px 0 rgba(255,255,255,0.28),
+                0 22px 45px -24px rgba(0,0,0,0.85),
+                0 0 48px -8px rgba(143,211,240,0.46);
+            animation: cardGlow 4.5s ease-in-out infinite;
+            transition: transform 0.35s ease, box-shadow 0.35s ease;
+        }
+        .rate:nth-child(2) { animation-delay: 0.9s; }
+        .rate:nth-child(3) { animation-delay: 1.8s; }
+
+        /* lit top edge */
+        .rate::after {
+            content: ''; position: absolute; top: 0; left: 10%; right: 10%; height: 2px;
+            background: linear-gradient(to right, transparent, rgba(205,240,255,1), transparent);
+            filter: drop-shadow(0 0 6px rgba(143,211,240,0.9));
+        }
+
+        @keyframes cardGlow {
+            0%, 100% {
+                box-shadow:
+                    inset 0 1px 0 rgba(255,255,255,0.28),
+                    0 22px 45px -24px rgba(0,0,0,0.85),
+                    0 0 48px -8px rgba(143,211,240,0.46);
+            }
+            50% {
+                box-shadow:
+                    inset 0 1px 0 rgba(255,255,255,0.38),
+                    0 22px 45px -24px rgba(0,0,0,0.85),
+                    0 0 82px -2px rgba(143,211,240,0.78);
+            }
+        }
+        @keyframes cardGlowLight {
+            0%, 100% {
+                box-shadow:
+                    0 0 0 4px rgba(30,111,148,0.07),
+                    0 26px 55px -28px rgba(15,59,89,0.6),
+                    0 0 58px -12px rgba(30,111,148,0.52);
+            }
+            50% {
+                box-shadow:
+                    0 0 0 7px rgba(30,111,148,0.11),
+                    0 26px 55px -28px rgba(15,59,89,0.65),
+                    0 0 88px -6px rgba(30,111,148,0.78);
+            }
+        }
+        @media (hover: hover) {
+            .rate:hover {
+                transform: translateY(-6px);
+                border-color: rgba(205,240,255,0.7);
+                box-shadow:
+                    inset 0 1px 0 rgba(255,255,255,0.45),
+                    0 30px 55px -24px rgba(0,0,0,0.9),
+                    0 0 95px 0 rgba(143,211,240,0.85);
+                animation: none;
+            }
+            .price-card:hover {
+                transform: translateY(-6px);
+                box-shadow:
+                    0 0 0 8px rgba(30,111,148,0.13),
+                    0 34px 60px -26px rgba(15,59,89,0.7),
+                    0 0 100px -4px rgba(30,111,148,0.85);
+                animation: none;
+            }
+        }
+        @media (prefers-reduced-motion: reduce) {
+            .rate, .price-card { animation: none; transition: none; }
+            .rate:hover, .price-card:hover { transform: none; }
         }
         .rate-name {
             font-family: 'Barlow Condensed', sans-serif; font-size: 1.2rem; font-weight: 800;
@@ -277,6 +355,34 @@
             font-size: 0.8rem; color: var(--cream-dim);
         }
         .rate-court strong { font-family: 'Barlow Condensed', sans-serif; font-size: 1.15rem; font-weight: 800; letter-spacing: 0.03em; }
+
+        /* ── Non member / member tiers inside each tile ── */
+        /* flex:1 on the non-member tier pushes the member rate to the bottom of every
+           tile, so the member rows line up across all three even when the non-member
+           block has an extra per-hour line */
+        .rate-tiers { margin-top: 1.4rem; display: flex; flex-direction: column; flex: 1; }
+        .tier { padding: 1.15rem 0; border-top: 1px solid rgba(234,241,246,0.18); }
+        .tier:not(.tier-member) { flex: 1; }
+        .tier-label {
+            font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase;
+            color: rgba(234,241,246,0.6); margin-bottom: 0.5rem;
+        }
+        .tier-price {
+            font-family: 'Barlow Condensed', sans-serif; font-weight: 900;
+            font-size: 2.6rem; line-height: 0.95; color: var(--white); letter-spacing: -0.01em;
+        }
+        .tier-price sup { font-size: 0.42em; vertical-align: super; font-weight: 800; }
+        .tier-per { font-size: 0.74rem; color: rgba(234,241,246,0.6); letter-spacing: 0.05em; margin-top: 0.35rem; }
+        .tier-alt {
+            font-family: 'Barlow Condensed', sans-serif; font-size: 1rem; font-weight: 700;
+            letter-spacing: 0.05em; text-transform: uppercase;
+            color: rgba(234,241,246,0.78); margin-top: 0.4rem;
+        }
+        /* the member rate is the sell, so it gets the light */
+        .tier-member .tier-label { color: #BEE8FF; }
+        .tier-member .tier-price { color: #DCF3FF; text-shadow: 0 0 22px rgba(143,211,240,0.55); }
+        .tier-member .tier-per { color: rgba(220,243,255,0.75); }
+        .tier-free { letter-spacing: 0.01em; }
 
         .save-strip {
             margin-top: 2.6rem; padding: 1.5rem 1.9rem;
@@ -370,6 +476,204 @@
             .inc-item { flex-wrap: wrap; }
             .inc-value { padding-left: 0; margin-left: 33px; }
         }
+
+        /* ══ FOUNDING MEMBERSHIP TIERS ══════════════════════════════════════ */
+        .tier-grid {
+            display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.6rem; margin-top: 3.5rem;
+        }
+        .mcard {
+            position: relative; display: flex; flex-direction: column;
+            background: linear-gradient(158deg, rgba(255,255,255,0.10) 0%, rgba(255,255,255,0.035) 55%, rgba(255,255,255,0.02) 100%);
+            border: 1px solid rgba(190,225,245,0.44); border-radius: 8px;
+            padding: 2.6rem 1.9rem 2rem;
+            box-shadow:
+                inset 0 1px 0 rgba(255,255,255,0.28),
+                0 22px 45px -24px rgba(0,0,0,0.85),
+                0 0 48px -8px rgba(143,211,240,0.46);
+            animation: cardGlow 4.5s ease-in-out infinite;
+            transition: transform 0.35s ease, box-shadow 0.35s ease;
+        }
+        .mcard:nth-child(2) { animation-delay: 0.9s; }
+        .mcard:nth-child(3) { animation-delay: 1.8s; }
+        .mcard::after {
+            content: ''; position: absolute; top: 0; left: 10%; right: 10%; height: 2px;
+            background: linear-gradient(to right, transparent, rgba(205,240,255,1), transparent);
+            filter: drop-shadow(0 0 6px rgba(143,211,240,0.9));
+        }
+        .mcard-tier {
+            font-size: 0.6rem; letter-spacing: 0.26em; text-transform: uppercase;
+            color: rgba(234,241,246,0.6); margin-bottom: 0.5rem;
+        }
+        .mcard-name {
+            font-family: 'Barlow Condensed', sans-serif; font-size: 2.1rem; font-weight: 900;
+            text-transform: uppercase; letter-spacing: 0.04em; color: var(--white); line-height: 1;
+        }
+        .mcard-price {
+            font-family: 'Barlow Condensed', sans-serif; font-weight: 900; font-size: 3.9rem;
+            line-height: 0.95; color: var(--white); letter-spacing: -0.01em; margin-top: 1.3rem;
+        }
+        .mcard-price sup { font-size: 0.4em; vertical-align: super; font-weight: 800; }
+        .mcard-term { font-size: 0.74rem; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(234,241,246,0.62); margin-top: 0.45rem; }
+        .mcard-value {
+            margin-top: 0.9rem; font-size: 0.78rem; color: #BEE8FF; letter-spacing: 0.04em;
+        }
+        .mcard-value strong { font-family: 'Barlow Condensed', sans-serif; font-size: 1.15rem; font-weight: 800; letter-spacing: 0.02em; }
+
+        .mcard-golf {
+            margin-top: 1.5rem; padding: 1.1rem 1.1rem 1.15rem;
+            border: 1px solid rgba(190,225,245,0.3); border-radius: 5px;
+            background: rgba(143,211,240,0.07);
+        }
+        .mcard-golf-lbl { font-size: 0.58rem; letter-spacing: 0.22em; text-transform: uppercase; color: #BEE8FF; margin-bottom: 0.4rem; }
+        .mcard-golf-val {
+            font-family: 'Barlow Condensed', sans-serif; font-size: 1.28rem; font-weight: 800;
+            text-transform: uppercase; letter-spacing: 0.04em; color: #DCF3FF; line-height: 1.2;
+        }
+        .mcard-note { font-size: 0.68rem; line-height: 1.55; color: rgba(234,241,246,0.55); margin-top: 0.6rem; }
+        .mcard .btn-primary { margin-top: auto; display: block; text-align: center; }
+        .mcard-pad { margin-top: 1.6rem; }
+
+        /* ══ INCLUSIONS (repeated inside every tier card, navy ground) ══════ */
+        .incl-row {
+            display: flex; align-items: flex-start; gap: 0.8rem;
+            padding: 0.72rem 0; border-bottom: 1px solid rgba(234,241,246,0.13);
+        }
+        .incl-row:last-child { border-bottom: none; }
+        .incl-tick {
+            width: 17px; height: 17px; flex-shrink: 0; margin-top: 3px;
+            border-radius: 50%; border: 1.5px solid rgba(190,232,255,0.6);
+            display: flex; align-items: center; justify-content: center;
+        }
+        .incl-tick svg { width: 9px; height: 9px; }
+        .incl-tick svg polyline { fill: none; stroke: #BEE8FF; stroke-width: 3.4; stroke-linecap: round; stroke-linejoin: round; }
+        .incl-text { flex: 1; font-size: 0.83rem; line-height: 1.45; color: rgba(234,241,246,0.88); }
+        .incl-text b { font-weight: 500; color: var(--white); }
+        .incl-val {
+            font-family: 'Barlow Condensed', sans-serif; font-size: 1.02rem; font-weight: 800;
+            color: #BEE8FF; white-space: nowrap; padding-left: 0.7rem; letter-spacing: 0.02em;
+        }
+
+        /* golf sits in the list as a normal inclusion; the card summary above
+           carries the emphasis, with padel first */
+        .incl-golf-detail {
+            font-size: 0.78rem; color: rgba(234,241,246,0.62);
+            line-height: 1.4; margin-top: 0.15rem;
+        }
+        .incl-note { font-size: 0.68rem; line-height: 1.5; color: rgba(234,241,246,0.6); margin-top: 0.45rem; }
+
+        /* what you are actually buying, on every card and every width:
+           a padel membership, with golf as an inclusion */
+        .mcard-summary {
+            margin-top: 1.3rem; padding: 1rem 1.1rem;
+            background: rgba(143,211,240,0.09);
+            border: 1px solid rgba(190,225,245,0.28); border-radius: 5px;
+        }
+        .sum-lbl {
+            display: block; font-size: 0.56rem; letter-spacing: 0.22em;
+            text-transform: uppercase; color: #BEE8FF; margin-bottom: 0.5rem;
+        }
+        .sum-padel {
+            display: block; font-family: 'Barlow Condensed', sans-serif;
+            font-size: 1.35rem; font-weight: 900; text-transform: uppercase;
+            letter-spacing: 0.04em; color: var(--white); line-height: 1.15;
+        }
+        .sum-golf {
+            display: block; font-family: 'Barlow Condensed', sans-serif;
+            font-size: 1.08rem; font-weight: 800; text-transform: uppercase;
+            letter-spacing: 0.04em; color: #DCF3FF; line-height: 1.2; margin-top: 0.3rem;
+        }
+        .sum-detail {
+            display: block; font-size: 0.75rem; color: rgba(234,241,246,0.7);
+            letter-spacing: 0.03em; margin-top: 0.3rem;
+        }
+
+        /* ── accordion: open on desktop, collapsible on mobile ── */
+        .incl-acc { margin-top: 1.5rem; }
+        .incl-acc > summary {
+            display: flex; align-items: center; justify-content: space-between; gap: 0.8rem;
+            cursor: pointer; list-style: none; padding: 0.85rem 0;
+            border-top: 1px solid rgba(234,241,246,0.18); border-bottom: 1px solid rgba(234,241,246,0.18);
+            font-family: 'DM Sans', sans-serif; font-size: 0.7rem; font-weight: 500;
+            letter-spacing: 0.16em; text-transform: uppercase; color: var(--white);
+        }
+        .incl-acc > summary::-webkit-details-marker { display: none; }
+        .incl-count {
+            display: inline-flex; align-items: center; justify-content: center;
+            min-width: 1.5rem; height: 1.5rem; padding: 0 0.4rem; border-radius: 999px;
+            background: rgba(143,211,240,0.16); border: 1px solid rgba(190,225,245,0.35);
+            font-family: 'Barlow Condensed', sans-serif; font-size: 0.82rem; font-weight: 800;
+            letter-spacing: 0.02em; color: #DCF3FF;
+        }
+        .incl-acc > summary .incl-chev {
+            display: inline-block; width: 7px; height: 7px; margin-left: 0.1rem;
+            border-right: 1.6px solid #DCF3FF; border-bottom: 1.6px solid #DCF3FF;
+            transform: translateY(-2px) rotate(45deg); transition: transform 0.25s ease;
+        }
+        .incl-acc[open] > summary .incl-chev { transform: translateY(1px) rotate(-135deg); }
+        .incl-summary-right { display: inline-flex; align-items: center; gap: 0.7rem; }
+        .incl-list { padding-top: 0.35rem; }
+
+        /* desktop: always open, no control shown */
+        @media (min-width: 961px) {
+            .incl-acc > summary { display: none; }
+        }
+
+        /* ══ COURT HIRE HOURS ═══════════════════════════════════════════════ */
+        .hours-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.6rem; margin-top: 3.5rem; }
+        .hour-band { padding: 2.4rem 2rem; }
+        .hour-name {
+            font-family: 'Barlow Condensed', sans-serif; font-size: 1.5rem; font-weight: 900;
+            text-transform: uppercase; letter-spacing: 0.05em; color: var(--white); line-height: 1.1;
+        }
+        .hour-time {
+            display: inline-flex; align-items: center; gap: 0.5rem; margin-top: 0.6rem;
+            font-size: 0.78rem; letter-spacing: 0.12em; text-transform: uppercase; color: #BEE8FF;
+        }
+        .hour-time svg { width: 14px; height: 14px; }
+        .hour-time svg circle, .hour-time svg polyline { fill: none; stroke: #BEE8FF; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+        .hour-rates { display: flex; gap: 2.2rem; margin-top: 1.35rem; flex-wrap: wrap; }
+        .hour-rate-lbl { font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(234,241,246,0.55); margin-bottom: 0.4rem; }
+        .hour-rate-val {
+            font-family: 'Barlow Condensed', sans-serif; font-size: 3.7rem; font-weight: 900;
+            color: var(--white); line-height: 0.9; letter-spacing: -0.01em;
+        }
+        .hour-rate-val sup { font-size: 0.42em; vertical-align: super; font-weight: 800; }
+        .hour-rate-sub { font-size: 0.7rem; color: rgba(234,241,246,0.55); margin-top: 0.25rem; }
+        .hour-member {
+            margin-top: 1.35rem; padding-top: 1.1rem; border-top: 1px solid rgba(234,241,246,0.18);
+            display: flex; align-items: baseline; gap: 0.8rem; flex-wrap: wrap;
+        }
+        .hour-member-lbl { font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase; color: #BEE8FF; }
+        .hour-member-val {
+            font-family: 'Barlow Condensed', sans-serif; font-size: 2.7rem; font-weight: 900;
+            color: #DCF3FF; text-shadow: 0 0 22px rgba(143,211,240,0.55); letter-spacing: 0.01em;
+            line-height: 0.95;
+        }
+
+        /* ══ TERMS ══════════════════════════════════════════════════════════ */
+        .terms { background: var(--white); padding: 4rem 2.5rem 3rem; }
+        .terms-inner { max-width: 1140px; margin: 0 auto; }
+        .terms-title {
+            font-family: 'Barlow Condensed', sans-serif; font-size: 1.05rem; font-weight: 700;
+            text-transform: uppercase; letter-spacing: 0.16em; color: var(--green-deep);
+            padding-bottom: 0.9rem; border-bottom: 1px solid var(--border-dark); margin-bottom: 1.2rem;
+        }
+        .terms-list { list-style: none; display: grid; grid-template-columns: repeat(2, 1fr); gap: 0.7rem 2.5rem; }
+        .terms-list li {
+            position: relative; padding-left: 1.1rem;
+            font-size: 0.78rem; line-height: 1.65; color: rgba(15,59,89,0.62);
+        }
+        .terms-list li::before { content: ''; position: absolute; left: 0; top: 0.6em; width: 4px; height: 4px; border-radius: 50%; background: var(--green-court); }
+
+        @media (max-width: 960px) {
+            .tier-grid, .hours-grid, .incl-grid, .terms-list { grid-template-columns: 1fr; }
+            .incl-grid { gap: 0; }
+        }
+        @media (max-width: 600px) {
+            .mcard { padding: 2.2rem 1.5rem 1.8rem; }
+            .hour-band { padding: 2rem 1.5rem; }
+            .terms { padding: 3rem 1.5rem 2.4rem; }
+        }
     </style>
 </head>
 <body>
@@ -382,18 +686,18 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <!-- ── STICKY MOBILE CTA ── -->
 <div class="sticky-cta">
-    <a href="mailto:info@padellogan.com.au?subject=Foundation%20Membership%20Enquiry&body=Hi%20Padel%20Logan%2C%0A%0AI%27d%20like%20to%20secure%20a%20Foundation%20Membership.%0A%0AName%3A%0APhone%3A%0A%0AThanks%2C">Secure Your Membership</a>
+    <a href="mailto:info@padellogan.com.au?subject=Founding%20Membership%20Enquiry&body=Hi%20Padel%20Logan%2C%0A%0AI%27d%20like%20to%20secure%20a%20Founding%20Membership.%0A%0AName%3A%0APhone%3A%0A%0AThanks%2C">Secure Your Membership</a>
 </div>
 
 <!-- ── NAV ── -->
 <nav>
-    <a href="index.html" aria-label="Padel Logan home">
+    <a href="/" aria-label="Padel Logan home">
         <img class="nav-logo" src="data:image/png;base64,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" alt="Padel Logan">
     </a>
     <div class="nav-right">
-        <a href="index.html" class="nav-link">Home</a>
-        <a href="index.html#contact" class="nav-link">Contact</a>
-        <a href="mailto:info@padellogan.com.au?subject=Foundation%20Membership%20Enquiry&body=Hi%20Padel%20Logan%2C%0A%0AI%27d%20like%20to%20secure%20a%20Foundation%20Membership.%0A%0AName%3A%0APhone%3A%0A%0AThanks%2C" class="nav-cta">Secure Your Membership</a>
+        <a href="/" class="nav-link">Home</a>
+        <a href="/#contact" class="nav-link">Contact</a>
+        <a href="mailto:info@padellogan.com.au?subject=Founding%20Membership%20Enquiry&body=Hi%20Padel%20Logan%2C%0A%0AI%27d%20like%20to%20secure%20a%20Founding%20Membership.%0A%0AName%3A%0APhone%3A%0A%0AThanks%2C" class="nav-cta">Secure Your Membership</a>
     </div>
 </nav>
 
@@ -401,165 +705,382 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <section class="m-hero">
     <div class="m-hero-overlay"></div>
     <div class="m-hero-inner">
-        <span class="m-eyebrow">Memberships</span>
+        <span class="m-eyebrow">Founding Memberships</span>
         <h1 class="m-hero-title">
-            <span class="m-hero-serif">Foundation</span>
-            <span class="m-hero-block">MEMBERSHIP</span>
+            <span class="m-hero-serif">Founding</span>
+            <span class="m-hero-block">MEMBERSHIPS</span>
         </h1>
         <p class="m-hero-sub">
-            Be one of the founding members of Logan's first padel club. Twelve months of play at Meadowbrook, free non-peak court time, priority booking and a seat at the launch party.
+            Padel Logan is based at Meadowbrook Golf Club. Every founding membership runs twelve months and combines your padel membership with unlimited golf at Meadowbrook, plus free non-peak court hire.
         </p>
         <div class="m-hero-actions">
-            <a href="mailto:info@padellogan.com.au?subject=Foundation%20Membership%20Enquiry&body=Hi%20Padel%20Logan%2C%0A%0AI%27d%20like%20to%20secure%20a%20Foundation%20Membership.%0A%0AName%3A%0APhone%3A%0A%0AThanks%2C" class="btn-primary">Secure Your Membership</a>
-            <a href="#pricing" class="btn-ghost">View Pricing</a>
+            <a href="mailto:info@padellogan.com.au?subject=Founding%20Membership%20Enquiry&body=Hi%20Padel%20Logan%2C%0A%0AI%27d%20like%20to%20secure%20a%20Founding%20Membership.%0A%0AName%3A%0APhone%3A%0A%0AThanks%2C" class="btn-primary">Secure Your Membership</a>
+            <a href="#tiers" class="btn-ghost">View Memberships</a>
         </div>
     </div>
 </section>
 
-<!-- ── FOUNDATION MEMBERSHIP ── -->
-<section class="sec sec-white on-white" id="foundation">
+<!-- ── FOUNDING MEMBERSHIP TIERS ── -->
+<section class="sec sec-navy" id="tiers">
     <div class="sec-inner">
-        <span class="chip">Foundation Membership</span>
+        <span class="chip">Founding Memberships</span>
         <h2 class="sec-h2">Twelve months.<br><em>Founding rates.</em></h2>
         <p class="sec-lead">
-            Foundation Membership is our opening offer for the members who get in first. It runs for twelve months from the day we open and locks in the lowest court rates we will ever offer, plus the extras below.
+            Padel Logan is based at Meadowbrook Golf Club, so every founding membership is padel and unlimited golf at the one club. All three carry the same padel benefits and the same extras. The only difference is the golf membership you take.
         </p>
 
-        <div class="found-grid">
-            <!-- price -->
-            <div class="price-card">
-                <span class="price-flag">Limited</span>
-                <div class="price-name">Foundation Membership</div>
-                <div class="price-term">12 Months</div>
-                <div class="price-amount"><sup>$</sup>1,499</div>
-                <p class="price-note">Per person, for twelve months of membership from opening day.</p>
-                <div class="price-rule"></div>
-                <a href="mailto:info@padellogan.com.au?subject=Foundation%20Membership%20Enquiry&body=Hi%20Padel%20Logan%2C%0A%0AI%27d%20like%20to%20secure%20a%20Foundation%20Membership.%0A%0AName%3A%0APhone%3A%0A%0AThanks%2C" class="btn-primary">Email to Secure</a>
-            </div>
+        <div class="tier-grid">
+            <div class="mcard">
+                <div class="mcard-tier">Founding</div>
+                <div class="mcard-name">Platinum</div>
+                <div class="mcard-price"><sup>$</sup>2,750</div>
+                <div class="mcard-term">12 Months</div>
+                <div class="mcard-value">Total retail value <strong>$4,674</strong></div>
 
-            <!-- inclusions -->
-            <div>
-                <div class="inc-title">What is included</div>
-                <ul class="inc-list">
-                    <li class="inc-item">
-                        <svg class="inc-icon" viewBox="0 0 24 24"><rect x="2.5" y="4.5" width="19" height="15" rx="1.5"/><line x1="12" y1="4.5" x2="12" y2="19.5"/><line x1="2.5" y1="12" x2="21.5" y2="12"/></svg>
-                        <div class="inc-body">
-                            <div class="inc-label">Peak court play</div>
-                            <div class="inc-desc">Member rate for peak time court play.</div>
+                <div class="mcard-summary"><span class="sum-lbl">Membership includes</span><span class="sum-padel">Padel Membership</span><span class="sum-golf">+ Unlimited Golf at Meadowbrook Golf Club</span><span class="sum-detail">7 Day Cart Membership</span></div>
+
+                <details class="incl-acc" open>
+                    <summary><span>What is included</span><span class="incl-summary-right"><span class="incl-count">15</span><span class="incl-chev"></span></span></summary>
+                    <div class="incl-list">
+                        <div class="incl-row">
+                            <span class="incl-tick"><svg viewBox="0 0 24 24"><polyline points="4,12.5 9.5,18 20,6.5"/></svg></span>
+                            <div class="incl-text">Padel Membership</div>
                         </div>
-                        <div class="inc-value">$10 pp</div>
-                    </li>
-                    <li class="inc-item">
-                        <svg class="inc-icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><polyline points="12,6.5 12,12 15.5,14"/></svg>
-                        <div class="inc-body">
-                            <div class="inc-label">Non-peak court play</div>
-                            <div class="inc-desc">Play as much as you like outside peak hours.</div>
+                        <div class="incl-row">
+                            <span class="incl-tick"><svg viewBox="0 0 24 24"><polyline points="4,12.5 9.5,18 20,6.5"/></svg></span>
+                            <div class="incl-text">Peak court hire</div>
+                            <div class="incl-val">$10</div>
                         </div>
-                        <div class="inc-value free">Free</div>
-                    </li>
-                    <li class="inc-item">
-                        <svg class="inc-icon" viewBox="0 0 24 24"><circle cx="9" cy="8" r="3.2"/><path d="M2.8 20c0-3.4 2.8-5.6 6.2-5.6s6.2 2.2 6.2 5.6"/><circle cx="17.5" cy="9" r="2.4"/><path d="M16 14.6c3 0 5.2 1.9 5.2 5.4"/></svg>
-                        <div class="inc-body">
-                            <div class="inc-label">Weekly Social Padel Sessions</div>
-                            <div class="inc-desc">1.5 hours of social play every week.</div>
+                        <div class="incl-row">
+                            <span class="incl-tick"><svg viewBox="0 0 24 24"><polyline points="4,12.5 9.5,18 20,6.5"/></svg></span>
+                            <div class="incl-text">Non-peak court hire</div>
+                            <div class="incl-val">Free</div>
                         </div>
-                        <div class="inc-value">$10 pp</div>
-                    </li>
-                    <li class="inc-item">
-                        <svg class="inc-icon" viewBox="0 0 24 24"><rect x="3" y="4.8" width="18" height="16.2" rx="1.6"/><line x1="3" y1="9.4" x2="21" y2="9.4"/><line x1="8" y1="2.8" x2="8" y2="6.4"/><line x1="16" y1="2.8" x2="16" y2="6.4"/></svg>
-                        <div class="inc-body">
-                            <div class="inc-label">Advanced booking access</div>
-                            <div class="inc-desc">Book your courts before anyone else.</div>
+                        <div class="incl-row">
+                            <span class="incl-tick"><svg viewBox="0 0 24 24"><polyline points="4,12.5 9.5,18 20,6.5"/></svg></span>
+                            <div class="incl-text">Advanced padel court bookings</div>
+                            <div class="incl-val">2 weeks</div>
                         </div>
-                        <div class="inc-value">2 weeks</div>
-                    </li>
-                    <li class="inc-item">
-                        <svg class="inc-icon" viewBox="0 0 24 24"><path d="M8 3v6.5a4 4 0 0 0 8 0V3z"/><path d="M16 4.5h3a2.5 2.5 0 0 1 0 5h-1.2"/><path d="M8 4.5H5a2.5 2.5 0 0 0 0 5h1.2"/><line x1="12" y1="13.5" x2="12" y2="18"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="9.5" y1="18" x2="14.5" y2="18"/></svg>
-                        <div class="inc-body">
-                            <div class="inc-label">Launch party access</div>
-                            <div class="inc-desc">An invitation to our opening night.</div>
+                        <div class="incl-row is-golf">
+                            <span class="incl-tick"><svg viewBox="0 0 24 24"><polyline points="4,12.5 9.5,18 20,6.5"/></svg></span>
+                            <div class="incl-text">
+                                <b>Unlimited golf at Meadowbrook Golf Club</b>
+                                <div class="incl-golf-detail">7 Day Cart Membership</div>
+                                <div class="incl-note">A 2nd golfer who is not a cart member must pay the applicable half cart fee when riding in the cart.</div>
+                            </div>
                         </div>
-                        <div class="inc-value free">Included</div>
-                    </li>
-                    <li class="inc-item">
-                        <svg class="inc-icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7.5v9"/><path d="M7.5 12h9"/></svg>
-                        <div class="inc-body">
-                            <div class="inc-label">Complimentary lesson</div>
-                            <div class="inc-desc">One 60 minute lesson with our coaching team.</div>
+                        <div class="incl-row">
+                            <span class="incl-tick"><svg viewBox="0 0 24 24"><polyline points="4,12.5 9.5,18 20,6.5"/></svg></span>
+                            <div class="incl-text">Invitation to the Padel Logan Grand Opening Party</div>
                         </div>
-                        <div class="inc-value free">1 x 60 min</div>
-                    </li>
-                    <li class="inc-item">
-                        <svg class="inc-icon" viewBox="0 0 24 24"><rect x="3" y="8.5" width="18" height="12.5" rx="1.4"/><line x1="3" y1="13" x2="21" y2="13"/><line x1="12" y1="8.5" x2="12" y2="21"/><path d="M12 8.5S10.5 4 8 4a2.4 2.4 0 0 0 0 4.5z"/><path d="M12 8.5S13.5 4 16 4a2.4 2.4 0 0 1 0 4.5z"/></svg>
-                        <div class="inc-body">
-                            <div class="inc-label">Club gift pack</div>
-                            <div class="inc-desc">Padel Logan welcome pack when you join.</div>
+                        <div class="incl-row">
+                            <span class="incl-tick"><svg viewBox="0 0 24 24"><polyline points="4,12.5 9.5,18 20,6.5"/></svg></span>
+                            <div class="incl-text">Official Padel Logan club shirt</div>
                         </div>
-                        <div class="inc-value free">Included</div>
-                    </li>
-                </ul>
+                        <div class="incl-row">
+                            <span class="incl-tick"><svg viewBox="0 0 24 24"><polyline points="4,12.5 9.5,18 20,6.5"/></svg></span>
+                            <div class="incl-text">MATCHi credit</div>
+                            <div class="incl-val">$100</div>
+                        </div>
+                        <div class="incl-row">
+                            <span class="incl-tick"><svg viewBox="0 0 24 24"><polyline points="4,12.5 9.5,18 20,6.5"/></svg></span>
+                            <div class="incl-text">1 hour private padel lesson with a coach</div>
+                        </div>
+                        <div class="incl-row">
+                            <span class="incl-tick"><svg viewBox="0 0 24 24"><polyline points="4,12.5 9.5,18 20,6.5"/></svg></span>
+                            <div class="incl-text">Driving range credit</div>
+                            <div class="incl-val">$100</div>
+                        </div>
+                        <div class="incl-row">
+                            <span class="incl-tick"><svg viewBox="0 0 24 24"><polyline points="4,12.5 9.5,18 20,6.5"/></svg></span>
+                            <div class="incl-text">1 hour private golf lesson with a PGA Professional</div>
+                        </div>
+                        <div class="incl-row">
+                            <span class="incl-tick"><svg viewBox="0 0 24 24"><polyline points="4,12.5 9.5,18 20,6.5"/></svg></span>
+                            <div class="incl-text">Mini golf family pass (2 adults and 2 children)</div>
+                            <div class="incl-val">1 x</div>
+                        </div>
+                        <div class="incl-row">
+                            <span class="incl-tick"><svg viewBox="0 0 24 24"><polyline points="4,12.5 9.5,18 20,6.5"/></svg></span>
+                            <div class="incl-text">Discounted league entry fees</div>
+                        </div>
+                        <div class="incl-row">
+                            <span class="incl-tick"><svg viewBox="0 0 24 24"><polyline points="4,12.5 9.5,18 20,6.5"/></svg></span>
+                            <div class="incl-text">Discounted tournament entry fees</div>
+                        </div>
+                        <div class="incl-row">
+                            <span class="incl-tick"><svg viewBox="0 0 24 24"><polyline points="4,12.5 9.5,18 20,6.5"/></svg></span>
+                            <div class="incl-text">Discounted coaching clinics</div>
+                        </div>
+                    </div>
+                </details>
+
+                <div class="mcard-pad"></div>
+                <a href="mailto:info@padellogan.com.au?subject=Founding%20Platinum%20Membership%20Enquiry&body=Hi%20Padel%20Logan%2C%0A%0AI%27d%20like%20to%20secure%20a%20Founding%20Platinum%20Membership.%0A%0AName%3A%0APhone%3A%0A%0AThanks%2C" class="btn-primary">Email to Secure</a>
+            </div>
+            <div class="mcard">
+                <div class="mcard-tier">Founding</div>
+                <div class="mcard-name">Gold</div>
+                <div class="mcard-price"><sup>$</sup>2,150</div>
+                <div class="mcard-term">12 Months</div>
+                <div class="mcard-value">Total retail value <strong>$3,474</strong></div>
+
+                <div class="mcard-summary"><span class="sum-lbl">Membership includes</span><span class="sum-padel">Padel Membership</span><span class="sum-golf">+ Unlimited Golf at Meadowbrook Golf Club</span><span class="sum-detail">7 Day Walking Membership</span></div>
+
+                <details class="incl-acc" open>
+                    <summary><span>What is included</span><span class="incl-summary-right"><span class="incl-count">15</span><span class="incl-chev"></span></span></summary>
+                    <div class="incl-list">
+                        <div class="incl-row">
+                            <span class="incl-tick"><svg viewBox="0 0 24 24"><polyline points="4,12.5 9.5,18 20,6.5"/></svg></span>
+                            <div class="incl-text">Padel Membership</div>
+                        </div>
+                        <div class="incl-row">
+                            <span class="incl-tick"><svg viewBox="0 0 24 24"><polyline points="4,12.5 9.5,18 20,6.5"/></svg></span>
+                            <div class="incl-text">Peak court hire</div>
+                            <div class="incl-val">$10</div>
+                        </div>
+                        <div class="incl-row">
+                            <span class="incl-tick"><svg viewBox="0 0 24 24"><polyline points="4,12.5 9.5,18 20,6.5"/></svg></span>
+                            <div class="incl-text">Non-peak court hire</div>
+                            <div class="incl-val">Free</div>
+                        </div>
+                        <div class="incl-row">
+                            <span class="incl-tick"><svg viewBox="0 0 24 24"><polyline points="4,12.5 9.5,18 20,6.5"/></svg></span>
+                            <div class="incl-text">Advanced padel court bookings</div>
+                            <div class="incl-val">2 weeks</div>
+                        </div>
+                        <div class="incl-row is-golf">
+                            <span class="incl-tick"><svg viewBox="0 0 24 24"><polyline points="4,12.5 9.5,18 20,6.5"/></svg></span>
+                            <div class="incl-text">
+                                <b>Unlimited golf at Meadowbrook Golf Club</b>
+                                <div class="incl-golf-detail">7 Day Walking Membership</div>
+                            </div>
+                        </div>
+                        <div class="incl-row">
+                            <span class="incl-tick"><svg viewBox="0 0 24 24"><polyline points="4,12.5 9.5,18 20,6.5"/></svg></span>
+                            <div class="incl-text">Invitation to the Padel Logan Grand Opening Party</div>
+                        </div>
+                        <div class="incl-row">
+                            <span class="incl-tick"><svg viewBox="0 0 24 24"><polyline points="4,12.5 9.5,18 20,6.5"/></svg></span>
+                            <div class="incl-text">Official Padel Logan club shirt</div>
+                        </div>
+                        <div class="incl-row">
+                            <span class="incl-tick"><svg viewBox="0 0 24 24"><polyline points="4,12.5 9.5,18 20,6.5"/></svg></span>
+                            <div class="incl-text">MATCHi credit</div>
+                            <div class="incl-val">$100</div>
+                        </div>
+                        <div class="incl-row">
+                            <span class="incl-tick"><svg viewBox="0 0 24 24"><polyline points="4,12.5 9.5,18 20,6.5"/></svg></span>
+                            <div class="incl-text">1 hour private padel lesson with a coach</div>
+                        </div>
+                        <div class="incl-row">
+                            <span class="incl-tick"><svg viewBox="0 0 24 24"><polyline points="4,12.5 9.5,18 20,6.5"/></svg></span>
+                            <div class="incl-text">Driving range credit</div>
+                            <div class="incl-val">$100</div>
+                        </div>
+                        <div class="incl-row">
+                            <span class="incl-tick"><svg viewBox="0 0 24 24"><polyline points="4,12.5 9.5,18 20,6.5"/></svg></span>
+                            <div class="incl-text">1 hour private golf lesson with a PGA Professional</div>
+                        </div>
+                        <div class="incl-row">
+                            <span class="incl-tick"><svg viewBox="0 0 24 24"><polyline points="4,12.5 9.5,18 20,6.5"/></svg></span>
+                            <div class="incl-text">Mini golf family pass (2 adults and 2 children)</div>
+                            <div class="incl-val">1 x</div>
+                        </div>
+                        <div class="incl-row">
+                            <span class="incl-tick"><svg viewBox="0 0 24 24"><polyline points="4,12.5 9.5,18 20,6.5"/></svg></span>
+                            <div class="incl-text">Discounted league entry fees</div>
+                        </div>
+                        <div class="incl-row">
+                            <span class="incl-tick"><svg viewBox="0 0 24 24"><polyline points="4,12.5 9.5,18 20,6.5"/></svg></span>
+                            <div class="incl-text">Discounted tournament entry fees</div>
+                        </div>
+                        <div class="incl-row">
+                            <span class="incl-tick"><svg viewBox="0 0 24 24"><polyline points="4,12.5 9.5,18 20,6.5"/></svg></span>
+                            <div class="incl-text">Discounted coaching clinics</div>
+                        </div>
+                    </div>
+                </details>
+
+                <div class="mcard-pad"></div>
+                <a href="mailto:info@padellogan.com.au?subject=Founding%20Gold%20Membership%20Enquiry&body=Hi%20Padel%20Logan%2C%0A%0AI%27d%20like%20to%20secure%20a%20Founding%20Gold%20Membership.%0A%0AName%3A%0APhone%3A%0A%0AThanks%2C" class="btn-primary">Email to Secure</a>
+            </div>
+            <div class="mcard">
+                <div class="mcard-tier">Founding</div>
+                <div class="mcard-name">Silver</div>
+                <div class="mcard-price"><sup>$</sup>1,500</div>
+                <div class="mcard-term">12 Months</div>
+                <div class="mcard-value">Total retail value <strong>$3,173</strong></div>
+
+                <div class="mcard-summary"><span class="sum-lbl">Membership includes</span><span class="sum-padel">Padel Membership</span><span class="sum-golf">+ Unlimited Golf at Meadowbrook Golf Club</span><span class="sum-detail">5 Day Walking Membership (Monday to Friday)</span></div>
+
+                <details class="incl-acc" open>
+                    <summary><span>What is included</span><span class="incl-summary-right"><span class="incl-count">15</span><span class="incl-chev"></span></span></summary>
+                    <div class="incl-list">
+                        <div class="incl-row">
+                            <span class="incl-tick"><svg viewBox="0 0 24 24"><polyline points="4,12.5 9.5,18 20,6.5"/></svg></span>
+                            <div class="incl-text">Padel Membership</div>
+                        </div>
+                        <div class="incl-row">
+                            <span class="incl-tick"><svg viewBox="0 0 24 24"><polyline points="4,12.5 9.5,18 20,6.5"/></svg></span>
+                            <div class="incl-text">Peak court hire</div>
+                            <div class="incl-val">$10</div>
+                        </div>
+                        <div class="incl-row">
+                            <span class="incl-tick"><svg viewBox="0 0 24 24"><polyline points="4,12.5 9.5,18 20,6.5"/></svg></span>
+                            <div class="incl-text">Non-peak court hire</div>
+                            <div class="incl-val">Free</div>
+                        </div>
+                        <div class="incl-row">
+                            <span class="incl-tick"><svg viewBox="0 0 24 24"><polyline points="4,12.5 9.5,18 20,6.5"/></svg></span>
+                            <div class="incl-text">Advanced padel court bookings</div>
+                            <div class="incl-val">2 weeks</div>
+                        </div>
+                        <div class="incl-row is-golf">
+                            <span class="incl-tick"><svg viewBox="0 0 24 24"><polyline points="4,12.5 9.5,18 20,6.5"/></svg></span>
+                            <div class="incl-text">
+                                <b>Unlimited golf at Meadowbrook Golf Club</b>
+                                <div class="incl-golf-detail">5 Day Walking Membership (Monday to Friday)</div>
+                            </div>
+                        </div>
+                        <div class="incl-row">
+                            <span class="incl-tick"><svg viewBox="0 0 24 24"><polyline points="4,12.5 9.5,18 20,6.5"/></svg></span>
+                            <div class="incl-text">Invitation to the Padel Logan Grand Opening Party</div>
+                        </div>
+                        <div class="incl-row">
+                            <span class="incl-tick"><svg viewBox="0 0 24 24"><polyline points="4,12.5 9.5,18 20,6.5"/></svg></span>
+                            <div class="incl-text">Official Padel Logan club shirt</div>
+                        </div>
+                        <div class="incl-row">
+                            <span class="incl-tick"><svg viewBox="0 0 24 24"><polyline points="4,12.5 9.5,18 20,6.5"/></svg></span>
+                            <div class="incl-text">MATCHi credit</div>
+                            <div class="incl-val">$100</div>
+                        </div>
+                        <div class="incl-row">
+                            <span class="incl-tick"><svg viewBox="0 0 24 24"><polyline points="4,12.5 9.5,18 20,6.5"/></svg></span>
+                            <div class="incl-text">1 hour private padel lesson with a coach</div>
+                        </div>
+                        <div class="incl-row">
+                            <span class="incl-tick"><svg viewBox="0 0 24 24"><polyline points="4,12.5 9.5,18 20,6.5"/></svg></span>
+                            <div class="incl-text">Driving range credit</div>
+                            <div class="incl-val">$100</div>
+                        </div>
+                        <div class="incl-row">
+                            <span class="incl-tick"><svg viewBox="0 0 24 24"><polyline points="4,12.5 9.5,18 20,6.5"/></svg></span>
+                            <div class="incl-text">1 hour private golf lesson with a PGA Professional</div>
+                        </div>
+                        <div class="incl-row">
+                            <span class="incl-tick"><svg viewBox="0 0 24 24"><polyline points="4,12.5 9.5,18 20,6.5"/></svg></span>
+                            <div class="incl-text">Mini golf family pass (2 adults and 2 children)</div>
+                            <div class="incl-val">1 x</div>
+                        </div>
+                        <div class="incl-row">
+                            <span class="incl-tick"><svg viewBox="0 0 24 24"><polyline points="4,12.5 9.5,18 20,6.5"/></svg></span>
+                            <div class="incl-text">Discounted league entry fees</div>
+                        </div>
+                        <div class="incl-row">
+                            <span class="incl-tick"><svg viewBox="0 0 24 24"><polyline points="4,12.5 9.5,18 20,6.5"/></svg></span>
+                            <div class="incl-text">Discounted tournament entry fees</div>
+                        </div>
+                        <div class="incl-row">
+                            <span class="incl-tick"><svg viewBox="0 0 24 24"><polyline points="4,12.5 9.5,18 20,6.5"/></svg></span>
+                            <div class="incl-text">Discounted coaching clinics</div>
+                        </div>
+                    </div>
+                </details>
+
+                <div class="mcard-pad"></div>
+                <a href="mailto:info@padellogan.com.au?subject=Founding%20Silver%20Membership%20Enquiry&body=Hi%20Padel%20Logan%2C%0A%0AI%27d%20like%20to%20secure%20a%20Founding%20Silver%20Membership.%0A%0AName%3A%0APhone%3A%0A%0AThanks%2C" class="btn-primary">Email to Secure</a>
             </div>
         </div>
     </div>
 </section>
 
-<!-- ── NON MEMBER PRICING ── -->
+<!-- ── COURT HIRE ── -->
 <section class="sec sec-navy" id="pricing">
     <div class="sec-inner">
-        <span class="chip">Non-Member Pricing</span>
-        <h2 class="sec-h2">Casual <em>court hire</em></h2>
+        <span class="chip">Court Hire</span>
+        <h2 class="sec-h2">Peak and <em>non-peak rates</em></h2>
         <p class="sec-lead">
-            Not ready to join? Everyone is welcome to book a court or jump into a social session at our casual rates.
+            Everyone is welcome to book a court. Founding Members play non-peak for free and pay $10 per hour at peak.
         </p>
 
-        <div class="rate-grid">
-            <div class="rate">
-                <div class="rate-name">Peak court hire</div>
-                <div class="rate-meta">1 Hour</div>
-                <div class="rate-price"><sup>$</sup>25</div>
-                <div class="rate-per">per person</div>
-                <div class="rate-court"><strong>$100</strong> per court</div>
+        <div class="hours-grid">
+            <div class="rate hour-band">
+                <div class="hour-name">Non-peak</div>
+                <div class="hour-time"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><polyline points="12,6.5 12,12 15.5,14"/></svg> 6:00am to 4:00pm</div>
+                <div class="hour-rates">
+                    <div>
+                        <div class="hour-rate-lbl">Per court</div>
+                        <div class="hour-rate-val"><sup>$</sup>60</div>
+                        <div class="hour-rate-sub">1 hour</div>
+                    </div>
+                    <div>
+                        <div class="hour-rate-lbl">Per person</div>
+                        <div class="hour-rate-val"><sup>$</sup>15</div>
+                        <div class="hour-rate-sub">1 hour</div>
+                    </div>
+                </div>
+                <div class="hour-member">
+                    <span class="hour-member-lbl">Founding Member</span>
+                    <span class="hour-member-val">Free</span>
+                </div>
             </div>
-            <div class="rate">
-                <div class="rate-name">Non-peak court hire</div>
-                <div class="rate-meta">1 Hour</div>
-                <div class="rate-price"><sup>$</sup>15</div>
-                <div class="rate-per">per person</div>
-                <div class="rate-court"><strong>$60</strong> per court</div>
-            </div>
-            <div class="rate">
-                <div class="rate-name">Weekly Social Padel Session</div>
-                <div class="rate-meta">1.5 Hours</div>
-                <div class="rate-price"><sup>$</sup>29</div>
-                <div class="rate-per">per person</div>
-                <div class="rate-court"><strong>$10</strong> for members</div>
-            </div>
-        </div>
 
-        <div class="save-strip">
-            <svg viewBox="0 0 24 24"><path d="M12 3l2.6 5.6 6.1.8-4.5 4.2 1.2 6L12 16.8 6.6 19.6l1.2-6L3.3 9.4l6.1-.8z"/></svg>
-            <p><strong>Foundation members play non-peak for free</strong> and pay $10 per person at peak, against $25 per person casual. Add the free social sessions rate, the complimentary lesson and the gift pack and the membership pays for itself well inside the year.</p>
+            <div class="rate hour-band">
+                <div class="hour-name">Peak</div>
+                <div class="hour-time"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><polyline points="12,6.5 12,12 15.5,14"/></svg> 4:00pm to 10:00pm</div>
+                <div class="hour-rates">
+                    <div>
+                        <div class="hour-rate-lbl">Per court</div>
+                        <div class="hour-rate-val"><sup>$</sup>90</div>
+                        <div class="hour-rate-sub">1 hour</div>
+                    </div>
+                    <div>
+                        <div class="hour-rate-lbl">Per person</div>
+                        <div class="hour-rate-val"><sup>$</sup>22.50</div>
+                        <div class="hour-rate-sub">1 hour</div>
+                    </div>
+                </div>
+                <div class="hour-member">
+                    <span class="hour-member-lbl">Founding Member</span>
+                    <span class="hour-member-val">$10 / hr</span>
+                </div>
+            </div>
         </div>
+    </div>
+</section>
+
+<!-- ── TERMS ── -->
+<section class="terms on-white">
+    <div class="terms-inner">
+        <div class="terms-title">Membership Terms and Conditions</div>
+        <ul class="terms-list">
+            <li>All Founding Memberships are valid for an initial 12 month membership term from the commencement date.</li>
+            <li>Founding Membership pricing, structure and inclusions apply to the initial 12 month membership term only.</li>
+            <li>Renewal pricing, membership structure and inclusions for Year 2 and beyond are subject to change at the discretion of Padel Logan.</li>
+            <li>Any changes to renewal pricing or membership inclusions will be communicated prior to the expiry of the initial 12 month membership term.</li>
+        </ul>
     </div>
 </section>
 
 <!-- ── EMAIL CTA ── -->
 <section class="cta-band on-white" id="secure">
     <div class="cta-inner">
-        <span class="chip">Foundation Memberships Open</span>
-        <h2 class="cta-h2">Secure your <em>Foundation Membership</em></h2>
+        <span class="chip">Founding Memberships Open</span>
+        <h2 class="cta-h2">Secure your <em>Founding Membership</em></h2>
         <p class="cta-sub">
-            Foundation Membership is limited and allocated in the order enquiries are received. Email us to reserve your place and we will send you everything you need to get started.
+            Founding Memberships are limited and allocated in the order enquiries are received. Email us with the membership you want and we will send you everything you need to get started.
         </p>
 
-        <a class="cta-email" href="mailto:info@padellogan.com.au?subject=Foundation%20Membership%20Enquiry&body=Hi%20Padel%20Logan%2C%0A%0AI%27d%20like%20to%20secure%20a%20Foundation%20Membership.%0A%0AName%3A%0APhone%3A%0A%0AThanks%2C">
+        <a class="cta-email" href="mailto:info@padellogan.com.au?subject=Founding%20Membership%20Enquiry&body=Hi%20Padel%20Logan%2C%0A%0AI%27d%20like%20to%20secure%20a%20Founding%20Membership.%0A%0AName%3A%0APhone%3A%0A%0AThanks%2C">
             <svg viewBox="0 0 24 24"><rect x="2.5" y="5" width="19" height="14" rx="2"/><polyline points="3,6.5 12,13 21,6.5"/></svg>
             info@padellogan.com.au
         </a>
 
         <div class="cta-actions">
-            <a href="mailto:info@padellogan.com.au?subject=Foundation%20Membership%20Enquiry&body=Hi%20Padel%20Logan%2C%0A%0AI%27d%20like%20to%20secure%20a%20Foundation%20Membership.%0A%0AName%3A%0APhone%3A%0A%0AThanks%2C" class="btn-primary">Email to Secure Your Membership</a>
-            <a href="index.html#newsletter" class="btn-ghost">Subscribe to Newsletter</a>
+            <a href="mailto:info@padellogan.com.au?subject=Founding%20Membership%20Enquiry&body=Hi%20Padel%20Logan%2C%0A%0AI%27d%20like%20to%20secure%20a%20Founding%20Membership.%0A%0AName%3A%0APhone%3A%0A%0AThanks%2C" class="btn-primary">Email to Secure Your Membership</a>
+            <a href="/#newsletter" class="btn-ghost">Subscribe to Newsletter</a>
         </div>
 
         <p class="cta-fine">Prefer to talk? Call <a href="tel:0732996653">07 3299 6653</a>. All prices in AUD and include GST.</p>
@@ -570,15 +1091,15 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <footer>
     <div class="footer-row">
         <div class="footer-brand">
-            <a href="index.html" aria-label="Padel Logan home"><img class="footer-logo" src="data:image/png;base64,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" alt="Padel Logan"></a>
+            <a href="/" aria-label="Padel Logan home"><img class="footer-logo" src="data:image/png;base64,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" alt="Padel Logan"></a>
         </div>
 
         <ul class="footer-links">
-            <li><a href="index.html">Home</a></li>
-            <li><a href="memberships.html">Memberships</a></li>
-            <li><a href="index.html#newsletter">Subscribe to Newsletter</a></li>
-            <li><a href="index.html#location">Location</a></li>
-            <li><a href="index.html#contact">Contact</a></li>
+            <li><a href="/">Home</a></li>
+            <li><a href="/memberships">Memberships</a></li>
+            <li><a href="/#newsletter">Subscribe to Newsletter</a></li>
+            <li><a href="/#location">Location</a></li>
+            <li><a href="/#contact">Contact</a></li>
         </ul>
 
         <div class="footer-social">
@@ -618,11 +1139,17 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     onScroll();
     window.addEventListener('scroll', onScroll, { passive: true });
 
+    // Inclusions accordion: open in the markup, collapsed only on small screens.
+    // JS can only ever close these, so a script failure leaves the content visible.
+    if (window.matchMedia('(max-width: 960px)').matches) {
+        document.querySelectorAll('.incl-acc').forEach(d => { d.open = false; });
+    }
+
     // Track membership email clicks in GTM / GA4
     document.querySelectorAll('a[href^="mailto:info@padellogan.com.au"]').forEach(a => {
         a.addEventListener('click', () => {
             window.dataLayer = window.dataLayer || [];
-            window.dataLayer.push({ event: 'membership_email_click', membership: 'foundation' });
+            window.dataLayer.push({ event: 'membership_email_click', membership: 'founding' });
         });
     });
 </script>
