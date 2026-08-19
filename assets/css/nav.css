@@ -77,12 +77,16 @@
        handles hover instead. */
     .plnav-drop > .plnav-top { pointer-events: none; }
 
+    /* white panel: the dropdown sits over hero photography and dark
+       sections alike, so a light card reads far better than a
+       semi-transparent navy one */
     .plnav-sub {
         position: absolute; top: calc(100% + 0.9rem); left: -1.1rem;
-        min-width: 13.5rem; padding: 0.5rem 0;
-        background: rgba(15,59,89,0.985);
-        border: 1px solid rgba(234,241,246,0.14);
-        box-shadow: 0 24px 50px -20px rgba(0,0,0,0.6);
+        min-width: 14rem; padding: 0.45rem 0;
+        background: #ffffff;
+        border: 1px solid rgba(15,59,89,0.10);
+        border-radius: 3px;
+        box-shadow: 0 26px 55px -18px rgba(15,59,89,0.55), 0 2px 8px rgba(15,59,89,0.10);
         /* opacity + pointer-events, never visibility: a visibility:hidden
            parent makes its links unfocusable, so :focus-within could never
            fire and keyboard users could not reach the dropdown at all. */
@@ -100,7 +104,13 @@
     .plnav-item:hover .plnav-chev, .plnav-drop:focus-within .plnav-chev {
         transform: rotate(225deg) translate(-1px, -1px);
     }
-    .plnav-sub a { padding: 0.62rem 1.4rem; }
+    .plnav-sub a {
+        padding: 0.68rem 1.4rem;
+        color: #0F3B59; font-weight: 400; letter-spacing: 0.06em;
+    }
+    .plnav-sub a:hover, .plnav-sub a:focus-visible {
+        color: #0F3B59; background: rgba(30,111,148,0.10);
+    }
 }
 
 /* ── MOBILE ─────────────────────────────────────────────── */
