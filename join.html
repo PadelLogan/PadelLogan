@@ -37,6 +37,7 @@
 
     <link rel="stylesheet" href="/assets/css/site.css?v=1">
     <link rel="stylesheet" href="/assets/css/join.css?v=1">
+    <link rel="stylesheet" href="/assets/css/nav.css?v=1">
 </head>
 <body>
 <!-- Google Tag Manager (noscript) -->
@@ -52,14 +53,48 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </div>
 
 <!-- ── NAV ── -->
-<nav>
-    <a href="/" aria-label="Padel Logan home">
-        <img class="nav-logo" src="/assets/img/logo.png" alt="Padel Logan">
+<nav class="plnav" aria-label="Main">
+    <a class="plnav-logo-link" href="/" aria-label="Padel Logan home">
+        <img class="plnav-logo" src="/assets/img/logo.png" alt="Padel Logan">
     </a>
-    <div class="nav-right">
-        <a href="/" class="nav-link">Home</a>
-        <a href="/memberships" class="nav-link">Memberships</a>
-        <a href="/#contact" class="nav-cta">Contact</a>
+
+    <input type="checkbox" id="plnav-toggle" class="plnav-toggle" aria-label="Open menu">
+    <label class="plnav-burger" for="plnav-toggle"><span></span><span></span><span></span></label>
+
+    <div class="plnav-panel">
+        <ul class="plnav-list">
+            <li class="plnav-item">
+                <details class="plnav-drop" open>
+                    <summary class="plnav-top">Membership<span class="plnav-chev"></span></summary>
+                    <ul class="plnav-sub">
+                        <li><a href="/memberships">Founding Memberships</a></li>
+                        <li><a href="/join">Apply Online</a></li>
+                        <li><a href="/memberships#tiers">What Is Included</a></li>
+                    </ul>
+                </details>
+            </li>
+            <li class="plnav-item">
+                <details class="plnav-drop" open>
+                    <summary class="plnav-top">Court Hire<span class="plnav-chev"></span></summary>
+                    <ul class="plnav-sub">
+                        <li><a href="/court-hire">Rates and Times</a></li>
+                        <li><a href="/court-hire#book">Book a Court</a></li>
+                    </ul>
+                </details>
+            </li>
+            <li class="plnav-item">
+                <details class="plnav-drop" open>
+                    <summary class="plnav-top">Corporate<span class="plnav-chev"></span></summary>
+                    <ul class="plnav-sub">
+                        <li><a href="/corporate#team-building">Team Building</a></li>
+                        <li><a href="/corporate#packages">Corporate Packages</a></li>
+                        <li><a href="/corporate#functions">Functions and Events</a></li>
+                    </ul>
+                </details>
+            </li>
+            <li class="plnav-item"><a class="plnav-top" href="/contact">Contact</a></li>
+        </ul>
+        <a class="plnav-cta" href="/court-hire#book">Book Now</a>
     </div>
 </nav>
 

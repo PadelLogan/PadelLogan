@@ -1,0 +1,140 @@
+/* ============================================================
+   PADEL LOGAN — shared furniture for the content pages
+   (court hire, contact, corporate). Loads after site.css.
+   ============================================================ */
+
+/* ── PAGE HERO ── */
+.p-hero {
+    position: relative; background: var(--mgc-ink);
+    background-image: linear-gradient(rgba(15,59,89,0.80), rgba(15,59,89,0.93)), url('/assets/img/hero.jpg');
+    background-size: cover; background-position: center;
+    padding: 10rem 2.5rem 4.5rem; color: var(--cream);
+}
+.p-hero-inner { max-width: 1140px; margin: 0 auto; }
+.p-eyebrow {
+    display: inline-flex; align-items: center; gap: 0.7rem;
+    font-family: 'Barlow Condensed', sans-serif; font-size: 0.75rem; font-weight: 700;
+    letter-spacing: 0.28em; text-transform: uppercase; color: var(--white); margin-bottom: 1.2rem;
+}
+.p-eyebrow::before { content: ''; width: 2.2rem; height: 1px; background: var(--white); opacity: 0.55; }
+.p-title {
+    font-family: 'Cormorant Garamond', serif; font-weight: 300;
+    font-size: clamp(2.4rem, 5vw, 4rem); line-height: 1.05; color: var(--white); margin-bottom: 1.2rem;
+}
+.p-title em { font-style: italic; }
+.p-sub { font-size: 0.95rem; line-height: 1.8; max-width: 60ch; color: var(--cream-dim); }
+.p-hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 2rem; }
+
+/* ── RATE CARDS ── */
+.rate-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.6rem; margin-top: 2.6rem; }
+.rate-card {
+    border: 1px solid rgba(234,241,246,0.16); border-radius: 3px;
+    background: linear-gradient(160deg, rgba(46,147,190,0.14), rgba(15,59,89,0.1));
+    padding: 2.4rem 2rem;
+}
+.rate-band {
+    font-family: 'Barlow Condensed', sans-serif; font-size: 0.72rem; font-weight: 700;
+    letter-spacing: 0.26em; text-transform: uppercase; color: var(--white);
+}
+.rate-name {
+    font-family: 'Barlow Condensed', sans-serif; font-size: 2rem; font-weight: 800;
+    letter-spacing: 0.05em; text-transform: uppercase; color: var(--white); margin: 0 0 0.2rem;
+}
+.rate-time { font-size: 0.82rem; letter-spacing: 0.1em; color: var(--cream-dim); margin-bottom: 1.8rem; }
+.rate-line {
+    display: flex; align-items: baseline; justify-content: space-between; gap: 1rem;
+    padding: 0.95rem 0; border-top: 1px solid rgba(234,241,246,0.12);
+}
+.rate-line-label { font-size: 0.82rem; color: var(--cream-dim); }
+.rate-line-sub { display: block; font-size: 0.7rem; letter-spacing: 0.08em; color: rgba(234,241,246,0.6); margin-top: 0.15rem; }
+.rate-line-val {
+    font-family: 'Barlow Condensed', sans-serif; font-size: 2rem; font-weight: 800;
+    color: var(--white); line-height: 1; white-space: nowrap;
+}
+.rate-line-val sup { font-size: 0.45em; vertical-align: super; }
+.rate-line.is-member { border-top-color: rgba(190,232,255,0.4); }
+.rate-line.is-member .rate-line-val { color: #BEE8FF; }
+.rate-line.is-member .rate-line-label { color: #BEE8FF; }
+
+/* ── FEATURE GRID ── */
+.feat-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.6rem; margin-top: 2.8rem; }
+.feat {
+    border: 1px solid var(--border-dark); border-radius: 3px; padding: 2rem 1.7rem;
+    background: #ffffff;
+}
+.sec-navy .feat { border-color: rgba(234,241,246,0.16); background: rgba(255,255,255,0.03); }
+.feat-num {
+    font-family: 'Barlow Condensed', sans-serif; font-size: 0.75rem; font-weight: 700;
+    letter-spacing: 0.24em; color: var(--green-court);
+}
+.sec-navy .feat-num { color: #BEE8FF; }
+.feat-title {
+    font-family: 'Barlow Condensed', sans-serif; font-size: 1.25rem; font-weight: 700;
+    letter-spacing: 0.06em; text-transform: uppercase; margin: 0.5rem 0 0.7rem; color: var(--green-deep);
+}
+.sec-navy .feat-title { color: var(--white); }
+.feat-body { font-size: 0.86rem; line-height: 1.75; color: var(--body-grey); }
+.sec-navy .feat-body { color: var(--cream-dim); }
+
+/* ── STEPS ── */
+.steps { list-style: none; counter-reset: s; margin-top: 2.4rem; display: flex; flex-direction: column; gap: 1.5rem; }
+.steps li {
+    counter-increment: s; position: relative; padding-left: 3.4rem;
+    font-size: 0.9rem; line-height: 1.75; color: var(--cream-dim);
+}
+.steps li::before {
+    content: counter(s, decimal-leading-zero); position: absolute; left: 0; top: -0.15rem;
+    font-family: 'Barlow Condensed', sans-serif; font-size: 1.1rem; font-weight: 700;
+    letter-spacing: 0.1em; color: #BEE8FF;
+}
+.steps strong { color: var(--white); font-weight: 500; }
+
+/* ── CONTACT ── */
+.contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start; }
+.c-detail-list { display: flex; flex-direction: column; gap: 1.6rem; margin-top: 2.2rem; }
+.c-detail { display: flex; gap: 1rem; align-items: flex-start; }
+.c-detail svg { width: 22px; height: 22px; flex-shrink: 0; margin-top: 2px; fill: var(--green-court); }
+.c-detail-label {
+    display: block; font-size: 0.62rem; letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--body-grey); margin-bottom: 0.3rem;
+}
+.c-detail a, .c-detail span.c-val { font-size: 0.95rem; color: var(--green-deep); text-decoration: none; line-height: 1.6; }
+.c-detail a:hover { border-bottom: 1px solid var(--green-court); }
+
+.c-map { margin-top: 3rem; border: 1px solid var(--border-dark); border-radius: 3px; overflow: hidden; }
+.c-map-frame { position: relative; aspect-ratio: 16 / 7; background: var(--green-deep); }
+.c-map-frame iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; display: block; }
+
+.c-form { display: flex; flex-direction: column; gap: 1.3rem; }
+.c-success {
+    display: none; padding: 1.4rem 1.5rem; border-left: 3px solid var(--green-court);
+    background: rgba(30,111,148,0.07); font-size: 0.9rem; line-height: 1.7; color: var(--green-deep);
+}
+.c-success.show { display: block; }
+.c-error {
+    display: none; padding: 1rem 1.2rem; border-left: 3px solid var(--error);
+    background: rgba(192,57,43,0.07); color: var(--error); font-size: 0.85rem; line-height: 1.6;
+}
+.c-error.show { display: block; }
+
+/* ── CTA BAND ── */
+.cta-band { padding: 5.5rem 2.5rem; text-align: center; }
+.cta-inner { max-width: 720px; margin: 0 auto; }
+.cta-actions { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; margin-top: 2.2rem; }
+.cta-fine { margin-top: 1.8rem; font-size: 0.78rem; color: var(--body-grey); }
+.sec-navy .cta-fine { color: rgba(234,241,246,0.75); }
+.cta-fine a { color: inherit; }
+
+/* ── RESPONSIVE ── */
+@media (max-width: 960px) {
+    .rate-grid, .contact-grid { grid-template-columns: 1fr; }
+    .contact-grid { gap: 3rem; }
+    .feat-grid { grid-template-columns: 1fr; }
+}
+@media (max-width: 600px) {
+    .p-hero { padding: 8rem 1.5rem 3.2rem; }
+    .cta-band { padding: 4rem 1.5rem; }
+    .rate-card { padding: 1.9rem 1.4rem; }
+    .p-hero-actions .btn-primary, .p-hero-actions .btn-ghost,
+    .cta-actions .btn-primary, .cta-actions .btn-ghost { width: 100%; text-align: center; }
+}

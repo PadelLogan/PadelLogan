@@ -188,6 +188,9 @@ nav.scrolled { background: rgba(15,59,89,0.97); padding: 1rem 2.5rem; border-bot
 .choice input:focus-visible + .choice-box { box-shadow: 0 0 0 3px rgba(30,111,148,0.3); }
 .choice:has(input:checked) { border-color: var(--green-court); background: rgba(30,111,148,0.06); }
 
+/* honeypot — off-screen rather than display:none, which some bots detect */
+.j-hp { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
+
 /* ── FOOTER ── */
 footer { background: var(--mgc-black); border-top: 1px solid var(--border-light); padding: 3rem 2.5rem 2rem; color: var(--cream); }
 .footer-row { max-width: 1140px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1.5rem; }
@@ -225,7 +228,7 @@ footer { background: var(--mgc-black); border-top: 1px solid var(--border-light)
     .nav-right { gap: 1rem; }
     .sec { padding: 4.5rem 1.5rem; }
     .sticky-cta { display: block; }
-    body { padding-bottom: 4.5rem; }
+    body:has(.sticky-cta) { padding-bottom: 4.5rem; }
     footer { padding: 2.5rem 1.5rem 1.5rem; }
     .footer-row { flex-direction: column; align-items: flex-start; }
 }

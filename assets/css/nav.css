@@ -1,0 +1,162 @@
+/* ============================================================
+   PADEL LOGAN — primary navigation
+
+   Works with JavaScript switched off.
+     Desktop  dropdowns open on :hover and :focus-within.
+     Mobile   the panel is a CSS-only checkbox toggle, and each
+              group is a native <details> that ships OPEN.
+
+   site.js only ever CLOSES the mobile accordions. If the script
+   fails the menu renders fully expanded, which is long but
+   completely usable. Nothing is ever hidden behind working JS.
+
+   Everything is namespaced .plnav-* so it cannot collide with the
+   older nav rules still present in home.css and memberships.css.
+   ============================================================ */
+
+.plnav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 400;
+    display: flex; align-items: center; justify-content: space-between;
+    gap: 1.5rem; padding: 1.15rem 2.5rem;
+    background: linear-gradient(to bottom, rgba(15,59,89,0.92) 0%, rgba(15,59,89,0.30) 70%, transparent 100%);
+    border-bottom: 1px solid transparent;
+    transition: background 0.3s, padding 0.3s, border-color 0.3s;
+}
+.plnav.scrolled {
+    background: rgba(15,59,89,0.97);
+    border-bottom-color: rgba(234,241,246,0.12);
+    padding: 0.85rem 2.5rem;
+}
+.plnav-logo-link { display: block; flex-shrink: 0; line-height: 0; }
+.plnav-logo { height: 28px; width: auto; display: block; filter: brightness(0) invert(1); }
+
+/* the mobile toggle is a real checkbox, kept off-screen */
+.plnav-toggle { position: absolute; opacity: 0; width: 1px; height: 1px; margin: 0; }
+.plnav-burger { display: none; }
+
+.plnav-panel { display: flex; align-items: center; gap: 2rem; }
+.plnav-list { list-style: none; display: flex; align-items: center; gap: 2rem; margin: 0; }
+.plnav-item { position: relative; }
+
+.plnav-top {
+    display: flex; align-items: center; gap: 0.45rem;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.68rem; font-weight: 500; letter-spacing: 0.16em; text-transform: uppercase;
+    color: rgba(255,255,255,0.88); text-decoration: none; cursor: pointer;
+    white-space: nowrap; transition: color 0.2s; list-style: none;
+}
+.plnav-top::-webkit-details-marker { display: none; }
+.plnav-top:hover, .plnav-item:hover > .plnav-drop > .plnav-top { color: #ffffff; }
+.plnav-chev {
+    width: 0.42rem; height: 0.42rem; border-right: 1.5px solid currentColor; border-bottom: 1.5px solid currentColor;
+    transform: rotate(45deg) translate(-1px, -1px); transition: transform 0.22s;
+}
+
+.plnav-sub { list-style: none; margin: 0; }
+.plnav-sub a {
+    display: block; white-space: nowrap;
+    font-size: 0.72rem; font-weight: 400; letter-spacing: 0.09em;
+    color: rgba(234,241,246,0.88); text-decoration: none; transition: color 0.18s, background 0.18s;
+}
+.plnav-sub a:hover, .plnav-sub a:focus-visible { color: #ffffff; background: rgba(255,255,255,0.07); }
+
+.plnav-cta {
+    flex-shrink: 0;
+    font-size: 0.68rem; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase;
+    text-decoration: none; white-space: nowrap; padding: 0.72rem 1.35rem;
+    background: #ffffff; color: #0F3B59; border: 1.5px solid #ffffff;
+    transition: background 0.22s, color 0.22s;
+}
+.plnav-cta:hover { background: transparent; color: #ffffff; }
+
+/* ── DESKTOP ────────────────────────────────────────────── */
+@media (min-width: 901px) {
+    /* The groups ship <details open> so their contents exist for the
+       hover reveal. Clicking the summary would toggle that off, so on
+       desktop the summary ignores the pointer and the parent li
+       handles hover instead. */
+    .plnav-drop > .plnav-top { pointer-events: none; }
+
+    .plnav-sub {
+        position: absolute; top: calc(100% + 0.9rem); left: -1.1rem;
+        min-width: 13.5rem; padding: 0.5rem 0;
+        background: rgba(15,59,89,0.985);
+        border: 1px solid rgba(234,241,246,0.14);
+        box-shadow: 0 24px 50px -20px rgba(0,0,0,0.6);
+        /* opacity + pointer-events, never visibility: a visibility:hidden
+           parent makes its links unfocusable, so :focus-within could never
+           fire and keyboard users could not reach the dropdown at all. */
+        opacity: 0; pointer-events: none; transform: translateY(-6px);
+        transition: opacity 0.18s, transform 0.18s;
+    }
+    /* bridge the gap so the pointer can travel from label to menu */
+    .plnav-item::after {
+        content: ''; position: absolute; top: 100%; left: 0; right: 0; height: 0.9rem;
+    }
+    .plnav-item:hover > .plnav-drop > .plnav-sub,
+    .plnav-drop:focus-within > .plnav-sub {
+        opacity: 1; pointer-events: auto; transform: translateY(0);
+    }
+    .plnav-item:hover .plnav-chev, .plnav-drop:focus-within .plnav-chev {
+        transform: rotate(225deg) translate(-1px, -1px);
+    }
+    .plnav-sub a { padding: 0.62rem 1.4rem; }
+}
+
+/* ── MOBILE ─────────────────────────────────────────────── */
+@media (max-width: 900px) {
+    .plnav { padding: 1rem 1.5rem; }
+    .plnav.scrolled { padding: 0.85rem 1.5rem; }
+
+    .plnav-burger {
+        display: flex; flex-direction: column; justify-content: center; gap: 5px;
+        width: 44px; height: 44px; margin-right: -0.6rem;
+        cursor: pointer; align-items: flex-end;
+    }
+    .plnav-burger span {
+        display: block; width: 24px; height: 1.5px; background: #ffffff;
+        transition: transform 0.25s, opacity 0.2s;
+    }
+    .plnav-toggle:focus-visible + .plnav-burger { outline: 2px solid #ffffff; outline-offset: 3px; }
+    .plnav-toggle:checked + .plnav-burger span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+    .plnav-toggle:checked + .plnav-burger span:nth-child(2) { opacity: 0; }
+    .plnav-toggle:checked + .plnav-burger span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+
+    /* the open panel covers the whole screen, so the wordmark and the
+       close button have to sit above it or there is no visible way out */
+    .plnav-logo-link, .plnav-burger { position: relative; z-index: 2; }
+
+    .plnav-panel {
+        position: fixed; top: 0; left: 0; right: 0; bottom: 0; z-index: 1;
+        display: block; overflow-y: auto;
+        background: #0F3B59;
+        padding: 5.5rem 1.5rem 2.5rem;
+        opacity: 0; visibility: hidden; transform: translateY(-0.6rem);
+        transition: opacity 0.25s, transform 0.25s, visibility 0.25s;
+    }
+    .plnav-toggle:checked ~ .plnav-panel { opacity: 1; visibility: visible; transform: translateY(0); }
+
+    .plnav-list { display: block; }
+    .plnav-item { border-bottom: 1px solid rgba(234,241,246,0.12); }
+    .plnav-item::after { display: none; }
+
+    .plnav-top {
+        justify-content: space-between; width: 100%;
+        padding: 1.15rem 0; font-size: 0.82rem; letter-spacing: 0.18em;
+        color: #ffffff; min-height: 44px;
+    }
+    .plnav-chev { width: 0.5rem; height: 0.5rem; }
+    .plnav-drop[open] > .plnav-top .plnav-chev { transform: rotate(225deg) translate(-2px, -2px); }
+
+    .plnav-sub { padding: 0 0 1rem 0; }
+    .plnav-sub a { padding: 0.7rem 0 0.7rem 1rem; font-size: 0.8rem; letter-spacing: 0.05em; min-height: 44px; }
+
+    .plnav-cta {
+        display: block; text-align: center; margin-top: 1.8rem;
+        padding: 1.1rem; font-size: 0.8rem;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .plnav, .plnav-sub, .plnav-panel, .plnav-chev, .plnav-burger span { transition: none; }
+}

@@ -33,6 +33,20 @@
     var success = document.getElementById('joinSuccess');
     var loadedAt = Date.now();
 
+    /* ── preview mode ──────────────────────────────────────────
+       With no Formspree ID configured the form cannot deliver. Say so
+       up front rather than letting a reviewer fill it in and hit what
+       looks like a failure.
+       -------------------------------------------------------- */
+    if (!formspreeId()) {
+        var note = document.createElement('p');
+        note.className = 'j-preview-note';
+        note.innerHTML = '<strong>Preview.</strong> The layout, wording and every field here are final, '
+            + 'but online submissions are not switched on yet, so nothing is sent when you press Submit. '
+            + 'Have a look through and send back any changes.';
+        form.insertBefore(note, form.firstChild);
+    }
+
     /* ── date stamp on the signature ── */
     var signDate = document.getElementById('signDate');
     var todayStr = new Date().toLocaleDateString('en-AU', {
@@ -337,9 +351,12 @@
             // The club did not get the application. Never claim success here.
             submitBtn.disabled = false;
             submitBtn.textContent = label;
-            formError.innerHTML = 'Sorry, we could not send your application just now. '
-                + '<a href="' + mailtoFallback(app) + '">Send it to us by email instead</a>, '
-                + 'or call <a href="tel:0732996653">07 3299 6653</a> and we will take your details over the phone.';
+            formError.innerHTML = formspreeId()
+                ? 'Sorry, we could not send your application just now. '
+                    + '<a href="' + mailtoFallback(app) + '">Send it to us by email instead</a>, '
+                    + 'or call <a href="tel:0732996653">07 3299 6653</a> and we will take your details over the phone.'
+                : 'This is a preview, so online submissions are not switched on yet and nothing was sent. '
+                    + 'Everything you filled in validated correctly.';
             formError.classList.add('show');
             formError.scrollIntoView({ behavior: 'smooth', block: 'center' });
         });

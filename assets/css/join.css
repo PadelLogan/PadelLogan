@@ -29,6 +29,14 @@
 .j-main { background: var(--white); padding: 4.5rem 2.5rem 6rem; }
 .j-form { max-width: 780px; margin: 0 auto; }
 
+/* preview banner, shown only while no Formspree ID is configured */
+.j-preview-note {
+    margin-bottom: 2.6rem; padding: 1rem 1.2rem;
+    border-left: 3px solid var(--green-court); background: rgba(30,111,148,0.07);
+    font-size: 0.85rem; line-height: 1.65; color: var(--green-deep);
+}
+.j-preview-note strong { font-weight: 500; }
+
 /* ── SECTIONS ── */
 .j-sec { padding-top: 3.2rem; margin-top: 3.2rem; border-top: 1px solid var(--border-dark); }
 .j-sec:first-of-type { padding-top: 0; margin-top: 0; border-top: 0; }
@@ -123,9 +131,6 @@
     background: rgba(192,57,43,0.07); color: var(--error); font-size: 0.85rem; line-height: 1.6;
 }
 .j-form-error.show { display: block; }
-
-/* honeypot — off-screen rather than display:none, which some bots detect */
-.j-hp { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
 
 /* ── SUCCESS ── */
 .j-success { display: none; max-width: 780px; margin: 0 auto; text-align: center; padding: 2rem 0 1rem; }
