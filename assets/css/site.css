@@ -1,0 +1,231 @@
+/* ============================================================
+   PADEL LOGAN — shared site foundation
+   Palette, furniture, nav, footer, buttons and form controls.
+   Extracted from memberships.css, which is the newest and most
+   correct expression of the navy + white system.
+
+   index.html and memberships.html still carry their own
+   stylesheets; they adopt this file when the new nav lands.
+   ============================================================ */
+
+:root {
+    --mgc-black:    #0F3B59;
+    --mgc-ink:      #0F3B59;
+    --green-deep:   #0F3B59;
+    --green-mid:    #17567E;
+    --green-court:  #1E6F94;
+    --green-lt:     #2E93BE;
+    --white:        #FFFFFF;
+    --cream:        #EAF1F6;
+    --cream-dim:    rgba(234,241,246,0.95);
+    --border-light: rgba(234,241,246,0.12);
+    --border-dark:  rgba(15,59,89,0.14);
+    --body-grey:    #47586A;
+    --error:        #C0392B;
+}
+
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+/* fieldset carries a default border in every browser, which draws a box
+   around each radio group. legend keeps its own padding too. */
+fieldset { border: 0; min-width: 0; }
+legend { padding: 0; }
+html { scroll-behavior: smooth; }
+
+body {
+    background: var(--white);
+    color: var(--green-deep);
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 300;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+}
+
+/* ── GRAIN ── */
+.grain {
+    position: fixed; inset: -50%; width: 200%; height: 200%;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    opacity: 0.028; pointer-events: none; z-index: 9999;
+}
+
+/* ── STICKY MOBILE CTA ── */
+.sticky-cta {
+    display: none; position: fixed; bottom: 0; left: 0; right: 0; z-index: 300;
+    background: var(--mgc-black); border-top: 1px solid var(--border-light); padding: 1rem 1.5rem;
+}
+.sticky-cta a {
+    display: block; width: 100%; text-align: center;
+    background: #ffffff; color: var(--green-deep); border: 1.5px solid var(--green-deep);
+    font-size: 0.8rem; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase;
+    padding: 1rem; text-decoration: none;
+}
+
+/* ── NAV ── */
+nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+    padding: 1.5rem 2.5rem; display: flex; align-items: center; justify-content: space-between;
+    transition: background 0.3s, padding 0.3s, border-color 0.3s;
+    border-bottom: 1px solid transparent;
+}
+nav.scrolled { background: rgba(15,59,89,0.97); padding: 1rem 2.5rem; border-bottom-color: var(--border-light); }
+.nav-logo { height: 30px; width: auto; display: block; filter: brightness(0) invert(1); }
+.nav-right { display: flex; align-items: center; gap: 1.6rem; }
+.nav-link {
+    font-size: 0.68rem; font-weight: 500; letter-spacing: 0.16em; text-transform: uppercase;
+    color: rgba(255,255,255,0.85); text-decoration: none; transition: color 0.2s;
+}
+.nav-link:hover { color: #ffffff; }
+.nav-cta {
+    font-size: 0.7rem; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase;
+    text-decoration: none; padding: 0.75rem 1.4rem;
+    background: #ffffff; color: var(--green-deep); border: 1.5px solid #ffffff;
+    transition: background 0.22s, color 0.22s, border-color 0.22s;
+}
+.nav-cta:hover { background: var(--green-deep); color: #ffffff; border-color: #ffffff; }
+
+/* ── BUTTONS ── */
+.btn-primary, .btn-ghost {
+    display: inline-block; font-size: 0.78rem; font-weight: 500;
+    letter-spacing: 0.14em; text-transform: uppercase; text-decoration: none;
+    padding: 1.05rem 2.2rem; cursor: pointer;
+    transition: background 0.22s, color 0.22s, border-color 0.22s;
+}
+.btn-primary { background: #ffffff; color: var(--green-deep); border: 1.5px solid var(--green-deep); }
+.btn-primary:hover { background: var(--green-deep); color: #ffffff; border-color: #ffffff; }
+.btn-ghost { background: transparent; color: #ffffff; border: 1.5px solid rgba(255,255,255,0.55); }
+.btn-ghost:hover { background: #ffffff; color: var(--green-deep); border-color: #ffffff; }
+.on-white .btn-primary:hover { border-color: var(--green-deep); }
+.on-white .btn-ghost { color: var(--green-deep); border-color: rgba(15,59,89,0.4); }
+.on-white .btn-ghost:hover { background: var(--green-deep); color: #ffffff; border-color: var(--green-deep); }
+.btn-primary[disabled] { opacity: 0.55; cursor: not-allowed; }
+
+/* ── SECTION FURNITURE ── */
+.sec { padding: 6.5rem 2.5rem; }
+.sec-white { background: var(--white); color: var(--green-deep); }
+.sec-navy  { background: var(--mgc-ink); color: var(--cream); }
+.sec-inner { max-width: 1140px; margin: 0 auto; }
+.chip {
+    display: inline-block; font-family: 'Barlow Condensed', sans-serif;
+    font-size: 0.72rem; font-weight: 700; letter-spacing: 0.28em;
+    text-transform: uppercase; margin-bottom: 1.5rem;
+}
+.sec-white .chip { color: var(--green-court); }
+.sec-navy .chip  { color: var(--white); }
+.sec-h2 {
+    font-family: 'Cormorant Garamond', serif; font-weight: 300;
+    font-size: clamp(2.1rem, 4vw, 3.4rem); line-height: 1.12; margin-bottom: 1.3rem;
+}
+.sec-white .sec-h2 { color: var(--green-deep); }
+.sec-navy .sec-h2  { color: var(--white); }
+.sec-h2 em { font-style: italic; }
+.sec-lead { font-size: 0.92rem; line-height: 1.8; max-width: 52ch; }
+.sec-white .sec-lead { color: var(--body-grey); }
+.sec-navy .sec-lead  { color: var(--cream-dim); }
+
+/* ── FORM CONTROLS ──────────────────────────────────────────
+   Sized for touch: 44px minimum target, 16px font on inputs so
+   iOS Safari does not zoom the viewport on focus.
+   --------------------------------------------------------- */
+.field { display: flex; flex-direction: column; gap: 0.45rem; }
+.field-label {
+    font-size: 0.68rem; font-weight: 500; letter-spacing: 0.16em;
+    text-transform: uppercase; color: var(--green-deep);
+}
+.field-label .req { color: var(--green-court); margin-left: 0.15rem; }
+.field-hint { font-size: 0.78rem; line-height: 1.6; color: var(--body-grey); }
+
+.input, .select, .textarea {
+    width: 100%; min-height: 3rem; padding: 0.85rem 1rem;
+    font-family: 'DM Sans', sans-serif; font-size: 16px; font-weight: 300;
+    color: var(--green-deep); background: #ffffff;
+    border: 1px solid rgba(15,59,89,0.28); border-radius: 2px;
+    transition: border-color 0.18s, box-shadow 0.18s;
+}
+.input::placeholder, .textarea::placeholder { color: rgba(15,59,89,0.38); }
+.input:focus, .select:focus, .textarea:focus {
+    outline: none; border-color: var(--green-court);
+    box-shadow: 0 0 0 3px rgba(30,111,148,0.16);
+}
+.textarea { min-height: 7rem; resize: vertical; line-height: 1.6; }
+.select {
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%230F3B59' stroke-width='2'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
+    background-repeat: no-repeat; background-position: right 0.9rem center; background-size: 1.05rem;
+    padding-right: 2.6rem;
+}
+.input[aria-invalid="true"], .select[aria-invalid="true"], .textarea[aria-invalid="true"] {
+    border-color: var(--error); box-shadow: 0 0 0 3px rgba(192,57,43,0.12);
+}
+.field-error { display: none; font-size: 0.76rem; color: var(--error); line-height: 1.5; }
+.field-error.show { display: block; }
+
+/* choice controls */
+.choice-row { display: flex; flex-wrap: wrap; gap: 0.7rem; }
+.choice {
+    position: relative; display: flex; align-items: flex-start; gap: 0.7rem;
+    padding: 0.85rem 1.1rem; min-height: 3rem;
+    border: 1px solid rgba(15,59,89,0.28); border-radius: 2px;
+    font-size: 0.88rem; line-height: 1.5; color: var(--green-deep);
+    cursor: pointer; transition: border-color 0.18s, background 0.18s;
+}
+.choice:hover { border-color: var(--green-court); background: rgba(30,111,148,0.04); }
+/* 1px rather than 0x0: a zero-size control still takes focus but some
+   browsers and screen readers will not scroll it into view. */
+.choice input { position: absolute; opacity: 0; width: 1px; height: 1px; margin: 0; }
+.choice-box {
+    flex-shrink: 0; width: 1.15rem; height: 1.15rem; margin-top: 0.1rem;
+    border: 1.5px solid rgba(15,59,89,0.45); background: #ffffff;
+    display: flex; align-items: center; justify-content: center; transition: all 0.16s;
+}
+.choice-box::after {
+    content: ''; width: 0.6rem; height: 0.6rem; background: #ffffff;
+    transform: scale(0); transition: transform 0.16s;
+    clip-path: polygon(14% 44%, 0 60%, 39% 100%, 100% 22%, 84% 6%, 39% 66%);
+}
+.choice input[type="radio"] + .choice-box { border-radius: 50%; }
+.choice input[type="radio"] + .choice-box::after { border-radius: 50%; clip-path: none; width: 0.5rem; height: 0.5rem; }
+.choice input:checked + .choice-box { background: var(--green-court); border-color: var(--green-court); }
+.choice input:checked + .choice-box::after { transform: scale(1); }
+.choice input:focus-visible + .choice-box { box-shadow: 0 0 0 3px rgba(30,111,148,0.3); }
+.choice:has(input:checked) { border-color: var(--green-court); background: rgba(30,111,148,0.06); }
+
+/* ── FOOTER ── */
+footer { background: var(--mgc-black); border-top: 1px solid var(--border-light); padding: 3rem 2.5rem 2rem; color: var(--cream); }
+.footer-row { max-width: 1140px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1.5rem; }
+.footer-logo { height: 26px; width: auto; display: block; filter: brightness(0) invert(1); opacity: 0.95; }
+.footer-links { list-style: none; display: flex; flex-wrap: wrap; gap: 0.4rem 2rem; }
+.footer-links a {
+    font-size: 0.68rem; letter-spacing: 0.14em; text-transform: uppercase;
+    color: rgba(234,241,246,0.85); text-decoration: none; transition: color 0.2s;
+}
+.footer-links a:hover { color: var(--white); }
+.footer-social { display: flex; gap: 0.6rem; }
+.footer-social a {
+    width: 2.1rem; height: 2.1rem; border: 1px solid var(--border-light);
+    display: flex; align-items: center; justify-content: center;
+    color: rgba(234,241,246,0.75); text-decoration: none; transition: border-color 0.22s, color 0.22s;
+}
+.footer-social a:hover { border-color: var(--white); color: var(--white); }
+.footer-mgc {
+    max-width: 1140px; margin: 2rem auto 0; padding-top: 1.5rem;
+    border-top: 1px solid rgba(234,241,246,0.06); display: flex; align-items: center; gap: 1rem;
+    font-size: 0.68rem; color: rgba(234,241,246,0.8); letter-spacing: 0.05em; flex-wrap: wrap;
+}
+.footer-mgc-divider { width: 1px; height: 1rem; background: rgba(234,241,246,0.12); }
+.footer-base {
+    max-width: 1140px; margin: 1rem auto 0; display: flex; justify-content: space-between;
+    flex-wrap: wrap; gap: 0.5rem; font-size: 0.62rem; color: rgba(234,241,246,0.7); letter-spacing: 0.06em;
+}
+
+/* ── RESPONSIVE ── */
+@media (max-width: 600px) {
+    nav { padding: 1.2rem 1.5rem; }
+    /* The wide wordmark leaves no room for links beside it — the logo
+       links home and the sticky bar carries the CTA. */
+    .nav-cta, .nav-link { display: none; }
+    .nav-right { gap: 1rem; }
+    .sec { padding: 4.5rem 1.5rem; }
+    .sticky-cta { display: block; }
+    body { padding-bottom: 4.5rem; }
+    footer { padding: 2.5rem 1.5rem 1.5rem; }
+    .footer-row { flex-direction: column; align-items: flex-start; }
+}
