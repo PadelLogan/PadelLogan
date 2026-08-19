@@ -171,3 +171,24 @@
     font-size: 0.9rem; line-height: 1.9; color: var(--green-deep);
 }
 .legal-contact strong { font-weight: 500; }
+
+/* ── CORPORATE ENQUIRY FORM ── */
+.corp-form { max-width: 760px; margin-top: 2.6rem; }
+.corp-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.3rem; }
+.corp-grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.3rem; }
+/* the form sits on navy, so labels and helper text invert */
+.sec-navy .field-label { color: var(--cream); }
+.sec-navy .field-label .req { color: #BEE8FF; }
+.sec-navy .field-hint { color: rgba(234,241,246,0.75); }
+.sec-navy .choice { border-color: rgba(234,241,246,0.3); color: var(--cream); }
+.sec-navy .choice:hover { border-color: #BEE8FF; background: rgba(255,255,255,0.05); }
+.sec-navy .choice-box { border-color: rgba(234,241,246,0.55); background: transparent; }
+.sec-navy .choice input:checked + .choice-box { background: #BEE8FF; border-color: #BEE8FF; }
+.sec-navy .choice input:checked + .choice-box::after { background: var(--green-deep); }
+.sec-navy .choice:has(input:checked) { border-color: #BEE8FF; background: rgba(190,232,255,0.10); }
+.sec-navy .c-success { background: rgba(190,232,255,0.12); border-left-color: #BEE8FF; color: var(--cream); }
+.sec-navy .c-success strong { color: var(--white); }
+.sec-navy .c-success a { color: #BEE8FF; }
+@media (max-width: 700px) {
+    .corp-grid, .corp-grid-3 { grid-template-columns: 1fr; }
+}
