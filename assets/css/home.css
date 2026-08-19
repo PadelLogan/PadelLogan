@@ -1235,7 +1235,7 @@
         .pl-pop-form button { width: 100%; padding: 0.95rem 1rem; background: var(--green-deep); color: #fff; border: none; border-radius: 4px; font-family: 'DM Sans', sans-serif; font-size: 0.72rem; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; cursor: pointer; transition: background 0.2s; }
         .pl-pop-form button:hover { background: var(--gold); }
         .pl-pop-fine { font-size: 0.68rem; color: #8090a0; margin-top: 0.8rem; }
-        .pl-pop-close { position: absolute; top: 10px; right: 12px; width: 30px; height: 30px; border: none; background: transparent; color: #fff; font-size: 1.5rem; line-height: 1; cursor: pointer; opacity: 0.85; }
+        .pl-pop-close { position: absolute; top: 4px; right: 6px; width: 44px; height: 44px; display: flex; align-items: center; justify-content: center; border: none; background: transparent; color: #fff; font-size: 1.5rem; line-height: 1; cursor: pointer; opacity: 0.85; }
         .pl-pop-close:hover { opacity: 1; }
         .pl-pop-success { display: none; }
         .pl-pop.done .pl-pop-form, .pl-pop.done .pl-pop-sub, .pl-pop.done .pl-pop-fine { display: none; }
