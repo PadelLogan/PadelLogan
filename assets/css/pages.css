@@ -201,13 +201,15 @@
     font-family: 'Barlow Condensed', sans-serif; font-weight: 700;
     font-size: 0.72rem; letter-spacing: 0.16em; text-transform: uppercase;
 }
-.lvl-row > * { padding: 1rem 1.1rem; border-top: 1px solid var(--border-dark); font-size: 0.88rem; line-height: 1.5; }
+.lvl-row > * { padding: 1.1rem 1.1rem; border-top: 1px solid var(--border-dark); font-size: 0.88rem; line-height: 1.5; }
 .lvl-row .lvl-name {
     font-family: 'Barlow Condensed', sans-serif; font-weight: 700;
     font-size: 1rem; letter-spacing: 0.05em; text-transform: uppercase;
-    display: flex; align-items: center;
+    /* column, so the rating sits UNDER the name rather than beside it as a
+       flex sibling, while the swatch still fills the row height */
+    display: flex; flex-direction: column; justify-content: center;
 }
-.lvl-row .lvl-rate { font-variant-numeric: tabular-nums; color: var(--body-grey); display: flex; align-items: center; }
+.lvl-row .lvl-rate { font-variant-numeric: tabular-nums; color: var(--body-grey); align-self: center; }
 .lvl-row .lvl-std { color: var(--body-grey); }
 
 /* level detail cards */
@@ -356,3 +358,19 @@
 }
 .tt-key-desc { font-size: 0.86rem; line-height: 1.5; color: var(--cream); }
 @media (max-width: 700px) { .tt-key-row { grid-template-columns: 1fr; gap: 0.4rem; } }
+
+
+/* ── COMBINED SESSION (two levels in one slot) ──────────────
+   Two colour bands rather than one split background: a single
+   50/50 fill cannot clear contrast for both halves, because one
+   wants white text and the other navy. */
+.tt-slot.tt-combo { padding: 0; overflow: hidden; }
+.tt-combo-half {
+    padding: 0.5rem 0.4rem;
+    font-family: 'Barlow Condensed', sans-serif; font-weight: 700;
+    font-size: 0.8rem; line-height: 1.15; letter-spacing: 0.03em; text-transform: uppercase;
+}
+.tt-combo-foot { padding: 0.5rem 0.4rem 0.6rem; background: rgba(255,255,255,0.1); }
+.tt-combo-foot .tt-slot-rate,
+.tt-combo-foot .tt-slot-time { display: block; margin-top: 0; }
+.tt-combo-foot .tt-slot-time { margin-top: 0.25rem; }
