@@ -236,7 +236,9 @@
 .lc3 { background: #F2A94E; color: #0F3B59; }   /* Beginner ++     light orange */
 .lc4 { background: #B36117; color: #fff; }      /* Intermediate    burnt orange */
 .lc5 { background: #96150C; color: #fff; }      /* Int. Advanced   red          */
-.lc6 { background: #252422; color: #fff; }      /* All Levels      charcoal     */
+.lc6 { background: #A8D6EC; color: #0F3B59; }   /* All Levels      light blue   */
+.lc7 { background: #E993BC; color: #0F3B59; }   /* Ladies Social   pink         */
+.lc8 { background: #252422; color: #fff; }      /* Community       charcoal     */
 
 /* timetable: day columns, the same shape as the printed sheet */
 .tt-grid {
@@ -293,3 +295,64 @@
     .tt-grid { grid-template-columns: 1fr 1fr; }
     .dl { width: 100%; }
 }
+
+
+/* ── LINKS IN PROSE ───────────────────────────────────────────
+   Without this, links inside .sec-lead / .p-sub fall back to the
+   browser default blue, which is invisible on the navy sections.
+   Every context gets an explicit colour and an underline. */
+.sec-lead a, .p-sub a, .lvl-card-body a, .cta-fine a, .field-hint a, .legal a {
+    color: var(--green-court); text-decoration: none;
+    border-bottom: 1px solid currentColor; transition: color 0.18s, border-color 0.18s;
+}
+.sec-lead a:hover, .p-sub a:hover, .lvl-card-body a:hover, .cta-fine a:hover, .field-hint a:hover {
+    color: var(--green-deep);
+}
+/* on navy the accent has to lift off the ground, not sink into it */
+.sec-navy .sec-lead a, .p-hero .p-sub a, .sec-navy .cta-fine a {
+    color: #A8D6EC; border-bottom-color: rgba(168,214,236,0.55);
+}
+.sec-navy .sec-lead a:hover, .p-hero .p-sub a:hover, .sec-navy .cta-fine a:hover {
+    color: #ffffff; border-bottom-color: #ffffff;
+}
+
+/* ── BOOKING PAGES ── */
+.book-embed {
+    margin-top: 2.6rem; border: 1px solid var(--border-dark); border-radius: 4px;
+    background: #F4F7F9; padding: 3.2rem 2rem; text-align: center;
+}
+.sec-navy .book-embed { border-color: rgba(234,241,246,0.2); background: rgba(255,255,255,0.04); }
+.book-embed-icon {
+    width: 3rem; height: 3rem; margin: 0 auto 1.2rem; border-radius: 50%;
+    border: 1.5px solid var(--green-court); display: flex; align-items: center; justify-content: center;
+}
+.book-embed-icon svg { width: 1.5rem; height: 1.5rem; fill: none; stroke: var(--green-court); stroke-width: 2; }
+.book-embed-t {
+    font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 1.1rem;
+    letter-spacing: 0.14em; text-transform: uppercase; color: var(--green-deep); margin-bottom: 0.7rem;
+}
+.sec-navy .book-embed-t { color: #fff; }
+.book-embed p { font-size: 0.9rem; line-height: 1.7; color: var(--body-grey); max-width: 46ch; margin: 0 auto; }
+.sec-navy .book-embed p { color: var(--cream-dim); }
+.book-embed .btn-primary { margin-top: 1.6rem; }
+
+/* ratings key beneath the timetable, matching the sheet */
+.tt-key { margin-top: 2.4rem; border: 1px solid rgba(234,241,246,0.2); border-radius: 4px; padding: 1.6rem 1.8rem; }
+.tt-key-t {
+    font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 0.85rem;
+    letter-spacing: 0.2em; text-transform: uppercase; color: #A8D6EC; margin-bottom: 0.4rem;
+}
+.tt-key-sub { font-size: 0.88rem; line-height: 1.6; color: var(--cream-dim); margin-bottom: 1.2rem; max-width: 62ch; }
+.tt-key-rows { display: flex; flex-direction: column; gap: 0.7rem; }
+.tt-key-row { display: grid; grid-template-columns: 13rem 1fr; gap: 1.1rem; align-items: center; }
+.tt-key-chip {
+    border-radius: 3px; padding: 0.6rem 0.7rem; text-align: center; line-height: 1.2;
+    font-family: 'Barlow Condensed', sans-serif; font-weight: 700;
+    font-size: 0.86rem; letter-spacing: 0.04em; text-transform: uppercase;
+}
+.tt-key-chip small {
+    display: block; font-family: 'DM Sans', sans-serif; font-weight: 500;
+    font-size: 0.66rem; letter-spacing: 0.03em; text-transform: none; margin-top: 0.15rem; opacity: 0.9;
+}
+.tt-key-desc { font-size: 0.86rem; line-height: 1.5; color: var(--cream); }
+@media (max-width: 700px) { .tt-key-row { grid-template-columns: 1fr; gap: 0.4rem; } }
