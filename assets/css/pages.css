@@ -192,3 +192,89 @@
 @media (max-width: 700px) {
     .corp-grid, .corp-grid-3 { grid-template-columns: 1fr; }
 }
+
+/* ── PLAYER LEVELS ── */
+.lvl-table { margin-top: 2.6rem; border: 1px solid var(--border-dark); border-radius: 3px; overflow: hidden; }
+.lvl-head, .lvl-row { display: grid; grid-template-columns: 1.1fr 0.8fr 1.6fr; gap: 0; }
+.lvl-head > span {
+    background: var(--green-deep); color: #fff; padding: 0.85rem 1.1rem;
+    font-family: 'Barlow Condensed', sans-serif; font-weight: 700;
+    font-size: 0.72rem; letter-spacing: 0.16em; text-transform: uppercase;
+}
+.lvl-row > * { padding: 1rem 1.1rem; border-top: 1px solid var(--border-dark); font-size: 0.88rem; line-height: 1.5; }
+.lvl-row .lvl-name {
+    font-family: 'Barlow Condensed', sans-serif; font-weight: 700;
+    font-size: 1rem; letter-spacing: 0.05em; text-transform: uppercase;
+    display: flex; align-items: center;
+}
+.lvl-row .lvl-rate { font-variant-numeric: tabular-nums; color: var(--body-grey); display: flex; align-items: center; }
+.lvl-row .lvl-std { color: var(--body-grey); }
+
+/* level detail cards */
+.lvl-cards { display: flex; flex-direction: column; gap: 1.1rem; margin-top: 2.6rem; }
+.lvl-card { border: 1px solid var(--border-dark); border-radius: 3px; overflow: hidden; background: #fff; }
+.lvl-card-top {
+    display: flex; align-items: baseline; flex-wrap: wrap; gap: 0.3rem 1rem;
+    padding: 0.95rem 1.4rem;
+}
+.lvl-card-name {
+    font-family: 'Barlow Condensed', sans-serif; font-weight: 700;
+    font-size: 1.25rem; letter-spacing: 0.05em; text-transform: uppercase;
+}
+.lvl-card-rate { font-size: 0.82rem; letter-spacing: 0.08em; opacity: 0.92; }
+.lvl-card-body { padding: 1.2rem 1.4rem 1.4rem; }
+.lvl-card-body p { font-size: 0.9rem; line-height: 1.75; color: var(--body-grey); margin-bottom: 0.8rem; }
+.lvl-card-body p:last-child { margin-bottom: 0; }
+.lvl-fit { font-size: 0.9rem; line-height: 1.7; color: var(--green-deep); }
+.lvl-fit b { font-weight: 600; }
+
+/* level swatch colours, matching the printed sheets */
+.lc1 { background: #E18C53; color: #0F3B59; }
+.lc2 { background: #F0B642; color: #0F3B59; }
+.lc3 { background: #B3C46E; color: #0F3B59; }
+.lc4 { background: #2E827C; color: #fff; }
+.lc5 { background: #BE452D; color: #fff; }
+.lc6 { background: #252422; color: #fff; }
+
+/* timetable */
+.tt-days { display: flex; flex-direction: column; gap: 1rem; margin-top: 2.6rem; }
+.tt-day { border: 1px solid rgba(234,241,246,0.16); border-radius: 3px; overflow: hidden; }
+.tt-day-name {
+    background: rgba(255,255,255,0.06); padding: 0.7rem 1.2rem;
+    font-family: 'Barlow Condensed', sans-serif; font-weight: 700;
+    font-size: 0.85rem; letter-spacing: 0.2em; text-transform: uppercase; color: #fff;
+}
+.tt-slots { display: flex; flex-direction: column; }
+.tt-slot {
+    display: grid; grid-template-columns: 1.5fr 1fr 1fr; gap: 1rem;
+    padding: 0.9rem 1.2rem; border-top: 1px solid rgba(234,241,246,0.1);
+    align-items: center; font-size: 0.88rem;
+}
+.tt-slot-name { color: #fff; font-weight: 500; display: flex; align-items: center; gap: 0.6rem; }
+.tt-dot { width: 0.85rem; height: 0.85rem; border-radius: 2px; flex-shrink: 0; }
+.tt-slot-rate { color: var(--cream-dim); }
+.tt-slot-time { color: #BEE8FF; font-variant-numeric: tabular-nums; text-align: right; font-weight: 500; }
+
+/* downloads */
+.dl-row { display: flex; flex-wrap: wrap; gap: 0.9rem; margin-top: 2.2rem; }
+.dl {
+    display: inline-flex; align-items: center; gap: 0.6rem;
+    border: 1.5px solid rgba(15,59,89,0.35); border-radius: 3px;
+    padding: 0.85rem 1.2rem; text-decoration: none; color: var(--green-deep);
+    font-size: 0.8rem; font-weight: 500; letter-spacing: 0.06em;
+    transition: background 0.2s, border-color 0.2s, color 0.2s;
+}
+.dl:hover { background: var(--green-deep); color: #fff; border-color: var(--green-deep); }
+.dl svg { width: 1rem; height: 1rem; flex-shrink: 0; fill: none; stroke: currentColor; stroke-width: 2; }
+.sec-navy .dl { border-color: rgba(234,241,246,0.4); color: var(--cream); }
+.sec-navy .dl:hover { background: #fff; color: var(--green-deep); border-color: #fff; }
+
+@media (max-width: 700px) {
+    .lvl-head, .lvl-row { grid-template-columns: 1fr; }
+    .lvl-head { display: none; }
+    .lvl-row > * { border-top: none; }
+    .lvl-row { border-top: 1px solid var(--border-dark); }
+    .tt-slot { grid-template-columns: 1fr; gap: 0.35rem; }
+    .tt-slot-time { text-align: left; }
+    .dl { width: 100%; }
+}
