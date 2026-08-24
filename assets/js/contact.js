@@ -99,7 +99,17 @@
                             Source: 'Website Contact Page'
                         },
                         metric: { data: { type: 'metric', attributes: { name: 'Submitted Enquiry' } } },
-                        profile: { data: { type: 'profile', attributes: { email: email, first_name: name } } }
+                        // segments filter on PROFILE properties, not event
+                        // payloads, so anything worth segmenting by lives here
+                        profile: { data: { type: 'profile', attributes: {
+                            email: email,
+                            first_name: name.split(/\s+/)[0],
+                            last_name: name.split(/\s+/).slice(1).join(' '),
+                            properties: {
+                                'Lead Type': 'Website Enquiry',
+                                'Enquiry Topic': topic || 'Not specified'
+                            }
+                        } } }
                     }
                 }
             })
