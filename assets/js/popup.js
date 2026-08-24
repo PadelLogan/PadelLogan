@@ -2,9 +2,14 @@
     var STORE = 'pl_founding_popup_seen';
     var overlay = document.getElementById('plPop');
     if (!overlay) return;
-    var navLogo = document.querySelector('.nav-logo');
+    // The logo is set in the markup. This only fills a gap if the src is
+    // ever missing — it must never be the sole source, or a nav change
+    // silently blanks the pop-up logo, which is exactly what happened.
     var popLogo = overlay.querySelector('.pl-pop-logo');
-    if (navLogo && popLogo) popLogo.src = navLogo.src;
+    if (popLogo && !popLogo.getAttribute('src')) {
+        var anyLogo = document.querySelector('.plnav-logo, .nav-logo');
+        if (anyLogo) popLogo.src = anyLogo.src;
+    }
 
     var shown = false;
     function seen() { try { return localStorage.getItem(STORE) === '1'; } catch (e) { return false; } }
