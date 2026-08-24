@@ -20,6 +20,22 @@
     var form = document.getElementById('corpForm');
     if (!form) return;
 
+    // Formspree delivers the enquiry to info@padellogan.com.au. The ID lives on
+    // the form's data-formspree attribute so it is one line to change.
+    function formspreeId() { return (form.getAttribute('data-formspree') || '').trim(); }
+    function sendToFormspree(fields, subject) {
+        var id = formspreeId();
+        if (!id) return Promise.reject(new Error('Formspree form ID is not configured'));
+        var body = { subject: subject };
+        Object.keys(fields).forEach(function (k) { body[k] = fields[k]; });
+        return fetch('https://formspree.io/f/' + id, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+            body: JSON.stringify(body)
+        }).then(function (r) { if (!r.ok) throw new Error('Formspree ' + r.status); return true; });
+    }
+
+
     var btn = document.getElementById('coSubmit');
     var errBox = document.getElementById('coError');
     var success = document.getElementById('coSuccess');
@@ -88,7 +104,17 @@
         btn.disabled = true;
         btn.textContent = 'Sending…';
 
-        var jobs = [fetch('https://a.klaviyo.com/client/events/?company_id=' + KLAVIYO_COMPANY, {
+        var fields = {
+            name: name, email: email, phone: val('coPhone'), company: company,
+            'Event Type': val('coEvent') || 'Not specified',
+            'Group Size': val('coSize') || 'Not specified',
+            'Enquiry Timing': val('coWhen') || 'Not specified',
+            Message: val('coMessage'), Source: 'Corporate Page Enquiry'
+        };
+        var subject = 'Corporate Enquiry — ' + company + ' — ' + (val('coSize') || 'size TBC');
+
+        var jobs = [sendToFormspree(fields, subject),
+                    fetch('https://a.klaviyo.com/client/events/?company_id=' + KLAVIYO_COMPANY, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json', 'revision': KLAVIYO_REVISION },
             body: JSON.stringify({
@@ -131,7 +157,7 @@
 
         Promise.allSettled(jobs).then(function (res) {
             if (res[0].status !== 'fulfilled') {
-                console.error('Corporate enquiry failed:', res[0].reason);
+                console.error('Corporate enquiry email failed:', res[0].reason);
                 btn.disabled = false;
                 btn.textContent = label;
                 errBox.innerHTML = 'Sorry, we could not send that just now. Please email '
@@ -145,7 +171,8 @@
                 window.dataLayer.push({
                     event: 'corporate_enquiry_submitted',
                     event_type: val('coEvent') || 'unspecified',
-                    group_size: val('coSize') || 'unspecified'
+                    group_size: val('coSize') || 'unspecified',
+                    klaviyo_stored: res[1] && res[1].status === 'fulfilled'
                 });
             } catch (err) { /* tracking must never block the confirmation */ }
             form.style.display = 'none';
