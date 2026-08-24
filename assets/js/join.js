@@ -59,6 +59,16 @@
             + '&client_reference_id=' + encodeURIComponent(appRef);
     }
 
+    /* ── reviewing the payment step before Stripe exists ───────
+       The gateway cannot take a real payment until the club has a Stripe
+       account, but it still has to be reviewable in place. So on any host that
+       is not the live site, the panel renders in an unmistakably marked
+       preview state. On padellogan.com.au it appears only with a real Stripe
+       link behind it, so a visitor is never shown a button that cannot pay.
+       -------------------------------------------------------- */
+    var LIVE_HOSTS = ['padellogan.com.au', 'www.padellogan.com.au'];
+    function onLiveSite() { return LIVE_HOSTS.indexOf(window.location.hostname) !== -1; }
+
     var form = document.getElementById('joinForm');
     if (!form) return;
 
@@ -334,15 +344,35 @@
         if (!panel || !btn) return false;
 
         var url = paymentUrl(tierName(), app['Email Address']);
-        if (!url) return false;
+        var preview = !url && !onLiveSite();
+        if (!url && !preview) return false;
 
         var amount = (app['Membership Category'].match(/\$[\d,]+/) || [''])[0];
         var tierEl = document.getElementById('payTier');
         var amtEl = document.getElementById('payAmount');
         if (tierEl) tierEl.textContent = 'Founding ' + tierName() + ' Membership';
         if (amtEl) amtEl.textContent = amount;
-        btn.href = url;
         btn.textContent = amount ? 'Pay ' + amount + ' Securely' : 'Pay Securely';
+
+        if (url) {
+            btn.href = url;
+        } else {
+            // no live link yet: the button explains itself instead of going nowhere
+            panel.classList.add('is-preview');
+            var flag = document.getElementById('payPreviewFlag');
+            if (flag) flag.hidden = false;
+            btn.setAttribute('href', '#');
+            btn.setAttribute('aria-describedby', 'payPreviewFlag');
+            btn.addEventListener('click', function (ev) {
+                ev.preventDefault();
+                var note = document.getElementById('payPreviewNote');
+                if (note) {
+                    note.hidden = false;
+                    note.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                }
+            });
+        }
+
         panel.hidden = false;
         return true;
     }

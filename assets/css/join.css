@@ -185,6 +185,21 @@
     font-size: 1.9rem; line-height: 1; color: var(--green-deep); white-space: nowrap;
 }
 .j-pay-btn { display: block; width: 100%; text-align: center; }
+
+/* preview state: the panel is real, the gateway behind it is not connected yet */
+.j-pay.is-preview { border-style: dashed; }
+.j-pay-flag[hidden] { display: none; }
+.j-pay-flag {
+    display: inline-block; margin-left: 0.6rem; padding: 0.2rem 0.5rem; border-radius: 2px;
+    background: rgba(143,84,15,0.10); color: #8F540F;
+    font-size: 0.6rem; letter-spacing: 0.16em; text-transform: uppercase;
+}
+.j-pay-note[hidden] { display: none; }
+.j-success .j-pay-note {
+    text-align: left; max-width: none; margin: 1rem 0 0; padding: 0.85rem 1rem;
+    background: var(--cream); border-left: 2px solid var(--green-court);
+    font-size: 0.78rem; line-height: 1.65;
+}
 .j-success .j-pay-fine,
 .j-success .j-pay-alt {
     text-align: left; max-width: none; font-size: 0.74rem; line-height: 1.65; margin: 1rem 0 0;
