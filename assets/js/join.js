@@ -25,6 +25,40 @@
     var NEWSLETTER_LIST = 'UrR45w';
     var MIN_FILL_SECONDS = 6;   // anything faster than this is a bot
 
+    /* ── Stripe Payment Links ──────────────────────────────────
+       One hosted Stripe Checkout link per tier, created in the Stripe
+       dashboard (Payment Links > Create). Paste the https://buy.stripe.com/...
+       URL against its tier.
+
+       A blank entry is not an error: the payment step simply stays hidden and
+       the club arranges payment as it does today, so a half-configured tier
+       can never show the applicant a dead button.
+       -------------------------------------------------------- */
+    var STRIPE_LINKS = {
+        'Platinum': '',
+        'Gold': '',
+        'Silver': ''
+    };
+
+    /* Reference shared by the application email, the Klaviyo profile and the
+       Stripe payment, so a payment can be matched to an applicant rather than
+       guessed at by email. Stripe restricts client_reference_id to letters,
+       numbers, hyphens and underscores. */
+    function makeRef() {
+        var t = Date.now().toString(36).toUpperCase().slice(-6);
+        var r = Math.random().toString(36).toUpperCase().replace(/[^A-Z0-9]/g, '').slice(0, 2);
+        return 'PL-' + t + (r || 'XX');
+    }
+    var appRef = makeRef();
+
+    function paymentUrl(tier, email) {
+        var base = (STRIPE_LINKS[tier] || '').trim();
+        if (!base) return null;
+        return base + (base.indexOf('?') === -1 ? '?' : '&')
+            + 'prefilled_email=' + encodeURIComponent(email)
+            + '&client_reference_id=' + encodeURIComponent(appRef);
+    }
+
     var form = document.getElementById('joinForm');
     if (!form) return;
 
@@ -141,6 +175,7 @@
 
     function buildApplication() {
         return {
+            'Reference': appRef,
             'Membership Category': radio('membershipCategory'),
             'First Name': val('firstName'),
             'Surname': val('surname'),
@@ -183,7 +218,7 @@
             // Formspree reads these plain names for the reply-to and subject line
             name: app['First Name'] + ' ' + app['Surname'],
             email: app['Email Address'],
-            subject: 'Membership Application — ' + tierName() + ' — ' + app['First Name'] + ' ' + app['Surname'],
+            subject: 'Membership Application — ' + tierName() + ' — ' + app['First Name'] + ' ' + app['Surname'] + ' (' + appRef + ')',
             _gotcha: val('_gotcha')
         };
         Object.keys(app).forEach(function (k) { body[k] = app[k]; });
@@ -227,7 +262,11 @@
                 'Gender': app['Gender'],
                 'How They Heard About Us': app['How They Heard About Us'],
                 'Mobile Number': app['Mobile Number'],
-                'Membership Application Submitted': app['Signed Date']
+                'Membership Application Submitted': app['Signed Date'],
+                'Application Reference': appRef,
+                // set to true by the Stripe -> Klaviyo automation, never by this
+                // page: a browser cannot know that a payment actually cleared
+                'Membership Paid': false
             }
         };
         if (phone) attrs.phone_number = phone;
@@ -282,6 +321,32 @@
         });
     }
 
+    /* ── payment step ──────────────────────────────────────────
+       Revealed on the confirmation screen once the application is safely
+       delivered. It is purely a hand-off to Stripe's hosted checkout -- no
+       charge is made here and no card data touches this page. Returns false
+       when the tier has no link configured, so the caller can fall back to
+       the "we will be in touch" wording.
+       -------------------------------------------------------- */
+    function showPaymentStep(app) {
+        var panel = document.getElementById('joinPay');
+        var btn = document.getElementById('payBtn');
+        if (!panel || !btn) return false;
+
+        var url = paymentUrl(tierName(), app['Email Address']);
+        if (!url) return false;
+
+        var amount = (app['Membership Category'].match(/\$[\d,]+/) || [''])[0];
+        var tierEl = document.getElementById('payTier');
+        var amtEl = document.getElementById('payAmount');
+        if (tierEl) tierEl.textContent = 'Founding ' + tierName() + ' Membership';
+        if (amtEl) amtEl.textContent = amount;
+        btn.href = url;
+        btn.textContent = amount ? 'Pay ' + amount + ' Securely' : 'Pay Securely';
+        panel.hidden = false;
+        return true;
+    }
+
     function mailtoFallback(app) {
         var lines = Object.keys(app).map(function (k) { return k + ': ' + app[k]; });
         return 'mailto:info@padellogan.com.au'
@@ -333,11 +398,23 @@
             });
 
             if (delivered) {
+                var payable = showPaymentStep(app);
+                var msg = document.getElementById('joinSuccessMsg');
+                if (msg) {
+                    msg.innerHTML = 'Thanks, we have your Founding Membership application. Your '
+                        + 'reference is <strong>' + appRef + '</strong>. '
+                        + (payable
+                            ? 'There is one step left.'
+                            : 'Our team will be in touch shortly to confirm your place and arrange payment.');
+                }
+
                 try {
                     window.dataLayer = window.dataLayer || [];
                     window.dataLayer.push({
                         event: 'membership_application_submitted',
                         membership_tier: tierName(),
+                        application_reference: appRef,
+                        payment_offered: payable,
                         klaviyo_stored: stored
                     });
                 } catch (err) { /* tracking must never block the confirmation */ }

@@ -532,6 +532,35 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             Thanks, we have your Founding Membership application. Our team will be in touch shortly to
             confirm your place and arrange payment.
         </p>
+
+        <!-- Payment step. Stays hidden until a Stripe Payment Link is configured for the
+             chosen tier in assets/js/join.js, so an unconfigured tier can never render
+             a dead button -- the application still lands and the club arranges payment. -->
+        <div class="j-pay" id="joinPay" hidden>
+            <span class="j-pay-step">Last step</span>
+            <h3 class="j-pay-h">Secure your place</h3>
+            <p class="j-pay-lead">
+                Founding Memberships are limited and allocated in the order they are received.
+                Paying now confirms your place.
+            </p>
+            <div class="j-pay-row">
+                <span class="j-pay-tier">
+                    <span class="j-pay-tier-name" id="payTier">Founding Membership</span>
+                    <span class="j-pay-tier-term">12 month term &middot; includes GST</span>
+                </span>
+                <span class="j-pay-amount" id="payAmount"></span>
+            </div>
+            <a class="btn-primary j-pay-btn" id="payBtn" href="#">Pay Securely</a>
+            <p class="j-pay-fine">
+                Card, Apple Pay and Google Pay. Payment is handled by Stripe, so your card details
+                never touch this website.
+            </p>
+            <p class="j-pay-alt">
+                Prefer to pay by bank transfer? Call <a href="tel:0732996653">07 3299 6653</a>
+                and we will send you the details.
+            </p>
+        </div>
+
         <p>
             Keep an eye on your inbox, and check your junk folder just in case. If you need us sooner,
             call <a href="tel:0732996653">07 3299 6653</a>.
