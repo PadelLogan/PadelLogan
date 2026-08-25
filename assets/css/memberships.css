@@ -33,7 +33,7 @@
 
         /* ── GRAIN ── */
         .grain {
-            position: fixed; inset: -50%; width: 200%; height: 200%;
+            position: fixed; inset: 0; width: 100%; height: 100%;
             background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
             opacity: 0.028; pointer-events: none; z-index: 9999;
         }
@@ -85,7 +85,8 @@
         .m-hero {
             position: relative; min-height: 78svh; display: flex; align-items: flex-end;
             overflow: hidden; background: var(--mgc-ink);
-            background-image: url("/assets/img/hero.jpg");
+            background-image: url('/assets/img/hero-1280.jpg');
+            background-image: image-set(url('/assets/img/hero-1280.webp') type('image/webp'), url('/assets/img/hero-1280.jpg') type('image/jpeg'));
             background-size: cover; background-position: center 45%; background-repeat: no-repeat;
         }
         .m-hero-overlay {
@@ -640,4 +641,13 @@
             .mcard { padding: 2.2rem 1.5rem 1.8rem; }
             .hour-band { padding: 2rem 1.5rem; }
             .terms { padding: 3rem 1.5rem 2.4rem; }
+        }
+
+        /* Phone-sized hero art: 72KB WebP in place of the 257KB desktop JPEG.
+           See the note in join.css -- the overlay hides the compression. */
+        @media (max-width: 800px) {
+            .m-hero {
+                background-image: url('/assets/img/hero-800.jpg');
+                background-image: image-set(url('/assets/img/hero-800.webp') type('image/webp'), url('/assets/img/hero-800.jpg') type('image/jpeg'));
+            }
         }

@@ -202,10 +202,19 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
         <figure class="loc-map reveal delay-1">
             <div class="loc-map-frame">
-                <iframe
-                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3533.9186855009452!2d153.1502002!3d-27.6579874!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6b9143d491ff53b1%3A0xf02a35bd720a560!2sMeadowbrook%20Golf%20Club!5e0!3m2!1sen!2sau!4v1781587761840!5m2!1sen!2sau"
-                    title="Map of Meadowbrook Golf Club, 2–22 Golf Course Drive, Meadowbrook QLD 4131"
-                    allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                <!-- The map is deferred until it is actually reached. Google Maps pulls
+     ~434KB of script, and loading="lazy" does not hold it back on a slow
+     connection -- Chrome's lazy threshold is wide enough that it fetched
+     immediately, making it 41% of the landing weight for something below
+     the fold. site.js swaps this placeholder for the real iframe as it
+     comes into view, so the map itself is unchanged. -->
+                <div class="loc-map-defer" data-map-src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3533.9186855009452!2d153.1502002!3d-27.6579874!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6b9143d491ff53b1%3A0xf02a35bd720a560!2sMeadowbrook%20Golf%20Club!5e0!3m2!1sen!2sau!4v1781587761840!5m2!1sen!2sau"
+                     data-map-title="Map of Meadowbrook Golf Club, 2–22 Golf Course Drive, Meadowbrook QLD 4131">
+                    <noscript>
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3533.9186855009452!2d153.1502002!3d-27.6579874!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6b9143d491ff53b1%3A0xf02a35bd720a560!2sMeadowbrook%20Golf%20Club!5e0!3m2!1sen!2sau!4v1781587761840!5m2!1sen!2sau" title="Map of Meadowbrook Golf Club, 2–22 Golf Course Drive, Meadowbrook QLD 4131"
+                                allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    </noscript>
+                </div>
             </div>
             <figcaption class="loc-map-label">
                 <svg viewBox="0 0 24 24"><path d="M12 2C8.1 2 5 5.1 5 9c0 5.2 7 13 7 13s7-7.8 7-13c0-3.9-3.1-7-7-7zm0 9.5A2.5 2.5 0 1112 6.5a2.5 2.5 0 010 5z"/></svg>
