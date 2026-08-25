@@ -35,9 +35,9 @@
        can never show the applicant a dead button.
        -------------------------------------------------------- */
     var STRIPE_LINKS = {
-        'Platinum': '',
-        'Gold': '',
-        'Silver': ''
+        'Platinum': 'https://buy.stripe.com/test_14A8wP3EM91sgZCbkV0RG00',
+        'Gold': 'https://buy.stripe.com/test_cNifZhgry3H8bFibkV0RG01',
+        'Silver': 'https://buy.stripe.com/test_7sYcN5b7e0uW38M88J0RG02'
     };
 
     /* Reference shared by the application email, the Klaviyo profile and the
@@ -51,9 +51,16 @@
     }
     var appRef = makeRef();
 
+    var LIVE_HOSTS = ['padellogan.com.au', 'www.padellogan.com.au'];
+    function onLiveSite() { return LIVE_HOSTS.indexOf(window.location.hostname) !== -1; }
+
     function paymentUrl(tier, email) {
         var base = (STRIPE_LINKS[tier] || '').trim();
         if (!base) return null;
+        // A Stripe test link takes no money. Showing one on the live site would
+        // hand a real member a checkout that silently does nothing, so treat it
+        // as unconfigured there and fall back to arranging payment with the club.
+        if (base.indexOf('/test_') !== -1 && onLiveSite()) return null;
         return base + (base.indexOf('?') === -1 ? '?' : '&')
             + 'prefilled_email=' + encodeURIComponent(email)
             + '&client_reference_id=' + encodeURIComponent(appRef);
@@ -66,8 +73,6 @@
        preview state. On padellogan.com.au it appears only with a real Stripe
        link behind it, so a visitor is never shown a button that cannot pay.
        -------------------------------------------------------- */
-    var LIVE_HOSTS = ['padellogan.com.au', 'www.padellogan.com.au'];
-    function onLiveSite() { return LIVE_HOSTS.indexOf(window.location.hostname) !== -1; }
 
     var form = document.getElementById('joinForm');
     if (!form) return;

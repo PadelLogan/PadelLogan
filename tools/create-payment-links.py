@@ -14,7 +14,13 @@ creating one, so a second run does not leave duplicate tiers behind.
 import json, os, pathlib, sys, urllib.parse, urllib.request
 
 ENV = pathlib.Path.home() / '.config/smc-stripe/padel.env'
-REDIRECT = 'https://padellogan.com.au/welcome'
+
+# Test links point at the preview, because /welcome is not on the live domain
+# yet -- a test payment would otherwise finish on a 404 and prove nothing.
+REDIRECT = {
+    'TEST': 'https://padel-logan-memberships-preview.vercel.app/welcome',
+    'LIVE': 'https://padellogan.com.au/welcome',
+}
 
 # name, amount in cents, and how many of that tier exist (None = uncapped)
 TIERS = [
@@ -66,7 +72,9 @@ def main():
     apply = '--apply' in sys.argv
     k = key()
     mode = 'TEST' if '_test_' in k else 'LIVE'
+    redirect = REDIRECT[mode]
     print(f'Stripe {mode} mode' + ('' if apply else '  (dry run -- pass --apply to create)'))
+    print('after payment ->', redirect)
     if mode == 'LIVE' and apply:
         if input('This creates LIVE payment links that take real money. Type LIVE to continue: ') != 'LIVE':
             sys.exit('stopped')
@@ -75,7 +83,7 @@ def main():
     for name, amount, cap in TIERS:
         print(f'\n{name}  ${amount/100:,.2f} AUD  (GST inclusive)')
         if not apply:
-            print('   would create: product, price, payment link ->', REDIRECT)
+            print('   would create: product, price, payment link')
             continue
 
         existing = call(k, 'GET', 'products/search',
@@ -99,7 +107,7 @@ def main():
             'line_items[0][price]': price['id'],
             'line_items[0][quantity]': 1,
             'after_completion[type]': 'redirect',
-            'after_completion[redirect][url]': REDIRECT,
+            'after_completion[redirect][url]': redirect,
             'allow_promotion_codes': 'false',
         }
         if cap:
