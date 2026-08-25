@@ -7,7 +7,8 @@
 /* ── HERO ── */
 .j-hero {
     position: relative; background: var(--mgc-ink);
-    background-image: linear-gradient(rgba(15,59,89,0.82), rgba(15,59,89,0.92)), url('/assets/img/hero.jpg');
+    background-image: linear-gradient(rgba(15,59,89,0.82), rgba(15,59,89,0.92)), url('/assets/img/hero-1280.jpg');
+    background-image: linear-gradient(rgba(15,59,89,0.82), rgba(15,59,89,0.92)), image-set(url('/assets/img/hero-1280.webp') type('image/webp'), url('/assets/img/hero-1280.jpg') type('image/jpeg'));
     background-size: cover; background-position: center;
     padding: 10rem 2.5rem 4rem; color: var(--cream);
 }
@@ -161,4 +162,16 @@
     .j-sec { padding-top: 2.4rem; margin-top: 2.4rem; }
     .j-submit, .j-submit-wrap .btn-ghost { width: 100%; }
     .choice { width: 100%; }
+}
+
+/* Responsive hero art. The photo sits under an 80-93%% navy overlay, so it
+   compresses hard with no visible change (max channel difference 11/255).
+   Phones get the 800px WebP at 72KB in place of a 257KB 1280px JPEG.
+   The plain url() line stays first as the fallback for anything without
+   image-set(); browsers that understand it take the second declaration. */
+@media (max-width: 800px) {
+    .j-hero {
+        background-image: linear-gradient(rgba(15,59,89,0.82), rgba(15,59,89,0.92)), url('/assets/img/hero-800.jpg');
+        background-image: linear-gradient(rgba(15,59,89,0.82), rgba(15,59,89,0.92)), image-set(url('/assets/img/hero-800.webp') type('image/webp'), url('/assets/img/hero-800.jpg') type('image/jpeg'));
+    }
 }

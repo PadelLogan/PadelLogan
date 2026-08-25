@@ -42,7 +42,7 @@ body {
 
 /* ── GRAIN ── */
 .grain {
-    position: fixed; inset: -50%; width: 200%; height: 200%;
+    position: fixed; inset: 0; width: 100%; height: 100%;
     background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
     opacity: 0.028; pointer-events: none; z-index: 9999;
 }
@@ -232,3 +232,16 @@ footer { background: var(--mgc-black); border-top: 1px solid var(--border-light)
     footer { padding: 2.5rem 1.5rem 1.5rem; }
     .footer-row { flex-direction: column; align-items: flex-start; }
 }
+
+/* ── DEFERRED MAP ──
+   Placeholder holding the map's exact box until site.js swaps the real iframe
+   in, so nothing shifts when it arrives. Lives here rather than in home.css
+   because the homepage and the contact page both use it. */
+.loc-map-defer { position: absolute; inset: 0; background: var(--green-deep); }
+.loc-map-defer::after {
+    content: ""; position: absolute; inset: 0;
+    background:
+        repeating-linear-gradient(0deg, rgba(255,255,255,0.045) 0 1px, transparent 1px 46px),
+        repeating-linear-gradient(90deg, rgba(255,255,255,0.045) 0 1px, transparent 1px 46px);
+}
+.loc-map-defer iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; display: block; }

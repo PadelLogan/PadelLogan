@@ -123,10 +123,17 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
                 <div class="c-map">
                 <div class="c-map-frame">
-                    <iframe
-                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3533.9186855009452!2d153.1502002!3d-27.6579874!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6b9143d491ff53b1%3A0xf02a35bd720a560!2sMeadowbrook%20Golf%20Club!5e0!3m2!1sen!2sau!4v1781587761840!5m2!1sen!2sau"
-                        title="Map of Meadowbrook Golf Club, 2–22 Golf Course Drive, Meadowbrook QLD 4131"
-                        allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    <!-- Deferred: Google Maps pulls ~434KB of script and loading="lazy"
+                         does not hold it back on a slow connection, so it was arriving
+                         with the landing page for something below the fold. site.js
+                         swaps in the real iframe as it comes into view. -->
+                <div class="loc-map-defer" data-map-src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3533.9186855009452!2d153.1502002!3d-27.6579874!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6b9143d491ff53b1%3A0xf02a35bd720a560!2sMeadowbrook%20Golf%20Club!5e0!3m2!1sen!2sau!4v1781587761840!5m2!1sen!2sau"
+                     data-map-title="Map of Meadowbrook Golf Club, 2–22 Golf Course Drive, Meadowbrook QLD 4131">
+                    <noscript>
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3533.9186855009452!2d153.1502002!3d-27.6579874!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6b9143d491ff53b1%3A0xf02a35bd720a560!2sMeadowbrook%20Golf%20Club!5e0!3m2!1sen!2sau!4v1781587761840!5m2!1sen!2sau" title="Map of Meadowbrook Golf Club, 2–22 Golf Course Drive, Meadowbrook QLD 4131"
+                                allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    </noscript>
+                </div>
                 </div>
             </div>
             </div>
