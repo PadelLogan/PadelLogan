@@ -25,20 +25,32 @@
     var NEWSLETTER_LIST = 'UrR45w';
     var MIN_FILL_SECONDS = 6;   // anything faster than this is a bot
 
+    var LIVE_HOSTS = ['padellogan.com.au', 'www.padellogan.com.au'];
+    function onLiveSite() { return LIVE_HOSTS.indexOf(window.location.hostname) !== -1; }
+
     /* ── Stripe Payment Links ──────────────────────────────────
-       One hosted Stripe Checkout link per tier, created in the Stripe
-       dashboard (Payment Links > Create). Paste the https://buy.stripe.com/...
-       URL against its tier.
+       One hosted Stripe Checkout link per tier, created by
+       tools/create-payment-links.py or by hand in the Stripe dashboard.
+
+       Two sets, because they must not be mixed. The live site takes real
+       money; everywhere else -- the preview, localhost -- stays on sandbox
+       links so the club can demo and test without charging anyone.
 
        A blank entry is not an error: the payment step simply stays hidden and
        the club arranges payment as it does today, so a half-configured tier
        can never show the applicant a dead button.
        -------------------------------------------------------- */
-    var STRIPE_LINKS = {
+    var STRIPE_LINKS_LIVE = {
+        'Platinum': '',
+        'Gold': '',
+        'Silver': ''
+    };
+    var STRIPE_LINKS_TEST = {
         'Platinum': 'https://buy.stripe.com/test_14A8wP3EM91sgZCbkV0RG00',
         'Gold': 'https://buy.stripe.com/test_cNifZhgry3H8bFibkV0RG01',
         'Silver': 'https://buy.stripe.com/test_7sYcN5b7e0uW38M88J0RG02'
     };
+    var STRIPE_LINKS = onLiveSite() ? STRIPE_LINKS_LIVE : STRIPE_LINKS_TEST;
 
     /* Reference shared by the application email, the Klaviyo profile and the
        Stripe payment, so a payment can be matched to an applicant rather than
@@ -50,9 +62,6 @@
         return 'PL-' + t + (r || 'XX');
     }
     var appRef = makeRef();
-
-    var LIVE_HOSTS = ['padellogan.com.au', 'www.padellogan.com.au'];
-    function onLiveSite() { return LIVE_HOSTS.indexOf(window.location.hostname) !== -1; }
 
     function paymentUrl(tier, email) {
         var base = (STRIPE_LINKS[tier] || '').trim();
