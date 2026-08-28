@@ -25,6 +25,55 @@
     var NEWSLETTER_LIST = 'UrR45w';
     var MIN_FILL_SECONDS = 6;   // anything faster than this is a bot
 
+    /* ── Stripe Payment Links ──────────────────────────────────
+       One hosted Stripe Checkout link per tier, created in the Stripe
+       dashboard (Payment Links > Create). Paste the https://buy.stripe.com/...
+       URL against its tier.
+
+       A blank entry is not an error: the payment step simply stays hidden and
+       the club arranges payment as it does today, so a half-configured tier
+       can never show the applicant a dead button.
+       -------------------------------------------------------- */
+    var STRIPE_LINKS = {
+        'Platinum': 'https://buy.stripe.com/test_14A8wP3EM91sgZCbkV0RG00',
+        'Gold': 'https://buy.stripe.com/test_cNifZhgry3H8bFibkV0RG01',
+        'Silver': 'https://buy.stripe.com/test_7sYcN5b7e0uW38M88J0RG02'
+    };
+
+    /* Reference shared by the application email, the Klaviyo profile and the
+       Stripe payment, so a payment can be matched to an applicant rather than
+       guessed at by email. Stripe restricts client_reference_id to letters,
+       numbers, hyphens and underscores. */
+    function makeRef() {
+        var t = Date.now().toString(36).toUpperCase().slice(-6);
+        var r = Math.random().toString(36).toUpperCase().replace(/[^A-Z0-9]/g, '').slice(0, 2);
+        return 'PL-' + t + (r || 'XX');
+    }
+    var appRef = makeRef();
+
+    var LIVE_HOSTS = ['padellogan.com.au', 'www.padellogan.com.au'];
+    function onLiveSite() { return LIVE_HOSTS.indexOf(window.location.hostname) !== -1; }
+
+    function paymentUrl(tier, email) {
+        var base = (STRIPE_LINKS[tier] || '').trim();
+        if (!base) return null;
+        // A Stripe test link takes no money. Showing one on the live site would
+        // hand a real member a checkout that silently does nothing, so treat it
+        // as unconfigured there and fall back to arranging payment with the club.
+        if (base.indexOf('/test_') !== -1 && onLiveSite()) return null;
+        return base + (base.indexOf('?') === -1 ? '?' : '&')
+            + 'prefilled_email=' + encodeURIComponent(email)
+            + '&client_reference_id=' + encodeURIComponent(appRef);
+    }
+
+    /* ── reviewing the payment step before Stripe exists ───────
+       The gateway cannot take a real payment until the club has a Stripe
+       account, but it still has to be reviewable in place. So on any host that
+       is not the live site, the panel renders in an unmistakably marked
+       preview state. On padellogan.com.au it appears only with a real Stripe
+       link behind it, so a visitor is never shown a button that cannot pay.
+       -------------------------------------------------------- */
+
     var form = document.getElementById('joinForm');
     if (!form) return;
 
@@ -141,6 +190,7 @@
 
     function buildApplication() {
         return {
+            'Reference': appRef,
             'Membership Category': radio('membershipCategory'),
             'First Name': val('firstName'),
             'Surname': val('surname'),
@@ -183,7 +233,7 @@
             // Formspree reads these plain names for the reply-to and subject line
             name: app['First Name'] + ' ' + app['Surname'],
             email: app['Email Address'],
-            subject: 'Membership Application — ' + tierName() + ' — ' + app['First Name'] + ' ' + app['Surname'],
+            subject: 'Membership Application — ' + tierName() + ' — ' + app['First Name'] + ' ' + app['Surname'] + ' (' + appRef + ')',
             _gotcha: val('_gotcha')
         };
         Object.keys(app).forEach(function (k) { body[k] = app[k]; });
@@ -227,7 +277,11 @@
                 'Gender': app['Gender'],
                 'How They Heard About Us': app['How They Heard About Us'],
                 'Mobile Number': app['Mobile Number'],
-                'Membership Application Submitted': app['Signed Date']
+                'Membership Application Submitted': app['Signed Date'],
+                'Application Reference': appRef,
+                // set to true by the Stripe -> Klaviyo automation, never by this
+                // page: a browser cannot know that a payment actually cleared
+                'Membership Paid': false
             }
         };
         if (phone) attrs.phone_number = phone;
@@ -282,6 +336,102 @@
         });
     }
 
+    /* ── payment step ──────────────────────────────────────────
+       Revealed on the confirmation screen once the application is safely
+       delivered. It is purely a hand-off to Stripe's hosted checkout -- no
+       charge is made here and no card data touches this page. Returns false
+       when the tier has no link configured, so the caller can fall back to
+       the "we will be in touch" wording.
+       -------------------------------------------------------- */
+    function showPaymentStep(app) {
+        var panel = document.getElementById('joinPay');
+        var btn = document.getElementById('payBtn');
+        if (!panel || !btn) return false;
+
+        var url = paymentUrl(tierName(), app['Email Address']);
+        var preview = !url && !onLiveSite();
+        if (!url && !preview) return false;
+
+        var amount = (app['Membership Category'].match(/\$[\d,]+/) || [''])[0];
+        var tierEl = document.getElementById('payTier');
+        var amtEl = document.getElementById('payAmount');
+        if (tierEl) tierEl.textContent = 'Founding ' + tierName() + ' Membership';
+        if (amtEl) amtEl.textContent = amount;
+        btn.textContent = amount ? 'Pay ' + amount + ' Securely' : 'Pay Securely';
+
+        if (url) {
+            btn.href = url;
+        } else {
+            // no live link yet: the button explains itself instead of going nowhere
+            panel.classList.add('is-preview');
+            var flag = document.getElementById('payPreviewFlag');
+            if (flag) flag.hidden = false;
+            btn.setAttribute('href', '#');
+            btn.setAttribute('aria-describedby', 'payPreviewFlag');
+            btn.addEventListener('click', function (ev) {
+                ev.preventDefault();
+                var note = document.getElementById('payPreviewNote');
+                if (note) {
+                    note.hidden = false;
+                    note.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                }
+            });
+        }
+
+        wirePayLater(app);
+        panel.hidden = false;
+        return true;
+    }
+
+    /* Choosing to sort payment out with the club is a real outcome, not a
+       drop-off, so it is recorded the same way a payment would be. The club can
+       then segment on it and follow up, instead of wondering who went quiet. */
+    function wirePayLater(app) {
+        var btn = document.getElementById('payLaterBtn');
+        var out = document.getElementById('payLaterPanel');
+        if (!btn || !out || btn.dataset.wired) return;
+        btn.dataset.wired = '1';
+
+        btn.addEventListener('click', function () {
+            out.hidden = false;
+            btn.hidden = true;
+            out.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+
+            try {
+                window.dataLayer = window.dataLayer || [];
+                window.dataLayer.push({
+                    event: 'membership_payment_deferred',
+                    membership_tier: tierName(),
+                    application_reference: appRef
+                });
+            } catch (e) { /* tracking must never break the confirmation */ }
+
+            // best effort: the application is already delivered, so a failure
+            // here costs the club a segment, not an applicant
+            fetch('https://a.klaviyo.com/client/events/?company_id=' + KLAVIYO_COMPANY, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json', 'revision': KLAVIYO_REVISION },
+                body: JSON.stringify({
+                    data: {
+                        type: 'event',
+                        attributes: {
+                            properties: {
+                                'Membership Category': app['Membership Category'],
+                                'Reference': appRef,
+                                'Payment Preference': 'Arrange with club'
+                            },
+                            metric: { data: { type: 'metric', attributes: { name: 'Requested Payment Arrangement' } } },
+                            profile: { data: { type: 'profile', attributes: {
+                                email: app['Email Address'],
+                                properties: { 'Payment Preference': 'Arrange with club' }
+                            } } }
+                        }
+                    }
+                })
+            }).catch(function () { /* nothing the applicant needs to see */ });
+        });
+    }
+
     function mailtoFallback(app) {
         var lines = Object.keys(app).map(function (k) { return k + ': ' + app[k]; });
         return 'mailto:info@padellogan.com.au'
@@ -333,11 +483,23 @@
             });
 
             if (delivered) {
+                var payable = showPaymentStep(app);
+                var msg = document.getElementById('joinSuccessMsg');
+                if (msg) {
+                    msg.innerHTML = 'Thanks, we have your Founding Membership application. Your '
+                        + 'reference is <strong>' + appRef + '</strong>. '
+                        + (payable
+                            ? 'There is one step left.'
+                            : 'Our team will be in touch shortly to confirm your place and arrange payment.');
+                }
+
                 try {
                     window.dataLayer = window.dataLayer || [];
                     window.dataLayer.push({
                         event: 'membership_application_submitted',
                         membership_tier: tierName(),
+                        application_reference: appRef,
+                        payment_offered: payable,
                         klaviyo_stored: stored
                     });
                 } catch (err) { /* tracking must never block the confirmation */ }

@@ -150,6 +150,67 @@
 .j-success p { font-size: 0.92rem; line-height: 1.8; color: var(--body-grey); max-width: 52ch; margin: 0 auto 1rem; }
 .j-success-actions { margin-top: 2rem; display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
 
+/* ── PAYMENT STEP ──────────────────────────────────────────────
+   Hand-off to Stripe's hosted checkout on the confirmation screen.
+   Hidden until join.js confirms the chosen tier has a link. */
+.j-pay[hidden] { display: none; }
+.j-pay {
+    margin: 2.2rem auto 1.6rem; max-width: 34rem; text-align: left;
+    border: 1.5px solid var(--green-deep); border-radius: 4px;
+    padding: 1.8rem 1.8rem 1.6rem; background: #ffffff;
+}
+.j-pay-step {
+    display: inline-block; font-size: 0.62rem; letter-spacing: 0.22em; text-transform: uppercase;
+    color: var(--green-court); margin-bottom: 0.7rem;
+}
+.j-pay-h {
+    font-family: 'Cormorant Garamond', serif; font-weight: 300; font-style: italic;
+    font-size: 1.6rem; line-height: 1.2; color: var(--green-deep); margin-bottom: 0.6rem;
+}
+.j-success .j-pay-lead { margin: 0 0 1.3rem; text-align: left; max-width: none; font-size: 0.86rem; line-height: 1.7; }
+.j-pay-row {
+    display: flex; align-items: baseline; justify-content: space-between; gap: 1rem;
+    padding: 0.9rem 0 1.1rem; border-top: 1px solid rgba(15,59,89,0.14);
+    border-bottom: 1px solid rgba(15,59,89,0.14); margin-bottom: 1.2rem;
+}
+/* the row is a flex container, so these have to be blocks in their own
+   right or the tier name and term collapse onto one line */
+.j-pay-tier { display: block; }
+.j-pay-tier-name { display: block; font-size: 0.94rem; color: var(--green-deep); }
+.j-pay-tier-term {
+    display: block; margin-top: 0.25rem; font-size: 0.7rem;
+    letter-spacing: 0.1em; text-transform: uppercase; color: var(--body-grey);
+}
+.j-pay-amount {
+    font-family: 'Cormorant Garamond', serif; font-weight: 300;
+    font-size: 1.9rem; line-height: 1; color: var(--green-deep); white-space: nowrap;
+}
+.j-pay-btn { display: block; width: 100%; text-align: center; }
+
+/* preview state: the panel is real, the gateway behind it is not connected yet */
+.j-pay.is-preview { border-style: dashed; }
+.j-pay-flag[hidden] { display: none; }
+.j-pay-flag {
+    display: inline-block; margin-left: 0.6rem; padding: 0.2rem 0.5rem; border-radius: 2px;
+    background: rgba(143,84,15,0.10); color: #8F540F;
+    font-size: 0.6rem; letter-spacing: 0.16em; text-transform: uppercase;
+}
+.j-pay-note[hidden] { display: none; }
+.j-success .j-pay-note {
+    text-align: left; max-width: none; margin: 1rem 0 0; padding: 0.85rem 1rem;
+    background: var(--cream); border-left: 2px solid var(--green-court);
+    font-size: 0.78rem; line-height: 1.65;
+}
+.j-success .j-pay-fine,
+.j-success .j-pay-alt {
+    text-align: left; max-width: none; font-size: 0.74rem; line-height: 1.65; margin: 1rem 0 0;
+}
+.j-success .j-pay-alt { margin-top: 0.6rem; }
+@media (max-width: 600px) {
+    .j-pay { padding: 1.4rem 1.2rem; }
+    .j-pay-row { flex-direction: column; align-items: flex-start; gap: 0.5rem; }
+}
+
 /* ── RESPONSIVE ── */
 @media (max-width: 860px) {
     .tier-choices { grid-template-columns: 1fr; }
@@ -175,3 +236,40 @@
         background-image: linear-gradient(rgba(15,59,89,0.82), rgba(15,59,89,0.92)), image-set(url('/assets/img/hero-800.webp') type('image/webp'), url('/assets/img/hero-800.jpg') type('image/jpeg'));
     }
 }
+
+/* ── PAY LATER ──
+   The second of two equal paths, so it reads as a real choice rather than a
+   dismissal. Ghost button under a divider, not a link buried in fine print. */
+.j-pay-or {
+    display: flex; align-items: center; gap: 0.9rem;
+    margin: 1.2rem 0 1rem; color: var(--body-grey);
+}
+.j-pay-or::before, .j-pay-or::after {
+    content: ""; flex: 1 1 auto; height: 1px; background: rgba(15,59,89,0.14);
+}
+.j-pay-or span {
+    font-size: 0.66rem; letter-spacing: 0.18em; text-transform: uppercase; flex: 0 0 auto;
+}
+.j-pay-later { display: block; width: 100%; text-align: center; }
+.j-pay-later[hidden] { display: none; }
+.j-pay-later-panel[hidden] { display: none; }
+.j-pay-later-panel {
+    margin-top: 0.2rem; padding: 1.1rem 1.2rem;
+    background: var(--cream); border-left: 2px solid var(--green-court);
+}
+.j-success .j-pay-later-lead {
+    text-align: left; max-width: none; margin: 0; font-size: 0.83rem; line-height: 1.7;
+}
+.j-pay-later-list {
+    list-style: none; margin: 0.9rem 0; padding: 0;
+    display: flex; flex-direction: column; gap: 0.6rem;
+}
+.j-pay-later-list li {
+    font-size: 0.82rem; line-height: 1.6; color: var(--body-grey);
+    padding-left: 1rem; position: relative;
+}
+.j-pay-later-list li::before {
+    content: ""; position: absolute; left: 0; top: 0.62rem;
+    width: 0.32rem; height: 0.32rem; border-radius: 50%; background: var(--green-court);
+}
+.j-pay-later-list strong { color: var(--green-deep); font-weight: 500; }
