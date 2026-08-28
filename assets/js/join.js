@@ -41,9 +41,9 @@
        can never show the applicant a dead button.
        -------------------------------------------------------- */
     var STRIPE_LINKS_LIVE = {
-        'Platinum': '',
-        'Gold': '',
-        'Silver': ''
+        'Platinum': 'https://buy.stripe.com/14A8wP3EM91sgZCbkV0RG00',
+        'Gold': 'https://buy.stripe.com/cNifZhgry3H8bFibkV0RG01',
+        'Silver': 'https://buy.stripe.com/7sYcN5b7e0uW38M88J0RG02'
     };
     var STRIPE_LINKS_TEST = {
         'Platinum': 'https://buy.stripe.com/test_14A8wP3EM91sgZCbkV0RG00',

@@ -13,7 +13,10 @@ creating one, so a second run does not leave duplicate tiers behind.
 """
 import json, os, pathlib, sys, urllib.parse, urllib.request
 
+# default to the test-mode key; --env points at the live one
 ENV = pathlib.Path.home() / '.config/smc-stripe/padel.env'
+if '--env' in sys.argv:
+    ENV = pathlib.Path(sys.argv[sys.argv.index('--env') + 1]).expanduser()
 
 # Test links point at the preview, because /welcome is not on the live domain
 # yet -- a test payment would otherwise finish on a 404 and prove nothing.
