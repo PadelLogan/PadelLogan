@@ -230,7 +230,7 @@
             'Declaration Confirmed': document.getElementById('declarationCheck').checked ? 'Yes' : 'No',
             'Signature': val('signature'),
             'Signed Date': val('signDate'),
-            'Marketing Opt In': document.getElementById('optin').checked ? 'Yes' : 'No'
+            'Marketing Opt In': 'Yes (accepted in membership terms)'
         };
     }
 
@@ -315,8 +315,10 @@
         });
     }
 
-    // Accepting the membership T&Cs is not marketing consent — this only runs
-    // when the separate optional checkbox is ticked.
+    // Consent to club emails is part of the membership terms, which are a
+    // required tick and are quoted in full on the form, so every applicant is
+    // subscribed. custom_source records where that consent came from, so the
+    // club has an audit trail if it is ever questioned.
     function subscribeToNewsletter(app) {
         return fetch('https://a.klaviyo.com/client/subscriptions/?company_id=' + KLAVIYO_COMPANY, {
             method: 'POST',
@@ -325,7 +327,7 @@
                 data: {
                     type: 'subscription',
                     attributes: {
-                        custom_source: 'Padel Logan Membership Application',
+                        custom_source: 'Padel Logan Membership Application — consent given in membership terms',
                         profile: {
                             data: {
                                 type: 'profile',
@@ -479,7 +481,7 @@
         submitBtn.textContent = 'Sending…';
 
         var jobs = [sendToFormspree(app), sendToKlaviyo(app)];
-        if (document.getElementById('optin').checked) jobs.push(subscribeToNewsletter(app));
+        jobs.push(subscribeToNewsletter(app));
 
         Promise.allSettled(jobs).then(function (results) {
             var delivered = results[0].status === 'fulfilled';
