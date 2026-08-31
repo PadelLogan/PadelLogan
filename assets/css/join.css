@@ -236,3 +236,18 @@
         background-image: linear-gradient(rgba(15,59,89,0.82), rgba(15,59,89,0.92)), image-set(url('/assets/img/hero-800.webp') type('image/webp'), url('/assets/img/hero-800.jpg') type('image/jpeg'));
     }
 }
+
+/* The pay button is the only action on the confirmation screen, so it is
+   filled rather than outlined like the site's other primary buttons. Solid
+   brand navy: white on #0F3B59 is roughly 10:1, well clear of AA. */
+.j-pay-btn.btn-primary {
+    background: var(--green-deep);
+    color: #ffffff;
+    border-color: var(--green-deep);
+}
+.j-pay-btn.btn-primary:hover,
+.j-pay-btn.btn-primary:focus-visible {
+    background: #0A2C44;
+    border-color: #0A2C44;
+    color: #ffffff;
+}
