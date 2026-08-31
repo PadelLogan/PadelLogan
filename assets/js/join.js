@@ -389,58 +389,8 @@
             });
         }
 
-        wirePayLater(app);
         panel.hidden = false;
         return true;
-    }
-
-    /* Choosing to sort payment out with the club is a real outcome, not a
-       drop-off, so it is recorded the same way a payment would be. The club can
-       then segment on it and follow up, instead of wondering who went quiet. */
-    function wirePayLater(app) {
-        var btn = document.getElementById('payLaterBtn');
-        var out = document.getElementById('payLaterPanel');
-        if (!btn || !out || btn.dataset.wired) return;
-        btn.dataset.wired = '1';
-
-        btn.addEventListener('click', function () {
-            out.hidden = false;
-            btn.hidden = true;
-            out.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-
-            try {
-                window.dataLayer = window.dataLayer || [];
-                window.dataLayer.push({
-                    event: 'membership_payment_deferred',
-                    membership_tier: tierName(),
-                    application_reference: appRef
-                });
-            } catch (e) { /* tracking must never break the confirmation */ }
-
-            // best effort: the application is already delivered, so a failure
-            // here costs the club a segment, not an applicant
-            fetch('https://a.klaviyo.com/client/events/?company_id=' + KLAVIYO_COMPANY, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json', 'revision': KLAVIYO_REVISION },
-                body: JSON.stringify({
-                    data: {
-                        type: 'event',
-                        attributes: {
-                            properties: {
-                                'Membership Category': app['Membership Category'],
-                                'Reference': appRef,
-                                'Payment Preference': 'Arrange with club'
-                            },
-                            metric: { data: { type: 'metric', attributes: { name: 'Requested Payment Arrangement' } } },
-                            profile: { data: { type: 'profile', attributes: {
-                                email: app['Email Address'],
-                                properties: { 'Payment Preference': 'Arrange with club' }
-                            } } }
-                        }
-                    }
-                })
-            }).catch(function () { /* nothing the applicant needs to see */ });
-        });
     }
 
     function mailtoFallback(app) {
