@@ -1,0 +1,9 @@
+# padellogan.com.au
+User-agent: *
+Allow: /
+
+# The post-payment page is noindex in its own markup. It is deliberately
+# left crawlable here so Google can read that tag rather than guess.
+Disallow: /assets/downloads/
+
+Sitemap: https://padellogan.com.au/sitemap.xml
