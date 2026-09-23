@@ -86,7 +86,7 @@ def product(name, price, golf):
     return {
         '@type': 'Product',
         'name': name,
-        'description': (f'Twelve month founding membership at Padel Logan. Free non peak court '
+        'description': (f'Twelve month founding membership at Padel Logan. Free off peak court '
                         f'hire, $10 at peak, court bookings two weeks ahead, and unlimited golf '
                         f'on a {golf}.'),
         'brand': {'@type': 'Brand', 'name': 'Padel Logan'},
