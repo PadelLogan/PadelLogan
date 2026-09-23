@@ -85,8 +85,8 @@
         .m-hero {
             position: relative; min-height: 78svh; display: flex; align-items: flex-end;
             overflow: hidden; background: var(--mgc-ink);
-            background-image: url('/assets/img/hero-1280.jpg');
-            background-image: image-set(url('/assets/img/hero-1280.webp') type('image/webp'), url('/assets/img/hero-1280.jpg') type('image/jpeg'));
+            background-image: url('/assets/img/heroes/hero-memberships.jpg');
+            background-image: image-set(url('/assets/img/heroes/hero-memberships.jpg') type('image/jpeg'));
             background-size: cover; background-position: center 45%; background-repeat: no-repeat;
         }
         .m-hero-overlay {
@@ -651,7 +651,7 @@
            See the note in join.css -- the overlay hides the compression. */
         @media (max-width: 800px) {
             .m-hero {
-                background-image: url('/assets/img/hero-800.jpg');
-                background-image: image-set(url('/assets/img/hero-800.webp') type('image/webp'), url('/assets/img/hero-800.jpg') type('image/jpeg'));
+                background-image: url('/assets/img/heroes/hero-memberships-800.jpg');
+                background-image: image-set(url('/assets/img/heroes/hero-memberships-800.jpg') type('image/jpeg'));
             }
         }

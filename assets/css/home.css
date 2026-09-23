@@ -4,8 +4,8 @@
         â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
         :root {
             /* hero photo, held once as a variable and used by .hero */
-            --hero-img: url('/assets/img/hero-1280.jpg');
-            --hero-img: image-set(url('/assets/img/hero-1280.webp') type('image/webp'), url('/assets/img/hero-1280.jpg') type('image/jpeg'));
+            --hero-img: url('/assets/img/hero-poster.jpg');
+            --hero-img: image-set(url('/assets/img/hero-poster.jpg') type('image/jpeg'));
 
             /* Brand blue — sampled from the Padel Logan logo (#0F3B59) */
             --mgc-black:    #0F3B59;   /* logo navy — the site blue */
@@ -1361,8 +1361,8 @@
            image-set(); browsers that understand it take the second declaration. */
         @media (max-width: 800px) {
             :root {
-                --hero-img: url('/assets/img/hero-800.jpg');
-                --hero-img: image-set(url('/assets/img/hero-800.webp') type('image/webp'), url('/assets/img/hero-800.jpg') type('image/jpeg'));
+                --hero-img: url('/assets/img/hero-poster-mobile.jpg');
+                --hero-img: image-set(url('/assets/img/hero-poster-mobile.jpg') type('image/jpeg'));
             }
         }
 

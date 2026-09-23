@@ -39,7 +39,7 @@ CLUB = {
     'url': SITE + '/',
     'telephone': '+61732996653',
     'email': 'info@padellogan.com.au',
-    'image': [SITE + '/assets/img/hero-1280.jpg'],
+    'image': [SITE + '/assets/img/heroes/hero-memberships.jpg'],
     'logo': SITE + '/assets/img/logo.png',
     'priceRange': '$$',
     'currenciesAccepted': 'AUD',
@@ -90,7 +90,7 @@ def product(name, price, golf):
                         f'hire, $10 at peak, court bookings two weeks ahead, and unlimited golf '
                         f'on a {golf}.'),
         'brand': {'@type': 'Brand', 'name': 'Padel Logan'},
-        'image': SITE + '/assets/img/hero-1280.jpg',
+        'image': SITE + '/assets/img/heroes/hero-memberships.jpg',
         'offers': {
             '@type': 'Offer',
             'url': SITE + '/memberships',
