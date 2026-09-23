@@ -34,7 +34,7 @@ html { scroll-behavior: smooth; }
 body {
     background: var(--white);
     color: var(--green-deep);
-    font-family: 'DM Sans', sans-serif;
+    font-family: 'Montserrat', sans-serif;
     font-weight: 300;
     -webkit-font-smoothing: antialiased;
     overflow-x: hidden;
@@ -111,12 +111,12 @@ nav.scrolled { background: rgba(15,59,89,0.97); padding: 1rem 2.5rem; border-bot
 .sec-white .chip { color: var(--green-court); }
 .sec-navy .chip  { color: var(--white); }
 .sec-h2 {
-    font-family: 'Cormorant Garamond', serif; font-weight: 300;
+    font-family: 'Montserrat', sans-serif; font-weight: 300;
     font-size: clamp(2.1rem, 4vw, 3.4rem); line-height: 1.12; margin-bottom: 1.3rem;
 }
 .sec-white .sec-h2 { color: var(--green-deep); }
 .sec-navy .sec-h2  { color: var(--white); }
-.sec-h2 em { font-style: italic; }
+.sec-h2 em { font-style: normal; }
 .sec-lead { font-size: 0.92rem; line-height: 1.8; max-width: 52ch; }
 .sec-white .sec-lead { color: var(--body-grey); }
 .sec-navy .sec-lead  { color: var(--cream-dim); }
@@ -135,7 +135,7 @@ nav.scrolled { background: rgba(15,59,89,0.97); padding: 1rem 2.5rem; border-bot
 
 .input, .select, .textarea {
     width: 100%; min-height: 3rem; padding: 0.85rem 1rem;
-    font-family: 'DM Sans', sans-serif; font-size: 16px; font-weight: 300;
+    font-family: 'Montserrat', sans-serif; font-size: 16px; font-weight: 300;
     color: var(--green-deep); background: #ffffff;
     border: 1px solid rgba(15,59,89,0.28); border-radius: 2px;
     transition: border-color 0.18s, box-shadow 0.18s;
@@ -216,7 +216,7 @@ footer { background: var(--mgc-black); border-top: 1px solid var(--border-light)
 .footer-mgc-divider { width: 1px; height: 1rem; background: rgba(234,241,246,0.12); }
 .footer-base {
     max-width: 1140px; margin: 1rem auto 0; display: flex; justify-content: space-between;
-    flex-wrap: wrap; gap: 0.5rem; font-size: 0.62rem; color: rgba(234,241,246,0.7); letter-spacing: 0.06em;
+    flex-wrap: wrap; gap: 0.5rem; font-size: 0.62rem; color: rgba(234,241,246,0.78); letter-spacing: 0.06em;
 }
 
 /* ── RESPONSIVE ── */

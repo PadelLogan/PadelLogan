@@ -25,7 +25,7 @@
         body {
             background: var(--white);
             color: var(--green-deep);
-            font-family: 'DM Sans', sans-serif;
+            font-family: 'Montserrat', sans-serif;
             font-weight: 300;
             -webkit-font-smoothing: antialiased;
             overflow-x: hidden;
@@ -107,7 +107,7 @@
         .m-eyebrow::before { content: ''; display: inline-block; width: 2.2rem; height: 1px; background: var(--white); opacity: 0.55; }
         .m-hero-title { line-height: 0.9; margin-bottom: 1.6rem; }
         .m-hero-serif {
-            display: block; font-family: 'Cormorant Garamond', serif; font-style: italic; font-weight: 300;
+            display: block; font-family: 'Montserrat', sans-serif; font-style: normal; font-weight: 300;
             font-size: clamp(2.6rem, 6vw, 5.4rem); color: var(--cream); letter-spacing: 0.01em;
         }
         .m-hero-block {
@@ -152,12 +152,12 @@
         .sec-white .chip { color: var(--green-court); }
         .sec-navy .chip  { color: var(--white); }
         .sec-h2 {
-            font-family: 'Cormorant Garamond', serif; font-weight: 300; line-height: 1.12;
+            font-family: 'Montserrat', sans-serif; font-weight: 300; line-height: 1.12;
             font-size: clamp(2.3rem, 4.8vw, 4rem); margin-bottom: 1.2rem;
         }
         .sec-white .sec-h2 { color: var(--green-deep); }
         .sec-navy .sec-h2  { color: var(--white); }
-        .sec-h2 em { font-style: italic; }
+        .sec-h2 em { font-style: normal; }
         .sec-lead { font-size: 0.92rem; line-height: 1.8; max-width: 52ch; }
         .sec-white .sec-lead { color: var(--body-grey); }
         .sec-navy .sec-lead  { color: var(--cream-dim); }
@@ -310,13 +310,13 @@
             font-family: 'Montserrat', sans-serif; font-size: 1.2rem; font-weight: 800;
             text-transform: uppercase; letter-spacing: 0.07em; color: var(--white); line-height: 1.2;
         }
-        .rate-meta { font-size: 0.72rem; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(234,241,246,0.55); margin-bottom: 1.1rem; }
+        .rate-meta { font-size: 0.72rem; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(234,241,246,0.78); margin-bottom: 1.1rem; }
         .rate-price {
             font-family: 'Montserrat', sans-serif; font-size: 3.4rem; font-weight: 900;
             color: var(--white); line-height: 0.95; letter-spacing: -0.01em;
         }
         .rate-price sup { font-size: 0.4em; vertical-align: super; font-weight: 800; }
-        .rate-per { font-size: 0.78rem; color: rgba(234,241,246,0.6); letter-spacing: 0.06em; }
+        .rate-per { font-size: 0.78rem; color: rgba(234,241,246,0.78); letter-spacing: 0.06em; }
         .rate-court {
             margin-top: 1.2rem; padding-top: 1rem; border-top: 1px solid var(--border-light);
             font-size: 0.8rem; color: var(--cream-dim);
@@ -332,14 +332,14 @@
         .tier:not(.tier-member) { flex: 1; }
         .tier-label {
             font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase;
-            color: rgba(234,241,246,0.6); margin-bottom: 0.5rem;
+            color: rgba(234,241,246,0.78); margin-bottom: 0.5rem;
         }
         .tier-price {
             font-family: 'Montserrat', sans-serif; font-weight: 900;
             font-size: 2.6rem; line-height: 0.95; color: var(--white); letter-spacing: -0.01em;
         }
         .tier-price sup { font-size: 0.42em; vertical-align: super; font-weight: 800; }
-        .tier-per { font-size: 0.74rem; color: rgba(234,241,246,0.6); letter-spacing: 0.05em; margin-top: 0.35rem; }
+        .tier-per { font-size: 0.74rem; color: rgba(234,241,246,0.78); letter-spacing: 0.05em; margin-top: 0.35rem; }
         .tier-alt {
             font-family: 'Montserrat', sans-serif; font-size: 1rem; font-weight: 700;
             letter-spacing: 0.05em; text-transform: uppercase;
@@ -365,10 +365,10 @@
         .cta-band { background: var(--white); padding: 6.5rem 2.5rem; border-top: 1px solid var(--border-dark); }
         .cta-inner { max-width: 780px; margin: 0 auto; text-align: center; }
         .cta-h2 {
-            font-family: 'Cormorant Garamond', serif; font-weight: 300; line-height: 1.1;
+            font-family: 'Montserrat', sans-serif; font-weight: 300; line-height: 1.1;
             font-size: clamp(2.4rem, 5.4vw, 4.4rem); color: var(--green-deep); margin-bottom: 1.1rem;
         }
-        .cta-h2 em { font-style: italic; }
+        .cta-h2 em { font-style: normal; }
         .cta-sub { font-size: 0.95rem; line-height: 1.8; color: var(--body-grey); margin-bottom: 2.4rem; }
         .cta-email {
             display: inline-flex; align-items: center; gap: 0.85rem;
@@ -385,7 +385,7 @@
             fill: none; stroke: var(--green-deep); stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round;
         }
         .cta-actions { margin-top: 2.6rem; display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
-        .cta-fine { margin-top: 2rem; font-size: 0.75rem; color: rgba(15,59,89,0.55); letter-spacing: 0.04em; }
+        .cta-fine { margin-top: 2rem; font-size: 0.75rem; color: rgba(15,59,89,0.82); letter-spacing: 0.04em; }
         .cta-fine a { color: inherit; }
 
         /* ── FOOTER ── */
@@ -413,7 +413,7 @@
         .footer-mgc-divider { width: 1px; height: 1rem; background: rgba(234,241,246,0.12); }
         .footer-base {
             max-width: 1140px; margin: 1rem auto 0; display: flex; justify-content: space-between;
-            flex-wrap: wrap; gap: 0.5rem; font-size: 0.62rem; color: rgba(234,241,246,0.7); letter-spacing: 0.06em;
+            flex-wrap: wrap; gap: 0.5rem; font-size: 0.62rem; color: rgba(234,241,246,0.78); letter-spacing: 0.06em;
         }
 
         /* ── RESPONSIVE ── */
@@ -469,7 +469,7 @@
         }
         .mcard-tier {
             font-size: 0.6rem; letter-spacing: 0.26em; text-transform: uppercase;
-            color: rgba(234,241,246,0.6); margin-bottom: 0.5rem;
+            color: rgba(234,241,246,0.78); margin-bottom: 0.5rem;
         }
         .mcard-name {
             font-family: 'Montserrat', sans-serif; font-size: 2.1rem; font-weight: 900;
@@ -480,7 +480,7 @@
             line-height: 0.95; color: var(--white); letter-spacing: -0.01em; margin-top: 1.3rem;
         }
         .mcard-price sup { font-size: 0.4em; vertical-align: super; font-weight: 800; }
-        .mcard-term { font-size: 0.74rem; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(234,241,246,0.62); margin-top: 0.45rem; }
+        .mcard-term { font-size: 0.74rem; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(234,241,246,0.78); margin-top: 0.45rem; }
         .mcard-value {
             margin-top: 0.9rem; font-size: 0.78rem; color: #BEE8FF; letter-spacing: 0.04em;
         }
@@ -496,7 +496,7 @@
             font-family: 'Montserrat', sans-serif; font-size: 1.28rem; font-weight: 800;
             text-transform: uppercase; letter-spacing: 0.04em; color: #DCF3FF; line-height: 1.2;
         }
-        .mcard-note { font-size: 0.68rem; line-height: 1.55; color: rgba(234,241,246,0.55); margin-top: 0.6rem; }
+        .mcard-note { font-size: 0.68rem; line-height: 1.55; color: rgba(234,241,246,0.78); margin-top: 0.6rem; }
         .mcard .btn-primary { margin-top: auto; display: block; text-align: center; }
         .mcard-pad { margin-top: 1.6rem; }
 
@@ -523,10 +523,10 @@
         /* golf sits in the list as a normal inclusion; the card summary above
            carries the emphasis, with padel first */
         .incl-golf-detail {
-            font-size: 0.78rem; color: rgba(234,241,246,0.62);
+            font-size: 0.78rem; color: rgba(234,241,246,0.78);
             line-height: 1.4; margin-top: 0.15rem;
         }
-        .incl-note { font-size: 0.68rem; line-height: 1.5; color: rgba(234,241,246,0.6); margin-top: 0.45rem; }
+        .incl-note { font-size: 0.68rem; line-height: 1.5; color: rgba(234,241,246,0.78); margin-top: 0.45rem; }
 
         /* what you are actually buying, on every card and every width:
            a padel membership, with golf as an inclusion */
@@ -550,7 +550,7 @@
             letter-spacing: 0.04em; color: #DCF3FF; line-height: 1.2; margin-top: 0.3rem;
         }
         .sum-detail {
-            display: block; font-size: 0.75rem; color: rgba(234,241,246,0.7);
+            display: block; font-size: 0.75rem; color: rgba(234,241,246,0.78);
             letter-spacing: 0.03em; margin-top: 0.3rem;
         }
 
@@ -560,7 +560,7 @@
             display: flex; align-items: center; justify-content: space-between; gap: 0.8rem;
             cursor: pointer; list-style: none; padding: 0.85rem 0;
             border-top: 1px solid rgba(234,241,246,0.18); border-bottom: 1px solid rgba(234,241,246,0.18);
-            font-family: 'DM Sans', sans-serif; font-size: 0.7rem; font-weight: 500;
+            font-family: 'Montserrat', sans-serif; font-size: 0.7rem; font-weight: 500;
             letter-spacing: 0.16em; text-transform: uppercase; color: var(--white);
         }
         .incl-acc > summary::-webkit-details-marker { display: none; }
@@ -599,13 +599,13 @@
         .hour-time svg { width: 14px; height: 14px; }
         .hour-time svg circle, .hour-time svg polyline { fill: none; stroke: #BEE8FF; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
         .hour-rates { display: flex; gap: 2.2rem; margin-top: 1.35rem; flex-wrap: wrap; }
-        .hour-rate-lbl { font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(234,241,246,0.55); margin-bottom: 0.4rem; }
+        .hour-rate-lbl { font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(234,241,246,0.78); margin-bottom: 0.4rem; }
         .hour-rate-val {
             font-family: 'Montserrat', sans-serif; font-size: 3.7rem; font-weight: 900;
             color: var(--white); line-height: 0.9; letter-spacing: -0.01em;
         }
         .hour-rate-val sup { font-size: 0.42em; vertical-align: super; font-weight: 800; }
-        .hour-rate-sub { font-size: 0.7rem; color: rgba(234,241,246,0.55); margin-top: 0.25rem; }
+        .hour-rate-sub { font-size: 0.7rem; color: rgba(234,241,246,0.78); margin-top: 0.25rem; }
         .hour-member {
             margin-top: 1.35rem; padding-top: 1.1rem; border-top: 1px solid rgba(234,241,246,0.18);
             display: flex; align-items: baseline; gap: 0.8rem; flex-wrap: wrap;
@@ -632,7 +632,7 @@
         .terms-list { list-style: none; display: grid; grid-template-columns: repeat(2, 1fr); gap: 0.7rem 2.5rem; }
         .terms-list li {
             position: relative; padding-left: 1.1rem;
-            font-size: 0.78rem; line-height: 1.65; color: rgba(15,59,89,0.62);
+            font-size: 0.78rem; line-height: 1.65; color: rgba(15,59,89,0.8);
         }
         .terms-list li::before { content: ''; position: absolute; left: 0; top: 0.6em; width: 4px; height: 4px; border-radius: 50%; background: var(--green-court); }
 

@@ -40,7 +40,7 @@
 
 .plnav-top {
     display: flex; align-items: center; gap: 0.45rem;
-    font-family: 'DM Sans', sans-serif;
+    font-family: 'Montserrat', sans-serif;
     font-size: 0.68rem; font-weight: 500; letter-spacing: 0.16em; text-transform: uppercase;
     color: rgba(255,255,255,0.88); text-decoration: none; cursor: pointer;
     white-space: nowrap; transition: color 0.2s; list-style: none;

@@ -23,6 +23,10 @@
             --cream-dim:    rgba(234,241,246,0.95);
 
             /* Accent — logo blue (teal removed per brand) */
+            /* Readable accent for text on the navy. --gold and --gold-lt were
+               both set to the navy itself when the palette changed, so every
+               text use of them rendered navy on navy and disappeared. */
+            --accent-lt:    #9EC6DC;
             --gold:         #0F3B59;
             --gold-lt:      #0F3B59;
 
@@ -37,7 +41,7 @@
         body {
             background: var(--mgc-ink);
             color: var(--cream);
-            font-family: 'DM Sans', sans-serif;
+            font-family: 'Montserrat', sans-serif;
             font-weight: 300;
             -webkit-font-smoothing: antialiased;
             overflow-x: hidden;
@@ -72,7 +76,7 @@
             text-align: center;
             background: var(--gold);
             color: var(--mgc-black);
-            font-family: 'DM Sans', sans-serif;
+            font-family: 'Montserrat', sans-serif;
             font-size: 0.8rem;
             font-weight: 500;
             letter-spacing: 0.14em;
@@ -116,10 +120,10 @@
             /* REPLACE WITH: <img src="logo.svg" alt="Padel Logan" style="height:2rem;"> */
         }
 
-        .nav-brand span { color: var(--gold); font-weight: 500; }
+        .nav-brand span { color: var(--accent-lt); font-weight: 500; }
 
         .nav-cta {
-            font-family: 'DM Sans', sans-serif;
+            font-family: 'Montserrat', sans-serif;
             font-size: 0.7rem;
             font-weight: 500;
             letter-spacing: 0.14em;
@@ -244,10 +248,10 @@
 
         .hero-serif {
             display: block;
-            font-family: 'Cormorant Garamond', serif;
+            font-family: 'Montserrat', sans-serif;
             font-size: clamp(3.2rem, 7.5vw, 7.5rem);
             font-weight: 300;
-            font-style: italic;
+            font-style: normal;
             color: var(--cream);
             letter-spacing: 0.01em;
             opacity: 0;
@@ -306,7 +310,7 @@
             display: inline-block;
             position: relative;
             overflow: hidden;
-            font-family: 'DM Sans', sans-serif;
+            font-family: 'Montserrat', sans-serif;
             font-size: 0.75rem;
             font-weight: 500;
             letter-spacing: 0.16em;
@@ -333,7 +337,7 @@
             font-size: 0.62rem;
             letter-spacing: 0.22em;
             text-transform: uppercase;
-            color: rgba(234,241,246,0.28);
+            color: rgba(234,241,246,0.78);
             display: flex;
             align-items: center;
             gap: 0.6rem;
@@ -373,7 +377,7 @@
             font-size: 0.7rem;
             font-weight: 400;
             letter-spacing: 0.1em;
-            color: rgba(234,241,246,0.45);
+            color: rgba(234,241,246,0.78);
             white-space: nowrap;
         }
 
@@ -404,7 +408,7 @@
         .what-left {}
 
         .what-h2 {
-            font-family: 'Cormorant Garamond', serif;
+            font-family: 'Montserrat', sans-serif;
             font-size: clamp(2.4rem, 4.5vw, 4rem);
             font-weight: 300;
             line-height: 1.15;
@@ -412,12 +416,12 @@
             margin-bottom: 1.4rem;
         }
 
-        .what-h2 em { font-style: italic; color: var(--green-court); }
+        .what-h2 em { font-style: normal; color: var(--green-court); }
 
         .what-body {
             font-size: 0.9rem;
             line-height: 1.85;
-            color: rgba(234,241,246,0.6);
+            color: rgba(234,241,246,0.78);
             margin-bottom: 2rem;
         }
 
@@ -436,11 +440,11 @@
             line-height: 1;
         }
 
-        .what-stat-num span { color: var(--gold); }
+        .what-stat-num span { color: var(--accent-lt); }
 
         .what-stat-lbl {
             font-size: 0.7rem;
-            color: rgba(234,241,246,0.38);
+            color: rgba(234,241,246,0.78);
             letter-spacing: 0.06em;
             margin-top: 0.2rem;
         }
@@ -485,7 +489,7 @@
         .step-desc {
             font-size: 0.82rem;
             line-height: 1.7;
-            color: rgba(234,241,246,0.5);
+            color: rgba(234,241,246,0.78);
         }
 
         /* â”€â”€ FEATURES â”€â”€ */
@@ -513,7 +517,7 @@
             font-weight: 500;
             letter-spacing: 0.3em;
             text-transform: uppercase;
-            color: var(--gold);
+            color: var(--accent-lt);
             margin-bottom: 0.8rem;
         }
 
@@ -526,18 +530,18 @@
         }
 
         .features-h2 {
-            font-family: 'Cormorant Garamond', serif;
+            font-family: 'Montserrat', sans-serif;
             font-size: clamp(2.4rem, 5vw, 4.2rem);
             font-weight: 300;
             line-height: 1.1;
             color: var(--green-deep);
         }
 
-        .features-h2 em { font-style: italic; color: var(--green-court); }
+        .features-h2 em { font-style: normal; color: var(--green-court); }
 
         .features-aside {
             font-size: 0.8rem;
-            color: rgba(17,17,17,0.38);
+            color: rgba(17,17,17,0.72);
             max-width: 190px;
             text-align: right;
             line-height: 1.65;
@@ -617,11 +621,11 @@
         .feat-desc {
             font-size: 0.82rem;
             line-height: 1.7;
-            color: rgba(17,17,17,0.5);
+            color: rgba(17,17,17,0.72);
             transition: color 0.35s;
         }
 
-        .feat:hover .feat-desc { color: rgba(234,241,246,0.62); }
+        .feat:hover .feat-desc { color: rgba(234,241,246,0.78); }
 
         /* â”€â”€ ABOUT / LOCATION â”€â”€ */
         .about {
@@ -656,7 +660,7 @@
         }
 
         .about-h2 {
-            font-family: 'Cormorant Garamond', serif;
+            font-family: 'Montserrat', sans-serif;
             font-size: clamp(2.4rem, 4.5vw, 4rem);
             font-weight: 300;
             line-height: 1.18;
@@ -664,7 +668,7 @@
             margin-bottom: 1.6rem;
         }
 
-        .about-h2 em { font-style: italic; color: var(--gold); }
+        .about-h2 em { font-style: normal; color: var(--accent-lt); }
 
         .about-body {
             font-size: 0.88rem;
@@ -680,7 +684,7 @@
             align-items: baseline;
             gap: 1.25rem;
             font-size: 0.8rem;
-            color: rgba(234,241,246,0.42);
+            color: rgba(234,241,246,0.78);
         }
 
         .meta-label {
@@ -689,7 +693,7 @@
             font-weight: 700;
             letter-spacing: 0.16em;
             text-transform: uppercase;
-            color: var(--gold);
+            color: var(--accent-lt);
             min-width: 5.5rem;
         }
 
@@ -711,14 +715,14 @@
 
         .stat-num sup {
             font-size: 1.8rem;
-            color: var(--gold);
+            color: var(--accent-lt);
             vertical-align: super;
         }
 
         .stat-lbl {
             font-size: 0.72rem;
             letter-spacing: 0.06em;
-            color: rgba(234,241,246,0.38);
+            color: rgba(234,241,246,0.78);
         }
 
         /* â”€â”€ FAQ â”€â”€ */
@@ -738,13 +742,13 @@
         }
 
         .faq-h2 {
-            font-family: 'Cormorant Garamond', serif;
+            font-family: 'Montserrat', sans-serif;
             font-size: clamp(2.2rem, 4vw, 3.5rem);
             font-weight: 300;
             color: var(--white);
         }
 
-        .faq-h2 em { font-style: italic; color: var(--gold); }
+        .faq-h2 em { font-style: normal; color: var(--accent-lt); }
 
         .faq-list { display: flex; flex-direction: column; }
 
@@ -772,7 +776,7 @@
             transition: color 0.2s;
         }
 
-        .faq-q:hover { color: var(--gold); }
+        .faq-q:hover { color: var(--accent-lt); }
 
         .faq-icon {
             width: 1.2rem;
@@ -784,7 +788,7 @@
             align-items: center;
             justify-content: center;
             font-size: 0.9rem;
-            color: var(--gold);
+            color: var(--accent-lt);
             transition: transform 0.25s, border-color 0.2s;
         }
 
@@ -800,7 +804,7 @@
             padding: 0 0 1.4rem;
             font-size: 0.87rem;
             line-height: 1.8;
-            color: rgba(234,241,246,0.55);
+            color: rgba(234,241,246,0.78);
         }
 
         .faq-item.open .faq-a { max-height: 300px; }
@@ -839,12 +843,13 @@
             font-weight: 500;
             letter-spacing: 0.3em;
             text-transform: uppercase;
-            color: var(--gold);
+            /* base is for light grounds; navy sections override below */
+            color: rgba(15,59,89,0.82);
             margin-bottom: 1.2rem;
         }
 
         .wl-h2 {
-            font-family: 'Cormorant Garamond', serif;
+            font-family: 'Montserrat', sans-serif;
             font-size: clamp(2.8rem, 6vw, 5.2rem);
             font-weight: 300;
             line-height: 1.1;
@@ -852,7 +857,7 @@
             margin-bottom: 1rem;
         }
 
-        .wl-h2 em { font-style: italic; color: var(--gold); }
+        .wl-h2 em { font-style: normal; color: var(--accent-lt); }
 
         .wl-sub {
             font-size: 0.88rem;
@@ -886,7 +891,7 @@
             border: 1px solid var(--border-light);
             border-right: none;
             color: var(--cream);
-            font-family: 'DM Sans', sans-serif;
+            font-family: 'Montserrat', sans-serif;
             font-size: 0.85rem;
             font-weight: 300;
             outline: none;
@@ -894,7 +899,7 @@
             min-width: 0;
         }
 
-        .wl-input::placeholder { color: rgba(234,241,246,0.28); }
+        .wl-input::placeholder { color: rgba(234,241,246,0.78); }
 
         .wl-input:focus {
             border-color: rgba(30,123,166,0.5);
@@ -906,7 +911,7 @@
             background: var(--gold);
             border: 1px solid var(--gold);
             color: var(--mgc-black);
-            font-family: 'DM Sans', sans-serif;
+            font-family: 'Montserrat', sans-serif;
             font-size: 0.72rem;
             font-weight: 500;
             letter-spacing: 0.16em;
@@ -930,12 +935,12 @@
             margin: 0 auto;
         }
 
-        .wl-success strong { color: var(--gold); }
+        .wl-success strong { color: var(--mgc-black); }
 
         .wl-fine {
             margin-top: 1rem;
             font-size: 0.62rem;
-            color: rgba(234,241,246,0.7);
+            color: rgba(15,59,89,0.70);
             letter-spacing: 0.06em;
         }
 
@@ -962,11 +967,11 @@
             font-weight: 700;
             letter-spacing: 0.22em;
             text-transform: uppercase;
-            color: rgba(234,241,246,0.55);
+            color: rgba(234,241,246,0.78);
             /* REPLACE WITH: <img src="logo.svg" alt="Padel Logan" style="height:1.8rem;"> */
         }
 
-        .footer-brand strong { color: var(--gold); font-weight: 500; }
+        .footer-brand strong { color: var(--accent-lt); font-weight: 500; }
 
         .footer-links {
             list-style: none;
@@ -984,7 +989,7 @@
             transition: color 0.2s;
         }
 
-        .footer-links a:hover { color: var(--gold); }
+        .footer-links a:hover { color: var(--accent-lt); }
 
         .footer-social { display: flex; gap: 0.6rem; }
 
@@ -1000,7 +1005,7 @@
             transition: border-color 0.22s, color 0.22s;
         }
 
-        .footer-social a:hover { border-color: var(--gold); color: var(--gold); }
+        .footer-social a:hover { border-color: var(--gold); color: var(--accent-lt); }
 
         .footer-mgc {
             max-width: 1140px;
@@ -1029,7 +1034,7 @@
             flex-wrap: wrap;
             gap: 0.5rem;
             font-size: 0.62rem;
-            color: rgba(234,241,246,0.7);
+            color: rgba(234,241,246,0.78);
             letter-spacing: 0.06em;
         }
 
@@ -1114,19 +1119,19 @@
             gap: 4rem; align-items: center;
         }
         .loc-h2 {
-            font-family: 'Cormorant Garamond', serif;
+            font-family: 'Montserrat', sans-serif;
             font-size: clamp(2.3rem, 4.5vw, 3.8rem);
             font-weight: 300; line-height: 1.12;
             color: var(--white); margin-bottom: 1.4rem;
         }
-        .loc-h2 em { font-style: italic; color: var(--white); }
+        .loc-h2 em { font-style: normal; color: var(--white); }
         .location .wl-eyebrow { color: var(--white); }
         .loc-body { font-size: 0.9rem; color: var(--cream-dim); line-height: 1.8; margin-bottom: 2rem; max-width: 46ch; }
         .loc-meta { display: flex; flex-direction: column; gap: 1.1rem; }
         .loc-row { display: flex; gap: 0.9rem; align-items: flex-start; font-size: 0.88rem; color: var(--cream); }
         .loc-row svg { width: 18px; height: 18px; fill: var(--gold-lt); flex-shrink: 0; margin-top: 2px; }
         .loc-row a { color: var(--white); text-decoration: none; border-bottom: 1px solid rgba(255,255,255,0.45); padding-bottom: 1px; }
-        .loc-row a:hover { color: var(--gold-lt); }
+        .loc-row a:hover { color: var(--accent-lt); }
         .loc-row .loc-label { display: block; font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--white); margin-bottom: 0.25rem; }
 
         .loc-map { border-radius: 4px; overflow: hidden; border: 1px solid var(--border-light); box-shadow: 0 30px 60px -30px rgba(0,0,0,0.7); }
@@ -1135,7 +1140,7 @@
         .loc-map-label { display: flex; align-items: center; gap: 0.8rem; padding: 1rem 1.3rem; background: var(--mgc-ink); border-top: 1px solid var(--border-light); }
         .loc-map-label svg { width: 22px; height: 22px; fill: var(--gold-lt); flex-shrink: 0; }
         .loc-map-label strong { display: block; font-family: 'Montserrat', sans-serif; font-size: 1.05rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--white); line-height: 1.2; }
-        .loc-map-label .loc-map-addr { display: block; font-family: 'DM Sans', sans-serif; font-size: 0.78rem; font-weight: 300; letter-spacing: 0; text-transform: none; color: var(--cream-dim); margin-top: 2px; }
+        .loc-map-label .loc-map-addr { display: block; font-family: 'Montserrat', sans-serif; font-size: 0.78rem; font-weight: 300; letter-spacing: 0; text-transform: none; color: var(--cream-dim); margin-top: 2px; }
 
         /* ── CONTACT ── */
         .contact {
@@ -1145,35 +1150,35 @@
             position: relative;
         }
         .contact-inner { max-width: 1140px; margin: 0 auto; display: grid; grid-template-columns: 0.9fr 1.1fr; gap: 4rem; }
-        .contact-h2 { font-family: 'Cormorant Garamond', serif; font-size: clamp(2.3rem, 4.5vw, 3.8rem); font-weight: 300; line-height: 1.12; color: var(--white); margin-bottom: 1.4rem; }
-        .contact-h2 em { font-style: italic; color: var(--gold); }
+        .contact-h2 { font-family: 'Montserrat', sans-serif; font-size: clamp(2.3rem, 4.5vw, 3.8rem); font-weight: 300; line-height: 1.12; color: var(--white); margin-bottom: 1.4rem; }
+        .contact-h2 em { font-style: normal; color: var(--accent-lt); }
         .contact-body { font-size: 0.9rem; color: var(--cream-dim); line-height: 1.8; margin-bottom: 2.4rem; max-width: 40ch; }
         .contact-details { display: flex; flex-direction: column; gap: 1.6rem; }
         .contact-detail { display: flex; gap: 1rem; align-items: center; }
         .contact-detail svg { width: 20px; height: 20px; fill: none; stroke: var(--gold); stroke-width: 1.5; flex-shrink: 0; }
-        .contact-detail-label { font-size: 0.58rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.25rem; }
+        .contact-detail-label { font-size: 0.58rem; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(15,59,89,0.82); margin-bottom: 0.25rem; }
         .contact-detail a { font-size: 0.98rem; color: var(--cream); text-decoration: none; transition: color 0.2s; }
-        .contact-detail a:hover { color: var(--gold); }
+        .contact-detail a:hover { color: var(--accent-lt); }
 
         .contact-form { display: flex; flex-direction: column; gap: 1rem; }
         .cf-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
         .cf-input, .cf-textarea {
             width: 100%; padding: 0.95rem 1.2rem;
             background: rgba(255,255,255,0.05); border: 1px solid var(--border-light);
-            color: var(--cream); font-family: 'DM Sans', sans-serif; font-size: 0.85rem; font-weight: 300;
+            color: var(--cream); font-family: 'Montserrat', sans-serif; font-size: 0.85rem; font-weight: 300;
             outline: none; transition: border-color 0.25s, background 0.25s;
         }
-        .cf-input::placeholder, .cf-textarea::placeholder { color: rgba(234,241,246,0.28); }
+        .cf-input::placeholder, .cf-textarea::placeholder { color: rgba(234,241,246,0.78); }
         .cf-input:focus, .cf-textarea:focus { border-color: rgba(30,123,166,0.5); background: rgba(255,255,255,0.07); }
         .cf-textarea { resize: vertical; min-height: 140px; }
         .cf-btn {
             align-self: flex-start; padding: 1.05rem 2.6rem; background: var(--gold); border: 1px solid var(--gold);
-            color: var(--mgc-black); font-family: 'DM Sans', sans-serif; font-size: 0.72rem; font-weight: 500;
+            color: var(--mgc-black); font-family: 'Montserrat', sans-serif; font-size: 0.72rem; font-weight: 500;
             letter-spacing: 0.16em; text-transform: uppercase; cursor: pointer; transition: background 0.25s, border-color 0.25s;
         }
         .cf-btn:hover { background: var(--gold-lt); border-color: var(--gold-lt); }
         .cf-success { display: none; padding: 1.3rem 2rem; border: 1px solid rgba(30,111,148,0.4); background: rgba(30,111,148,0.1); color: var(--cream); font-size: 0.85rem; line-height: 1.6; }
-        .cf-success strong { color: var(--gold); }
+        .cf-success strong { color: var(--mgc-black); }
 
         @media (max-width: 860px) {
             .location-inner, .contact-inner { grid-template-columns: 1fr; gap: 2.5rem; }
@@ -1257,18 +1262,18 @@
             background: var(--white); border-radius: 10px; overflow: hidden;
             box-shadow: 0 30px 80px -20px rgba(0,0,0,0.6);
             transform: translateY(14px) scale(0.98); transition: transform 0.35s cubic-bezier(.2,.7,.2,1);
-            font-family: 'DM Sans', sans-serif;
+            font-family: 'Montserrat', sans-serif;
         }
         .pl-pop-overlay.open .pl-pop { transform: translateY(0) scale(1); }
         .pl-pop-head { background: var(--green-deep); padding: 20px 44px; text-align: center; }
         .pl-pop-head img { width: 200px; max-width: 100%; height: auto; display: inline-block; }
         .pl-pop-body { padding: 28px 30px 30px; text-align: center; }
-        .pl-pop-eyebrow { font-size: 0.6rem; letter-spacing: 0.24em; text-transform: uppercase; color: var(--gold); font-weight: 600; margin-bottom: 0.7rem; }
-        .pl-pop-title { font-family: 'Cormorant Garamond', serif; font-size: 1.9rem; line-height: 1.1; color: var(--green-deep); margin-bottom: 0.7rem; }
+        .pl-pop-eyebrow { font-size: 0.6rem; letter-spacing: 0.24em; text-transform: uppercase; color: var(--accent-lt); font-weight: 600; margin-bottom: 0.7rem; }
+        .pl-pop-title { font-family: 'Montserrat', sans-serif; font-size: 1.9rem; line-height: 1.1; color: var(--green-deep); margin-bottom: 0.7rem; }
         .pl-pop-sub { font-size: 0.86rem; line-height: 1.65; color: #47586A; margin-bottom: 1.3rem; }
-        .pl-pop-form input { width: 100%; box-sizing: border-box; padding: 0.9rem 1rem; margin-bottom: 0.7rem; background: #F2F5F8; border: 1px solid rgba(15,59,89,0.18); color: var(--green-deep); font-family: 'DM Sans', sans-serif; font-size: 0.9rem; outline: none; border-radius: 4px; }
+        .pl-pop-form input { width: 100%; box-sizing: border-box; padding: 0.9rem 1rem; margin-bottom: 0.7rem; background: #F2F5F8; border: 1px solid rgba(15,59,89,0.18); color: var(--green-deep); font-family: 'Montserrat', sans-serif; font-size: 0.9rem; outline: none; border-radius: 4px; }
         .pl-pop-form input:focus { border-color: var(--gold); background: #fff; }
-        .pl-pop-form button { width: 100%; padding: 0.95rem 1rem; background: var(--green-deep); color: #fff; border: none; border-radius: 4px; font-family: 'DM Sans', sans-serif; font-size: 0.72rem; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; cursor: pointer; transition: background 0.2s; }
+        .pl-pop-form button { width: 100%; padding: 0.95rem 1rem; background: var(--green-deep); color: #fff; border: none; border-radius: 4px; font-family: 'Montserrat', sans-serif; font-size: 0.72rem; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; cursor: pointer; transition: background 0.2s; }
         .pl-pop-form button:hover { background: var(--gold); }
         .pl-pop-fine { font-size: 0.68rem; color: #8090a0; margin-top: 0.8rem; }
         .pl-pop-close { position: absolute; top: 4px; right: 6px; width: 44px; height: 44px; display: flex; align-items: center; justify-content: center; border: none; background: transparent; color: #fff; font-size: 1.5rem; line-height: 1; cursor: pointer; opacity: 0.85; }
@@ -1286,7 +1291,7 @@
            Stays visible on phones, where .nav-cta is hidden. */
         .nav-right { display: flex; align-items: center; gap: 1.6rem; }
         .nav-link {
-            font-family: 'DM Sans', sans-serif;
+            font-family: 'Montserrat', sans-serif;
             font-size: 0.68rem; font-weight: 500; letter-spacing: 0.16em;
             text-transform: uppercase; color: rgba(255,255,255,0.9);
             text-decoration: none; white-space: nowrap; transition: color 0.2s;
@@ -1297,7 +1302,7 @@
         /* ── HERO: secondary Memberships button ── */
         .btn-hero-ghost {
             display: inline-block;
-            font-family: 'DM Sans', sans-serif;
+            font-family: 'Montserrat', sans-serif;
             font-size: 0.75rem; font-weight: 500; letter-spacing: 0.16em;
             text-transform: uppercase; text-decoration: none;
             color: #ffffff; background: transparent;
@@ -1412,7 +1417,7 @@
             font-size: 0.85rem;
             font-weight: 700;
             letter-spacing: 0.14em;
-            color: var(--green-court);
+            color: var(--accent-lt);
             padding-top: 0.28rem;
             flex-shrink: 0;
         }
@@ -1428,7 +1433,7 @@
         .what-step p {
             font-size: 0.85rem;
             line-height: 1.8;
-            color: rgba(234,241,246,0.6);
+            color: rgba(234,241,246,0.78);
             margin: 0;
         }
 
@@ -1443,7 +1448,7 @@
             font-size: 0.72rem;
             font-weight: 700;
             letter-spacing: 0.18em;
-            color: rgba(17,17,17,0.35);
+            color: rgba(17,17,17,0.72);
         }
         .fcard h3 {
             font-family: 'Montserrat', sans-serif;
@@ -1457,7 +1462,7 @@
         .fcard p {
             font-size: 0.85rem;
             line-height: 1.8;
-            color: rgba(17,17,17,0.6);
+            color: rgba(17,17,17,0.72);
             margin: 0;
         }
         .features-shot { margin: 3.5rem 0 0; }
@@ -1498,6 +1503,6 @@
            section eyebrows, the units in the stat row, and the italic half of
            the memberships heading. */
         .what-padel .wl-eyebrow,
-        .about .wl-eyebrow { color: rgba(234,241,246,0.55); }
-        .what-stat-num span { color: rgba(234,241,246,0.45); font-size: 1.15rem; }
+        .about .wl-eyebrow { color: rgba(234,241,246,0.78); }
+        .what-stat-num span { color: rgba(234,241,246,0.78); font-size: 1.15rem; }
         .about-h2 em { color: var(--green-court); }
