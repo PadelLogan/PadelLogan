@@ -261,7 +261,7 @@
         .hero-block {
             display: block;
             font-family: 'Montserrat', sans-serif;
-            font-size: clamp(5rem, 17vw, 17rem);
+            font-size: clamp(3.4rem, 12vw, 11.5rem);
             font-weight: 900;
             text-transform: uppercase;
             letter-spacing: -0.03em;
