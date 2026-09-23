@@ -1500,7 +1500,10 @@
             .shots-row li:nth-child(even) img { transform: none; }
             .features-grid { grid-template-columns: 1fr; }
             .what-stats { flex-wrap: wrap; gap: 1.5rem 2rem; }
-            .about-shot { order: -1; }
+            /* Copy first on phones, photos after it. The heading and the
+               offer should be the first thing read, not two images the
+               visitor has to scroll past. */
+            .about-shot { order: 1; }
         }
 
         /* --gold resolves to the site navy (#0F3B59), a leftover from the
