@@ -97,3 +97,34 @@
     }, { rootMargin: '300px 0px' });
     Array.prototype.forEach.call(slots, function (s) { io.observe(s); });
 })();
+
+
+/* ── Hero video ──────────────────────────────────────────────────────────
+   The <video> ships with no src on purpose. Nothing downloads until this
+   decides what the device should get, so a phone set to "poster" costs the
+   visitor zero video bytes and keeps the poster frame it already painted.
+
+   Switch a page between the two behaviours with data-mobile on the element:
+     data-mobile="poster"  phones keep the still, desktop plays the video
+     data-mobile="video"   phones get the smaller 854px cut as well
+   ------------------------------------------------------------------------ */
+(function () {
+    var v = document.querySelector('.hero-video');
+    if (!v) return;
+
+    var isPhone = window.matchMedia('(max-width: 767px)').matches;
+
+    if (isPhone && v.getAttribute('data-mobile') === 'poster') {
+        v.setAttribute('poster', '/assets/img/hero-poster-mobile.jpg');
+        return;                      // no src, so no download
+    }
+
+    v.src = isPhone ? '/assets/video/hero-mobile.mp4' : '/assets/video/hero.mp4';
+    v.preload = 'auto';
+    v.load();
+
+    /* Autoplay can still be refused (iOS Low Power Mode, data saver). The
+       poster stays up in that case, so there is nothing to clean up. */
+    var p = v.play();
+    if (p && typeof p.catch === 'function') { p.catch(function () {}); }
+})();

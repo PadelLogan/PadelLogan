@@ -197,6 +197,13 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <!-- ── HERO ── -->
 <section class="hero">
+    <!-- Hero video. The CSS background photo stays as the fallback: it shows
+         while the video buffers, if the video fails, and on any browser that
+         refuses autoplay. data-mobile="video" means phones get the smaller 854px cut too. -->
+    <video class="hero-video" data-mobile="video"
+           poster="/assets/img/hero-poster.jpg"
+           autoplay muted loop playsinline preload="none"
+           aria-hidden="true" tabindex="-1"></video>
     <div class="hero-overlay"></div>
     <div class="hero-glow"></div>
 
@@ -218,7 +225,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             <span class="hero-serif">Padel</span>
             <span class="hero-block">LOGAN</span>
         </h1>
-        <div class="hero-coming">Coming September 2026</div>
+        <div class="hero-coming">Now Open</div>
         <p class="hero-sub">
             Logan's first Padel Club based at Meadowbrook Golf Club. Four Championship Padel Courts, Driving Range, Mini Golf &amp; Beer Garden.
         </p>
@@ -227,6 +234,156 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             <a href="#newsletter" class="btn-hero-ghost">Subscribe to Newsletter</a>
             <span class="hero-scroll-label">Scroll</span>
         </div>
+    </div>
+</section>
+
+
+<!-- ── PHOTO RAIL ──────────────────────────────────────────────────────
+     Floats up over the bottom of the hero video. The row is duplicated so
+     the scroll loops with no visible seam; the copy is aria-hidden so a
+     screen reader hears each photo once. -->
+<section class="shots" aria-label="Padel Logan in photos">
+    <div class="shots-track">
+        <ul class="shots-row">
+                <li><img src="/assets/img/shots/courts-corridor.jpg" alt="Looking down the row of four padel courts at Padel Logan" loading="lazy" decoding="async"></li>
+                <li><img src="/assets/img/shots/play-woman.jpg" alt="A player returning a shot on court at Padel Logan" loading="lazy" decoding="async"></li>
+                <li><img src="/assets/img/shots/net-branded.jpg" alt="The Padel Logan net across centre court" loading="lazy" decoding="async"></li>
+                <li><img src="/assets/img/shots/play-serve.jpg" alt="A player serving underarm during a rally" loading="lazy" decoding="async"></li>
+                <li><img src="/assets/img/shots/social-table.jpg" alt="Players sharing food in the beer garden after a session" loading="lazy" decoding="async"></li>
+                <li><img src="/assets/img/shots/play-rally.jpg" alt="A rally in progress on a floodlit court" loading="lazy" decoding="async"></li>
+                <li><img src="/assets/img/shots/kit-flatlay.jpg" alt="Padel racquets, balls and a Padel Logan shirt" loading="lazy" decoding="async"></li>
+                <li><img src="/assets/img/shots/group-four.jpg" alt="Four players with racquets on court" loading="lazy" decoding="async"></li>
+                <li><img src="/assets/img/shots/play-man.jpg" alt="A player lining up a forehand" loading="lazy" decoding="async"></li>
+                <li><img src="/assets/img/shots/walk-mono.jpg" alt="A player walking on court in a Padel Logan shirt" loading="lazy" decoding="async"></li>
+        </ul>
+        <ul class="shots-row" aria-hidden="true">
+                <li><img src="/assets/img/shots/courts-corridor.jpg" alt="Looking down the row of four padel courts at Padel Logan" loading="lazy" decoding="async"></li>
+                <li><img src="/assets/img/shots/play-woman.jpg" alt="A player returning a shot on court at Padel Logan" loading="lazy" decoding="async"></li>
+                <li><img src="/assets/img/shots/net-branded.jpg" alt="The Padel Logan net across centre court" loading="lazy" decoding="async"></li>
+                <li><img src="/assets/img/shots/play-serve.jpg" alt="A player serving underarm during a rally" loading="lazy" decoding="async"></li>
+                <li><img src="/assets/img/shots/social-table.jpg" alt="Players sharing food in the beer garden after a session" loading="lazy" decoding="async"></li>
+                <li><img src="/assets/img/shots/play-rally.jpg" alt="A rally in progress on a floodlit court" loading="lazy" decoding="async"></li>
+                <li><img src="/assets/img/shots/kit-flatlay.jpg" alt="Padel racquets, balls and a Padel Logan shirt" loading="lazy" decoding="async"></li>
+                <li><img src="/assets/img/shots/group-four.jpg" alt="Four players with racquets on court" loading="lazy" decoding="async"></li>
+                <li><img src="/assets/img/shots/play-man.jpg" alt="A player lining up a forehand" loading="lazy" decoding="async"></li>
+                <li><img src="/assets/img/shots/walk-mono.jpg" alt="A player walking on court in a Padel Logan shirt" loading="lazy" decoding="async"></li>
+        </ul>
+    </div>
+</section>
+
+<!-- ── WHAT IS PADEL ── -->
+<section class="what-padel" id="what-is-padel">
+    <div class="what-inner">
+        <div class="what-left reveal">
+            <span class="wl-eyebrow">The game</span>
+            <h2 class="what-h2">So what is <em>padel</em>?</h2>
+            <p class="what-body">
+                Padel is the fastest growing sport in the world, and the easiest racquet sport to pick up.
+                It is played in pairs on an enclosed court about a third the size of a tennis court, with a
+                solid racquet and an underarm serve. The glass walls stay in play, so rallies run longer and
+                points swing back and forth. Most people are playing properly inside their first hour.
+            </p>
+            <div class="what-stats">
+                <div class="what-stat">
+                    <div class="what-stat-num">4</div>
+                    <div class="what-stat-lbl">Championship courts</div>
+                </div>
+                <div class="what-stat">
+                    <div class="what-stat-num">6<span>am</span></div>
+                    <div class="what-stat-lbl">Open until 10pm, 7 days</div>
+                </div>
+                <div class="what-stat">
+                    <div class="what-stat-num">20<span>min</span></div>
+                    <div class="what-stat-lbl">South of Brisbane CBD</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="what-steps reveal">
+            <div class="what-step">
+                <div class="what-step-n">01</div>
+                <div>
+                    <div class="what-step-h">Four players, one court</div>
+                    <p>Padel is doubles. Grab three friends, or come to a social session and we will find you a game.</p>
+                </div>
+            </div>
+            <div class="what-step">
+                <div class="what-step-n">02</div>
+                <div>
+                    <div class="what-step-h">Serve underarm, play the walls</div>
+                    <p>The serve is underarm and below the waist. Balls off the glass are still live, which is what makes the rallies.</p>
+                </div>
+            </div>
+            <div class="what-step">
+                <div class="what-step-n">03</div>
+                <div>
+                    <div class="what-step-h">Racquets are here if you need them</div>
+                    <p>Never held one? Racquets and balls are available at the club, so all you need is court shoes.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ── WHAT IS HERE ── -->
+<section class="features" id="the-club">
+    <div class="features-inner">
+        <div class="features-header reveal">
+            <h2 class="features-h2">More than <em>four courts</em></h2>
+            <p class="features-aside">Padel Logan sits inside Meadowbrook Golf Club, so a session can turn into an afternoon.</p>
+        </div>
+        <div class="features-grid reveal">
+            <div class="fcard">
+                <span class="fcard-k">01</span>
+                <h3>Four championship courts</h3>
+                <p>Outdoor panoramic courts, floodlit for night play, open 6:00am to 10:00pm every day.</p>
+            </div>
+            <div class="fcard">
+                <span class="fcard-k">02</span>
+                <h3>Driving range</h3>
+                <p>A full range on the same site, a two minute walk from the courts.</p>
+            </div>
+            <div class="fcard">
+                <span class="fcard-k">03</span>
+                <h3>Mini golf</h3>
+                <p>Eighteen holes of mini golf, which is the easiest way to keep the kids busy.</p>
+            </div>
+            <div class="fcard">
+                <span class="fcard-k">04</span>
+                <h3>Beer garden and bistro</h3>
+                <p>Cold drinks and a full menu waiting the moment you come off court.</p>
+            </div>
+        </div>
+        <figure class="features-shot reveal">
+            <img src="/assets/img/shots/drone-courts.jpg"
+                 alt="Aerial view of the four padel courts at Meadowbrook Golf Club"
+                 loading="lazy" decoding="async">
+        </figure>
+    </div>
+</section>
+
+<!-- ── MEMBERSHIPS ── -->
+<section class="about" id="memberships">
+    <div class="about-inner">
+        <div class="reveal">
+            <span class="wl-eyebrow">Founding Memberships</span>
+            <h2 class="about-h2">Padel and golf,<br><em>one membership</em></h2>
+            <p class="about-body">
+                A Founding Membership covers twelve months of padel at Padel Logan and unlimited golf at
+                Meadowbrook Golf Club, plus free court hire off peak and $10 a member at peak. Founding
+                pricing is limited and closes once the first intake is full.
+            </p>
+            <div class="about-meta">
+                <div><strong>Platinum</strong> $2,750</div>
+                <div><strong>Gold</strong> $2,150</div>
+                <div><strong>Silver</strong> $1,500</div>
+            </div>
+            <a href="/memberships" class="btn-gold about-cta"><span>View Memberships</span></a>
+        </div>
+        <figure class="about-shot reveal">
+            <img src="/assets/img/shots/feature-courts.jpg"
+                 alt="Players on court at Padel Logan" loading="lazy" decoding="async">
+        </figure>
     </div>
 </section>
 

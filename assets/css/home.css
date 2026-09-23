@@ -143,7 +143,10 @@
             position: relative;
             min-height: 100svh;
             display: flex;
-            align-items: center;
+            /* Copy sits at the bottom so the top of the frame stays clear.
+               The drone shots are the best part of the video and the headline
+               used to sit straight across them. */
+            align-items: flex-end;
             overflow: hidden;
             background: var(--mgc-ink);
 
@@ -159,12 +162,33 @@
         }
 
         /* Dark overlay — keeps text readable over any photo */
+        /* Sits behind .hero-overlay and .hero-glow, which supply the navy
+           wash the headline needs for contrast. object-fit: cover matches the
+           behaviour of the background photo it replaces. */
+        .hero-video {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center 40%;
+            z-index: 0;
+            pointer-events: none;
+        }
+        /* Anything the hero draws over the video needs to sit above it. */
+        .hero-overlay, .hero-glow, .hero-court, .hero-content { z-index: 1; }
+        @media (prefers-reduced-motion: reduce) { .hero-video { display: none; } }
+
         .hero-overlay {
             position: absolute;
             inset: 0;
             background:
-                linear-gradient(to right, rgba(15,59,89,0.92) 0%, rgba(15,59,89,0.75) 50%, rgba(15,59,89,0.45) 100%),
-                linear-gradient(to top, rgba(15,59,89,0.6) 0%, transparent 50%);
+                /* Strong at the bottom where the type sits, clearing to nothing
+                   by halfway up. A light left wash keeps the copy legible
+                   without greying out the whole shot. */
+                linear-gradient(to top, rgba(10,43,66,0.92) 0%, rgba(10,43,66,0.72) 20%,
+                                        rgba(15,59,89,0.28) 46%, rgba(15,59,89,0.06) 68%, transparent 100%),
+                linear-gradient(to right, rgba(15,59,89,0.42) 0%, rgba(15,59,89,0.12) 45%, transparent 78%);
             pointer-events: none;
         }
 
@@ -187,7 +211,7 @@
         .hero-content {
             position: relative;
             z-index: 2;
-            padding: 9rem 2.5rem 5rem;
+            padding: 5rem 2.5rem 4.5rem;
             max-width: 1140px;
             margin: 0 auto;
             width: 100%;
@@ -1050,7 +1074,18 @@
 
         @media (max-width: 600px) {
             nav { padding: 1.2rem 1.5rem; }
-            .hero-content { padding: 8rem 1.5rem 4rem; }
+            /* Bottom aligned now, so the big top padding goes. The extra
+               bottom padding clears the fixed Book/Subscribe bar. */
+            .hero-content { padding: 4rem 1.5rem 7rem; }
+
+            /* The copy stack measured 103% of the phone viewport, so it covered
+               the video completely. These three trims give the footage room
+               without touching the wording or the type sizes. */
+            .hero-eyebrow { margin-bottom: 1rem; }
+            .hero-sub { margin-top: 1.1rem; margin-bottom: 1.6rem; }
+            /* Subscribe already sits in the fixed bar at the bottom of every
+               phone screen, so the duplicate in the hero just costs height. */
+            .hero-actions .btn-hero-ghost { display: none; }
             .hero-court { display: none; }
             .features, .about, .waitlist, .faq, .what-padel { padding: 5rem 1.5rem; }
             .features-grid { grid-template-columns: 1fr; }
@@ -1322,3 +1357,147 @@
                 --hero-img: image-set(url('/assets/img/hero-800.webp') type('image/webp'), url('/assets/img/hero-800.jpg') type('image/jpeg'));
             }
         }
+
+        /* ═══════════════════════════════════════════════════════════════
+           PHOTO RAIL + HOMEPAGE SECTIONS (added with the Sept 2026 shoot)
+           ═══════════════════════════════════════════════════════════════ */
+
+        /* Full bleed rail of photos that drifts sideways. The cards sit at
+           alternating heights so the row reads as floating rather than as a
+           filmstrip glued to the section edge. */
+        .shots {
+            background: var(--mgc-black);
+            padding: 3.5rem 0 4rem;
+            overflow: hidden;
+        }
+        .shots-track {
+            display: flex;
+            width: max-content;
+            animation: shots-drift 70s linear infinite;
+        }
+        .shots:hover .shots-track { animation-play-state: paused; }
+        .shots-row {
+            display: flex;
+            align-items: center;
+            gap: 0.9rem;
+            padding-right: 0.9rem;
+            margin: 0;
+            list-style: none;
+        }
+        .shots-row li { flex: 0 0 auto; }
+        .shots-row li:nth-child(odd) img  { transform: translateY(-1.1rem); }
+        .shots-row li:nth-child(even) img { transform: translateY(1.1rem); }
+        .shots-row img {
+            display: block;
+            height: 19rem;
+            width: auto;
+            object-fit: cover;
+            border-radius: 3px;
+            box-shadow: 0 1.2rem 2.5rem rgba(0,0,0,0.35);
+        }
+        @keyframes shots-drift { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+        /* Reduced motion, or no JS animation wanted: the rail becomes a
+           normal horizontal scroller the visitor drives themselves. */
+        @media (prefers-reduced-motion: reduce) {
+            .shots { overflow-x: auto; }
+            .shots-track { animation: none; }
+            .shots-row li:nth-child(odd) img,
+            .shots-row li:nth-child(even) img { transform: none; }
+        }
+
+        /* the numbered steps in What is padel */
+        .what-step-n {
+            font-family: 'Barlow Condensed', sans-serif;
+            font-size: 0.85rem;
+            font-weight: 700;
+            letter-spacing: 0.14em;
+            color: var(--green-court);
+            padding-top: 0.28rem;
+            flex-shrink: 0;
+        }
+        .what-step-h {
+            font-family: 'Barlow Condensed', sans-serif;
+            font-size: 1.15rem;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            color: var(--white);
+            margin-bottom: 0.4rem;
+        }
+        .what-step p {
+            font-size: 0.85rem;
+            line-height: 1.8;
+            color: rgba(234,241,246,0.6);
+            margin: 0;
+        }
+
+        /* facility cards. .features-grid already supplies the 1px rule grid,
+           so each card only needs its own ground and padding. */
+        .fcard {
+            background: var(--cream);
+            padding: 2.4rem 1.8rem 2.6rem;
+        }
+        .fcard-k {
+            font-family: 'Barlow Condensed', sans-serif;
+            font-size: 0.72rem;
+            font-weight: 700;
+            letter-spacing: 0.18em;
+            color: rgba(17,17,17,0.35);
+        }
+        .fcard h3 {
+            font-family: 'Barlow Condensed', sans-serif;
+            font-size: 1.22rem;
+            font-weight: 600;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+            color: var(--green-deep);
+            margin: 0.9rem 0 0.7rem;
+        }
+        .fcard p {
+            font-size: 0.85rem;
+            line-height: 1.8;
+            color: rgba(17,17,17,0.6);
+            margin: 0;
+        }
+        .features-shot { margin: 3.5rem 0 0; }
+        .features-shot img {
+            display: block;
+            width: 100%;
+            height: clamp(16rem, 34vw, 26rem);
+            object-fit: cover;
+            border-radius: 3px;
+        }
+
+        .about-shot img {
+            display: block;
+            width: 100%;
+            height: clamp(20rem, 42vw, 32rem);
+            object-fit: cover;
+            border-radius: 3px;
+        }
+        .about-cta { margin-top: 2.2rem; display: inline-block; }
+
+        @media (max-width: 900px) {
+            .shots-row img { height: 14rem; }
+            .features-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+        @media (max-width: 600px) {
+            .shots { padding: 2.5rem 0 3rem; }
+            .shots-row img { height: 11rem; }
+            .shots-row li:nth-child(odd) img,
+            .shots-row li:nth-child(even) img { transform: none; }
+            .features-grid { grid-template-columns: 1fr; }
+            .what-stats { flex-wrap: wrap; gap: 1.5rem 2rem; }
+            .about-shot { order: -1; }
+        }
+
+        /* --gold resolves to the site navy (#0F3B59), a leftover from the
+           original green-and-gold palette. Anything styled with it on a navy
+           ground renders navy on navy and vanishes. These three did: both
+           section eyebrows, the units in the stat row, and the italic half of
+           the memberships heading. */
+        .what-padel .wl-eyebrow,
+        .about .wl-eyebrow { color: rgba(234,241,246,0.55); }
+        .what-stat-num span { color: rgba(234,241,246,0.45); font-size: 1.15rem; }
+        .about-h2 em { color: var(--green-court); }
