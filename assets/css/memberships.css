@@ -116,7 +116,8 @@
                MEMBERSHIPS is eleven characters, so the old floor of 3.4rem ran
                off the side of a phone. */
             font-size: clamp(2.1rem, 10.5vw, 9rem); text-transform: uppercase; letter-spacing: -0.035em;
-            -webkit-text-stroke: 2.5px var(--white); color: transparent;
+            /* matched to the home hero: solid, like the wordmark */
+            color: var(--white); text-shadow: 0 0.12em 0.5em rgba(10,43,66,0.35);
         }
         .m-hero-sub {
             font-size: clamp(0.9rem, 1.7vw, 1.05rem); color: var(--cream); line-height: 1.75;

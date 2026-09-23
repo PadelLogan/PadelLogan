@@ -265,8 +265,11 @@
             font-weight: 900;
             text-transform: uppercase;
             letter-spacing: -0.03em;
-            -webkit-text-stroke: 2.5px var(--white);
-            color: transparent;
+            /* Solid, not outlined. The wordmark itself is solid white, and an
+               outline over moving footage is the hardest thing on the page to
+               read: the video shows through every letter. */
+            color: var(--white);
+            text-shadow: 0 0.12em 0.5em rgba(10,43,66,0.35);
             opacity: 0;
             animation: fadeUp 0.9s ease 0.5s forwards;
         }
