@@ -92,8 +92,8 @@
         .m-hero-overlay {
             position: absolute; inset: 0; pointer-events: none;
             background:
-                linear-gradient(to right, rgba(15,59,89,0.94) 0%, rgba(15,59,89,0.80) 52%, rgba(15,59,89,0.52) 100%),
-                linear-gradient(to top, rgba(15,59,89,0.88) 0%, transparent 55%);
+                linear-gradient(to right, rgba(15,59,89,0.72) 0%, rgba(15,59,89,0.42) 52%, rgba(15,59,89,0.16) 100%),
+                linear-gradient(to top, rgba(15,59,89,0.82) 0%, transparent 58%);
         }
         .m-hero-inner {
             position: relative; z-index: 2; max-width: 1140px; margin: 0 auto; width: 100%;

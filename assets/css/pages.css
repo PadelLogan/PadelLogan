@@ -6,8 +6,9 @@
 /* ── PAGE HERO ── */
 .p-hero {
     position: relative; background: var(--mgc-ink);
-    background-image: linear-gradient(rgba(15,59,89,0.80), rgba(15,59,89,0.93)), url('/assets/img/heroes/hero-terms.jpg');
-    background-image: linear-gradient(rgba(15,59,89,0.80), rgba(15,59,89,0.93)), image-set(url('/assets/img/heroes/hero-terms.jpg') type('image/jpeg'));
+    background-image: linear-gradient(to right, rgba(15,59,89,0.58) 0%, rgba(15,59,89,0.26) 58%, rgba(15,59,89,0.10) 100%),
+        linear-gradient(to bottom, rgba(15,59,89,0.34) 0%, rgba(15,59,89,0.48) 45%, rgba(15,59,89,0.72) 100%),
+        url('/assets/img/heroes/hero-terms.jpg');
     background-size: cover; background-position: center;
     padding: 10rem 2.5rem 4.5rem; color: var(--cream);
 }
@@ -383,8 +384,8 @@
    image-set(); browsers that understand it take the second declaration. */
 @media (max-width: 800px) {
     .p-hero {
-        background-image: linear-gradient(rgba(15,59,89,0.80), rgba(15,59,89,0.93)), url('/assets/img/heroes/hero-terms-800.jpg');
-        background-image: linear-gradient(rgba(15,59,89,0.80), rgba(15,59,89,0.93)), image-set(url('/assets/img/heroes/hero-terms-800.jpg') type('image/jpeg'));
+        background-image: linear-gradient(to bottom, rgba(15,59,89,0.40) 0%, rgba(15,59,89,0.56) 45%, rgba(15,59,89,0.76) 100%),
+        url('/assets/img/heroes/hero-terms-800.jpg');
     }
 }
 
@@ -416,8 +417,24 @@
 /* Each page gets its own frame from the September shoot. The shared rule
    above still supplies the gradient, position and padding; these only
    swap the photograph. */
-.p-hero--contact   { background-image: linear-gradient(rgba(15,59,89,0.80), rgba(15,59,89,0.93)), url('/assets/img/heroes/hero-contact.jpg'); }
-.p-hero--welcome   { background-image: linear-gradient(rgba(15,59,89,0.80), rgba(15,59,89,0.93)), url('/assets/img/heroes/hero-welcome.jpg'); }
-.p-hero--terms     { background-image: linear-gradient(rgba(15,59,89,0.80), rgba(15,59,89,0.93)), url('/assets/img/heroes/hero-terms.jpg'); }
-.p-hero--courthire { background-image: linear-gradient(rgba(15,59,89,0.80), rgba(15,59,89,0.93)), url('/assets/img/heroes/hero-courthire.jpg'); }
-.p-hero--privacy   { background-image: linear-gradient(rgba(15,59,89,0.80), rgba(15,59,89,0.93)), url('/assets/img/heroes/hero-privacy.jpg'); }
+.p-hero--contact   { background-image: linear-gradient(to right, rgba(15,59,89,0.58) 0%, rgba(15,59,89,0.26) 58%, rgba(15,59,89,0.10) 100%),
+        linear-gradient(to bottom, rgba(15,59,89,0.34) 0%, rgba(15,59,89,0.48) 45%, rgba(15,59,89,0.72) 100%),
+        url('/assets/img/heroes/hero-contact.jpg'); }
+.p-hero--welcome   { background-image: linear-gradient(to right, rgba(15,59,89,0.58) 0%, rgba(15,59,89,0.26) 58%, rgba(15,59,89,0.10) 100%),
+        linear-gradient(to bottom, rgba(15,59,89,0.34) 0%, rgba(15,59,89,0.48) 45%, rgba(15,59,89,0.72) 100%),
+        url('/assets/img/heroes/hero-welcome.jpg'); }
+.p-hero--terms     { background-image: linear-gradient(to right, rgba(15,59,89,0.58) 0%, rgba(15,59,89,0.26) 58%, rgba(15,59,89,0.10) 100%),
+        linear-gradient(to bottom, rgba(15,59,89,0.34) 0%, rgba(15,59,89,0.48) 45%, rgba(15,59,89,0.72) 100%),
+        url('/assets/img/heroes/hero-terms.jpg'); }
+.p-hero--courthire { background-image: linear-gradient(to right, rgba(15,59,89,0.58) 0%, rgba(15,59,89,0.26) 58%, rgba(15,59,89,0.10) 100%),
+        linear-gradient(to bottom, rgba(15,59,89,0.34) 0%, rgba(15,59,89,0.48) 45%, rgba(15,59,89,0.72) 100%),
+        url('/assets/img/heroes/hero-courthire.jpg'); }
+.p-hero--privacy   { background-image: linear-gradient(to right, rgba(15,59,89,0.58) 0%, rgba(15,59,89,0.26) 58%, rgba(15,59,89,0.10) 100%),
+        linear-gradient(to bottom, rgba(15,59,89,0.34) 0%, rgba(15,59,89,0.48) 45%, rgba(15,59,89,0.72) 100%),
+        url('/assets/img/heroes/hero-privacy.jpg'); }
+
+/* The hero wash is much lighter than it was, so the type carries its own
+   contrast rather than leaning on the overlay alone. */
+.p-hero .p-eyebrow, .p-hero .p-title, .p-hero .p-sub {
+    text-shadow: 0 0.06em 0.5em rgba(10,43,66,0.55);
+}

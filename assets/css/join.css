@@ -7,8 +7,9 @@
 /* ── HERO ── */
 .j-hero {
     position: relative; background: var(--mgc-ink);
-    background-image: linear-gradient(rgba(15,59,89,0.82), rgba(15,59,89,0.92)), url('/assets/img/heroes/hero-join.jpg');
-    background-image: linear-gradient(rgba(15,59,89,0.82), rgba(15,59,89,0.92)), image-set(url('/assets/img/heroes/hero-join.jpg') type('image/jpeg'));
+    background-image: linear-gradient(to right, rgba(15,59,89,0.58) 0%, rgba(15,59,89,0.26) 58%, rgba(15,59,89,0.10) 100%),
+        linear-gradient(to bottom, rgba(15,59,89,0.34) 0%, rgba(15,59,89,0.48) 45%, rgba(15,59,89,0.72) 100%),
+        url('/assets/img/heroes/hero-join.jpg');
     background-size: cover; background-position: center;
     padding: 10rem 2.5rem 4rem; color: var(--cream);
 }
@@ -232,8 +233,8 @@
    image-set(); browsers that understand it take the second declaration. */
 @media (max-width: 800px) {
     .j-hero {
-        background-image: linear-gradient(rgba(15,59,89,0.82), rgba(15,59,89,0.92)), url('/assets/img/heroes/hero-join-800.jpg');
-        background-image: linear-gradient(rgba(15,59,89,0.82), rgba(15,59,89,0.92)), image-set(url('/assets/img/heroes/hero-join-800.jpg') type('image/jpeg'));
+        background-image: linear-gradient(to bottom, rgba(15,59,89,0.40) 0%, rgba(15,59,89,0.56) 45%, rgba(15,59,89,0.76) 100%),
+        url('/assets/img/heroes/hero-join-800.jpg');
     }
 }
 
@@ -250,4 +251,8 @@
     background: #0A2C44;
     border-color: #0A2C44;
     color: #ffffff;
+}
+
+.j-hero .p-eyebrow, .j-hero h1, .j-hero .p-sub, .j-hero .j-sub {
+    text-shadow: 0 0.06em 0.5em rgba(10,43,66,0.55);
 }
