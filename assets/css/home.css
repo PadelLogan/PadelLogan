@@ -1477,10 +1477,13 @@
             border-radius: 3px;
         }
 
+        /* Two frames, because the offer is two clubs: the courts and the
+           course. One padel photo alone undersold the golf half. */
+        .about-shot { display: grid; gap: 0.75rem; margin: 0; }
         .about-shot img {
             display: block;
             width: 100%;
-            height: clamp(20rem, 42vw, 32rem);
+            height: clamp(9.5rem, 19vw, 15.5rem);
             object-fit: cover;
             border-radius: 3px;
         }
