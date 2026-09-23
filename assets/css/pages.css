@@ -14,7 +14,7 @@
 .p-hero-inner { max-width: 1140px; margin: 0 auto; }
 .p-eyebrow {
     display: inline-flex; align-items: center; gap: 0.7rem;
-    font-family: 'Barlow Condensed', sans-serif; font-size: 0.75rem; font-weight: 700;
+    font-family: 'Montserrat', sans-serif; font-size: 0.75rem; font-weight: 700;
     letter-spacing: 0.28em; text-transform: uppercase; color: var(--white); margin-bottom: 1.2rem;
 }
 .p-eyebrow::before { content: ''; width: 2.2rem; height: 1px; background: var(--white); opacity: 0.55; }
@@ -34,11 +34,11 @@
     padding: 2.4rem 2rem;
 }
 .rate-band {
-    font-family: 'Barlow Condensed', sans-serif; font-size: 0.72rem; font-weight: 700;
+    font-family: 'Montserrat', sans-serif; font-size: 0.72rem; font-weight: 700;
     letter-spacing: 0.26em; text-transform: uppercase; color: var(--white);
 }
 .rate-name {
-    font-family: 'Barlow Condensed', sans-serif; font-size: 2rem; font-weight: 800;
+    font-family: 'Montserrat', sans-serif; font-size: 2rem; font-weight: 800;
     letter-spacing: 0.05em; text-transform: uppercase; color: var(--white); margin: 0 0 0.2rem;
 }
 .rate-time { font-size: 0.82rem; letter-spacing: 0.1em; color: var(--cream-dim); margin-bottom: 1.8rem; }
@@ -49,7 +49,7 @@
 .rate-line-label { font-size: 0.82rem; color: var(--cream-dim); }
 .rate-line-sub { display: block; font-size: 0.7rem; letter-spacing: 0.08em; color: rgba(234,241,246,0.6); margin-top: 0.15rem; }
 .rate-line-val {
-    font-family: 'Barlow Condensed', sans-serif; font-size: 2rem; font-weight: 800;
+    font-family: 'Montserrat', sans-serif; font-size: 2rem; font-weight: 800;
     color: var(--white); line-height: 1; white-space: nowrap;
 }
 .rate-line-val sup { font-size: 0.45em; vertical-align: super; }
@@ -65,12 +65,12 @@
 }
 .sec-navy .feat { border-color: rgba(234,241,246,0.16); background: rgba(255,255,255,0.03); }
 .feat-num {
-    font-family: 'Barlow Condensed', sans-serif; font-size: 0.75rem; font-weight: 700;
+    font-family: 'Montserrat', sans-serif; font-size: 0.75rem; font-weight: 700;
     letter-spacing: 0.24em; color: var(--green-court);
 }
 .sec-navy .feat-num { color: #BEE8FF; }
 .feat-title {
-    font-family: 'Barlow Condensed', sans-serif; font-size: 1.25rem; font-weight: 700;
+    font-family: 'Montserrat', sans-serif; font-size: 1.25rem; font-weight: 700;
     letter-spacing: 0.06em; text-transform: uppercase; margin: 0.5rem 0 0.7rem; color: var(--green-deep);
 }
 .sec-navy .feat-title { color: var(--white); }
@@ -85,7 +85,7 @@
 }
 .steps li::before {
     content: counter(s, decimal-leading-zero); position: absolute; left: 0; top: -0.15rem;
-    font-family: 'Barlow Condensed', sans-serif; font-size: 1.1rem; font-weight: 700;
+    font-family: 'Montserrat', sans-serif; font-size: 1.1rem; font-weight: 700;
     letter-spacing: 0.1em; color: #BEE8FF;
 }
 .steps strong { color: var(--white); font-weight: 500; }
@@ -149,7 +149,7 @@
 .legal-intro { font-size: 0.95rem; line-height: 1.85; color: var(--body-grey); }
 .legal-intro p + p { margin-top: 1rem; }
 .legal h2 {
-    font-family: 'Barlow Condensed', sans-serif; font-size: 1.3rem; font-weight: 700;
+    font-family: 'Montserrat', sans-serif; font-size: 1.3rem; font-weight: 700;
     letter-spacing: 0.06em; text-transform: uppercase; color: var(--green-deep);
     margin: 3rem 0 1rem; padding-top: 2rem; border-top: 1px solid var(--border-dark);
 }
@@ -199,12 +199,12 @@
 .lvl-head, .lvl-row { display: grid; grid-template-columns: 1.1fr 0.8fr 1.6fr; gap: 0; }
 .lvl-head > span {
     background: var(--green-deep); color: #fff; padding: 0.85rem 1.1rem;
-    font-family: 'Barlow Condensed', sans-serif; font-weight: 700;
+    font-family: 'Montserrat', sans-serif; font-weight: 700;
     font-size: 0.72rem; letter-spacing: 0.16em; text-transform: uppercase;
 }
 .lvl-row > * { padding: 1.1rem 1.1rem; border-top: 1px solid var(--border-dark); font-size: 0.88rem; line-height: 1.5; }
 .lvl-row .lvl-name {
-    font-family: 'Barlow Condensed', sans-serif; font-weight: 700;
+    font-family: 'Montserrat', sans-serif; font-weight: 700;
     font-size: 1rem; letter-spacing: 0.05em; text-transform: uppercase;
     /* column, so the rating sits UNDER the name rather than beside it as a
        flex sibling, while the swatch still fills the row height */
@@ -221,7 +221,7 @@
     padding: 0.95rem 1.4rem;
 }
 .lvl-card-name {
-    font-family: 'Barlow Condensed', sans-serif; font-weight: 700;
+    font-family: 'Montserrat', sans-serif; font-weight: 700;
     font-size: 1.25rem; letter-spacing: 0.05em; text-transform: uppercase;
 }
 .lvl-card-rate { font-size: 0.82rem; letter-spacing: 0.08em; opacity: 0.92; }
@@ -254,7 +254,7 @@
 }
 .tt-day-name {
     background: rgba(255,255,255,0.12); padding: 0.75rem 0.5rem; text-align: center;
-    font-family: 'Barlow Condensed', sans-serif; font-weight: 700;
+    font-family: 'Montserrat', sans-serif; font-weight: 700;
     font-size: 0.8rem; letter-spacing: 0.18em; text-transform: uppercase; color: #fff;
 }
 .tt-slots { display: flex; flex-direction: column; gap: 0.5rem; padding: 0.6rem; flex: 1; }
@@ -263,7 +263,7 @@
     display: flex; flex-direction: column; justify-content: center; min-height: 6.4rem;
 }
 .tt-slot-name {
-    font-family: 'Barlow Condensed', sans-serif; font-weight: 700;
+    font-family: 'Montserrat', sans-serif; font-weight: 700;
     font-size: 0.86rem; line-height: 1.15; letter-spacing: 0.03em; text-transform: uppercase;
 }
 .tt-slot-rate { font-size: 0.7rem; margin-top: 0.25rem; opacity: 0.92; }
@@ -331,7 +331,7 @@
 }
 .book-embed-icon svg { width: 1.5rem; height: 1.5rem; fill: none; stroke: var(--green-court); stroke-width: 2; }
 .book-embed-t {
-    font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 1.1rem;
+    font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 1.1rem;
     letter-spacing: 0.14em; text-transform: uppercase; color: var(--green-deep); margin-bottom: 0.7rem;
 }
 .sec-navy .book-embed-t { color: #fff; }
@@ -342,7 +342,7 @@
 /* ratings key beneath the timetable, matching the sheet */
 .tt-key { margin-top: 2.4rem; border: 1px solid rgba(234,241,246,0.2); border-radius: 4px; padding: 1.6rem 1.8rem; }
 .tt-key-t {
-    font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 0.85rem;
+    font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 0.85rem;
     letter-spacing: 0.2em; text-transform: uppercase; color: #A8D6EC; margin-bottom: 0.4rem;
 }
 .tt-key-sub { font-size: 0.88rem; line-height: 1.6; color: var(--cream-dim); margin-bottom: 1.2rem; max-width: 62ch; }
@@ -350,7 +350,7 @@
 .tt-key-row { display: grid; grid-template-columns: 13rem 1fr; gap: 1.1rem; align-items: center; }
 .tt-key-chip {
     border-radius: 3px; padding: 0.6rem 0.7rem; text-align: center; line-height: 1.2;
-    font-family: 'Barlow Condensed', sans-serif; font-weight: 700;
+    font-family: 'Montserrat', sans-serif; font-weight: 700;
     font-size: 0.86rem; letter-spacing: 0.04em; text-transform: uppercase;
 }
 .tt-key-chip small {
@@ -368,7 +368,7 @@
 .tt-slot.tt-combo { padding: 0; overflow: hidden; }
 .tt-combo-half {
     padding: 0.5rem 0.4rem;
-    font-family: 'Barlow Condensed', sans-serif; font-weight: 700;
+    font-family: 'Montserrat', sans-serif; font-weight: 700;
     font-size: 0.8rem; line-height: 1.15; letter-spacing: 0.03em; text-transform: uppercase;
 }
 .tt-combo-foot { padding: 0.5rem 0.4rem 0.6rem; background: rgba(255,255,255,0.1); }
@@ -399,7 +399,7 @@
 }
 .open-notice-tag {
     flex: 0 0 auto;
-    font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 0.78rem;
+    font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 0.78rem;
     letter-spacing: 0.16em; text-transform: uppercase; color: #8A5A12;
     background: rgba(138,90,18,0.12); padding: 0.28rem 0.6rem; border-radius: 2px;
 }

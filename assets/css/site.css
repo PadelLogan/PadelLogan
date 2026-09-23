@@ -104,7 +104,7 @@ nav.scrolled { background: rgba(15,59,89,0.97); padding: 1rem 2.5rem; border-bot
 .sec-navy  { background: var(--mgc-ink); color: var(--cream); }
 .sec-inner { max-width: 1140px; margin: 0 auto; }
 .chip {
-    display: inline-block; font-family: 'Barlow Condensed', sans-serif;
+    display: inline-block; font-family: 'Montserrat', sans-serif;
     font-size: 0.72rem; font-weight: 700; letter-spacing: 0.28em;
     text-transform: uppercase; margin-bottom: 1.5rem;
 }

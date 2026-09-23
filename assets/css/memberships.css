@@ -111,8 +111,11 @@
             font-size: clamp(2.6rem, 6vw, 5.4rem); color: var(--cream); letter-spacing: 0.01em;
         }
         .m-hero-block {
-            display: block; font-family: 'Barlow Condensed', sans-serif; font-weight: 900;
-            font-size: clamp(3.4rem, 12vw, 11rem); text-transform: uppercase; letter-spacing: -0.03em;
+            display: block; font-family: 'Montserrat', sans-serif; font-weight: 900;
+            /* Montserrat is far wider than the Barlow Condensed this replaced, and
+               MEMBERSHIPS is eleven characters, so the old floor of 3.4rem ran
+               off the side of a phone. */
+            font-size: clamp(2.1rem, 10.5vw, 9rem); text-transform: uppercase; letter-spacing: -0.035em;
             -webkit-text-stroke: 2.5px var(--white); color: transparent;
         }
         .m-hero-sub {
@@ -177,17 +180,17 @@
         .price-flag {
             position: absolute; top: 0; left: 0; transform: translateY(-50%);
             background: var(--green-deep); color: #ffffff;
-            font-family: 'Barlow Condensed', sans-serif; font-size: 0.78rem; font-weight: 700;
+            font-family: 'Montserrat', sans-serif; font-size: 0.78rem; font-weight: 700;
             letter-spacing: 0.2em; text-transform: uppercase; padding: 0.45rem 1.1rem; margin-left: 2.4rem;
         }
         .price-name {
-            font-family: 'Barlow Condensed', sans-serif; font-size: 1.5rem; font-weight: 800;
+            font-family: 'Montserrat', sans-serif; font-size: 1.5rem; font-weight: 800;
             text-transform: uppercase; letter-spacing: 0.07em; color: var(--green-deep);
             margin-top: 0.6rem; line-height: 1.1;
         }
         .price-term { font-size: 0.74rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--green-court); margin-top: 0.4rem; }
         .price-amount {
-            font-family: 'Barlow Condensed', sans-serif; font-weight: 900; line-height: 0.9;
+            font-family: 'Montserrat', sans-serif; font-weight: 900; line-height: 0.9;
             font-size: clamp(4.2rem, 9vw, 6.6rem); color: var(--green-deep);
             margin: 1.6rem 0 0.2rem; letter-spacing: -0.02em;
         }
@@ -197,7 +200,7 @@
         .price-card .btn-primary { display: block; text-align: center; }
 
         .inc-title {
-            font-family: 'Barlow Condensed', sans-serif; font-size: 1.15rem; font-weight: 700;
+            font-family: 'Montserrat', sans-serif; font-size: 1.15rem; font-weight: 700;
             text-transform: uppercase; letter-spacing: 0.14em; color: var(--green-deep);
             padding-bottom: 1rem; border-bottom: 1px solid var(--border-dark); margin-bottom: 0.4rem;
         }
@@ -212,12 +215,12 @@
         }
         .inc-body { flex: 1; }
         .inc-label {
-            font-family: 'Barlow Condensed', sans-serif; font-size: 1.02rem; font-weight: 700;
+            font-family: 'Montserrat', sans-serif; font-size: 1.02rem; font-weight: 700;
             text-transform: uppercase; letter-spacing: 0.08em; color: var(--green-deep); line-height: 1.25;
         }
         .inc-desc { font-size: 0.82rem; color: var(--body-grey); line-height: 1.65; margin-top: 0.2rem; }
         .inc-value {
-            font-family: 'Barlow Condensed', sans-serif; font-size: 1.15rem; font-weight: 800;
+            font-family: 'Montserrat', sans-serif; font-size: 1.15rem; font-weight: 800;
             color: var(--green-deep); white-space: nowrap; letter-spacing: 0.02em; padding-left: 0.8rem;
         }
         .inc-value.free { color: var(--green-court); }
@@ -304,12 +307,12 @@
             .rate:hover, .price-card:hover { transform: none; }
         }
         .rate-name {
-            font-family: 'Barlow Condensed', sans-serif; font-size: 1.2rem; font-weight: 800;
+            font-family: 'Montserrat', sans-serif; font-size: 1.2rem; font-weight: 800;
             text-transform: uppercase; letter-spacing: 0.07em; color: var(--white); line-height: 1.2;
         }
         .rate-meta { font-size: 0.72rem; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(234,241,246,0.55); margin-bottom: 1.1rem; }
         .rate-price {
-            font-family: 'Barlow Condensed', sans-serif; font-size: 3.4rem; font-weight: 900;
+            font-family: 'Montserrat', sans-serif; font-size: 3.4rem; font-weight: 900;
             color: var(--white); line-height: 0.95; letter-spacing: -0.01em;
         }
         .rate-price sup { font-size: 0.4em; vertical-align: super; font-weight: 800; }
@@ -318,7 +321,7 @@
             margin-top: 1.2rem; padding-top: 1rem; border-top: 1px solid var(--border-light);
             font-size: 0.8rem; color: var(--cream-dim);
         }
-        .rate-court strong { font-family: 'Barlow Condensed', sans-serif; font-size: 1.15rem; font-weight: 800; letter-spacing: 0.03em; }
+        .rate-court strong { font-family: 'Montserrat', sans-serif; font-size: 1.15rem; font-weight: 800; letter-spacing: 0.03em; }
 
         /* ── Non member / member tiers inside each tile ── */
         /* flex:1 on the non-member tier pushes the member rate to the bottom of every
@@ -332,13 +335,13 @@
             color: rgba(234,241,246,0.6); margin-bottom: 0.5rem;
         }
         .tier-price {
-            font-family: 'Barlow Condensed', sans-serif; font-weight: 900;
+            font-family: 'Montserrat', sans-serif; font-weight: 900;
             font-size: 2.6rem; line-height: 0.95; color: var(--white); letter-spacing: -0.01em;
         }
         .tier-price sup { font-size: 0.42em; vertical-align: super; font-weight: 800; }
         .tier-per { font-size: 0.74rem; color: rgba(234,241,246,0.6); letter-spacing: 0.05em; margin-top: 0.35rem; }
         .tier-alt {
-            font-family: 'Barlow Condensed', sans-serif; font-size: 1rem; font-weight: 700;
+            font-family: 'Montserrat', sans-serif; font-size: 1rem; font-weight: 700;
             letter-spacing: 0.05em; text-transform: uppercase;
             color: rgba(234,241,246,0.78); margin-top: 0.4rem;
         }
@@ -369,7 +372,7 @@
         .cta-sub { font-size: 0.95rem; line-height: 1.8; color: var(--body-grey); margin-bottom: 2.4rem; }
         .cta-email {
             display: inline-flex; align-items: center; gap: 0.85rem;
-            font-family: 'Barlow Condensed', sans-serif; font-weight: 800; letter-spacing: 0.04em;
+            font-family: 'Montserrat', sans-serif; font-weight: 800; letter-spacing: 0.04em;
             font-size: clamp(1.35rem, 3.6vw, 2.3rem); text-transform: none;
             color: var(--green-deep); text-decoration: none;
             border-bottom: 2px solid var(--green-deep); padding-bottom: 0.35rem;
@@ -469,11 +472,11 @@
             color: rgba(234,241,246,0.6); margin-bottom: 0.5rem;
         }
         .mcard-name {
-            font-family: 'Barlow Condensed', sans-serif; font-size: 2.1rem; font-weight: 900;
+            font-family: 'Montserrat', sans-serif; font-size: 2.1rem; font-weight: 900;
             text-transform: uppercase; letter-spacing: 0.04em; color: var(--white); line-height: 1;
         }
         .mcard-price {
-            font-family: 'Barlow Condensed', sans-serif; font-weight: 900; font-size: 3.9rem;
+            font-family: 'Montserrat', sans-serif; font-weight: 900; font-size: 3.9rem;
             line-height: 0.95; color: var(--white); letter-spacing: -0.01em; margin-top: 1.3rem;
         }
         .mcard-price sup { font-size: 0.4em; vertical-align: super; font-weight: 800; }
@@ -481,7 +484,7 @@
         .mcard-value {
             margin-top: 0.9rem; font-size: 0.78rem; color: #BEE8FF; letter-spacing: 0.04em;
         }
-        .mcard-value strong { font-family: 'Barlow Condensed', sans-serif; font-size: 1.15rem; font-weight: 800; letter-spacing: 0.02em; }
+        .mcard-value strong { font-family: 'Montserrat', sans-serif; font-size: 1.15rem; font-weight: 800; letter-spacing: 0.02em; }
 
         .mcard-golf {
             margin-top: 1.5rem; padding: 1.1rem 1.1rem 1.15rem;
@@ -490,7 +493,7 @@
         }
         .mcard-golf-lbl { font-size: 0.58rem; letter-spacing: 0.22em; text-transform: uppercase; color: #BEE8FF; margin-bottom: 0.4rem; }
         .mcard-golf-val {
-            font-family: 'Barlow Condensed', sans-serif; font-size: 1.28rem; font-weight: 800;
+            font-family: 'Montserrat', sans-serif; font-size: 1.28rem; font-weight: 800;
             text-transform: uppercase; letter-spacing: 0.04em; color: #DCF3FF; line-height: 1.2;
         }
         .mcard-note { font-size: 0.68rem; line-height: 1.55; color: rgba(234,241,246,0.55); margin-top: 0.6rem; }
@@ -513,7 +516,7 @@
         .incl-text { flex: 1; font-size: 0.83rem; line-height: 1.45; color: rgba(234,241,246,0.88); }
         .incl-text b { font-weight: 500; color: var(--white); }
         .incl-val {
-            font-family: 'Barlow Condensed', sans-serif; font-size: 1.02rem; font-weight: 800;
+            font-family: 'Montserrat', sans-serif; font-size: 1.02rem; font-weight: 800;
             color: #BEE8FF; white-space: nowrap; padding-left: 0.7rem; letter-spacing: 0.02em;
         }
 
@@ -537,12 +540,12 @@
             text-transform: uppercase; color: #BEE8FF; margin-bottom: 0.5rem;
         }
         .sum-padel {
-            display: block; font-family: 'Barlow Condensed', sans-serif;
+            display: block; font-family: 'Montserrat', sans-serif;
             font-size: 1.35rem; font-weight: 900; text-transform: uppercase;
             letter-spacing: 0.04em; color: var(--white); line-height: 1.15;
         }
         .sum-golf {
-            display: block; font-family: 'Barlow Condensed', sans-serif;
+            display: block; font-family: 'Montserrat', sans-serif;
             font-size: 1.08rem; font-weight: 800; text-transform: uppercase;
             letter-spacing: 0.04em; color: #DCF3FF; line-height: 1.2; margin-top: 0.3rem;
         }
@@ -565,7 +568,7 @@
             display: inline-flex; align-items: center; justify-content: center;
             min-width: 1.5rem; height: 1.5rem; padding: 0 0.4rem; border-radius: 999px;
             background: rgba(143,211,240,0.16); border: 1px solid rgba(190,225,245,0.35);
-            font-family: 'Barlow Condensed', sans-serif; font-size: 0.82rem; font-weight: 800;
+            font-family: 'Montserrat', sans-serif; font-size: 0.82rem; font-weight: 800;
             letter-spacing: 0.02em; color: #DCF3FF;
         }
         .incl-acc > summary .incl-chev {
@@ -586,7 +589,7 @@
         .hours-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.6rem; margin-top: 3.5rem; }
         .hour-band { padding: 2.4rem 2rem; }
         .hour-name {
-            font-family: 'Barlow Condensed', sans-serif; font-size: 1.5rem; font-weight: 900;
+            font-family: 'Montserrat', sans-serif; font-size: 1.5rem; font-weight: 900;
             text-transform: uppercase; letter-spacing: 0.05em; color: var(--white); line-height: 1.1;
         }
         .hour-time {
@@ -598,7 +601,7 @@
         .hour-rates { display: flex; gap: 2.2rem; margin-top: 1.35rem; flex-wrap: wrap; }
         .hour-rate-lbl { font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(234,241,246,0.55); margin-bottom: 0.4rem; }
         .hour-rate-val {
-            font-family: 'Barlow Condensed', sans-serif; font-size: 3.7rem; font-weight: 900;
+            font-family: 'Montserrat', sans-serif; font-size: 3.7rem; font-weight: 900;
             color: var(--white); line-height: 0.9; letter-spacing: -0.01em;
         }
         .hour-rate-val sup { font-size: 0.42em; vertical-align: super; font-weight: 800; }
@@ -609,7 +612,7 @@
         }
         .hour-member-lbl { font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase; color: #BEE8FF; }
         .hour-member-val {
-            font-family: 'Barlow Condensed', sans-serif; font-size: 2.7rem; font-weight: 900;
+            font-family: 'Montserrat', sans-serif; font-size: 2.7rem; font-weight: 900;
             color: #DCF3FF; text-shadow: 0 0 22px rgba(143,211,240,0.55); letter-spacing: 0.01em;
             line-height: 0.95;
         }
@@ -622,7 +625,7 @@
         .terms { background: var(--white); padding: 4rem 2.5rem 3rem; }
         .terms-inner { max-width: 1140px; margin: 0 auto; }
         .terms-title {
-            font-family: 'Barlow Condensed', sans-serif; font-size: 1.05rem; font-weight: 700;
+            font-family: 'Montserrat', sans-serif; font-size: 1.05rem; font-weight: 700;
             text-transform: uppercase; letter-spacing: 0.16em; color: var(--green-deep);
             padding-bottom: 0.9rem; border-bottom: 1px solid var(--border-dark); margin-bottom: 1.2rem;
         }

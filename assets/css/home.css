@@ -107,7 +107,7 @@
         }
 
         .nav-brand {
-            font-family: 'Barlow Condensed', sans-serif;
+            font-family: 'Montserrat', sans-serif;
             font-size: 1rem;
             font-weight: 700;
             letter-spacing: 0.22em;
@@ -256,7 +256,7 @@
 
         .hero-block {
             display: block;
-            font-family: 'Barlow Condensed', sans-serif;
+            font-family: 'Montserrat', sans-serif;
             font-size: clamp(5rem, 17vw, 17rem);
             font-weight: 900;
             text-transform: uppercase;
@@ -268,7 +268,7 @@
         }
         .hero-coming {
             display: inline-block;
-            font-family: 'Barlow Condensed', sans-serif;
+            font-family: 'Montserrat', sans-serif;
             font-size: clamp(1.7rem, 4.6vw, 3.4rem);
             font-weight: 800;
             text-transform: uppercase;
@@ -429,7 +429,7 @@
         .what-stat {}
 
         .what-stat-num {
-            font-family: 'Barlow Condensed', sans-serif;
+            font-family: 'Montserrat', sans-serif;
             font-size: 2.4rem;
             font-weight: 800;
             color: var(--white);
@@ -461,7 +461,7 @@
         .what-step:first-child { border-top: 1px solid var(--border-light); }
 
         .step-num {
-            font-family: 'Barlow Condensed', sans-serif;
+            font-family: 'Montserrat', sans-serif;
             font-size: 2.2rem;
             font-weight: 900;
             color: rgba(234,241,246,0.08);
@@ -473,7 +473,7 @@
         .step-body {}
 
         .step-title {
-            font-family: 'Barlow Condensed', sans-serif;
+            font-family: 'Montserrat', sans-serif;
             font-size: 1rem;
             font-weight: 700;
             text-transform: uppercase;
@@ -572,7 +572,7 @@
         .feat > * { position: relative; z-index: 1; }
 
         .feat-num {
-            font-family: 'Barlow Condensed', sans-serif;
+            font-family: 'Montserrat', sans-serif;
             font-size: 0.65rem;
             font-weight: 700;
             letter-spacing: 0.22em;
@@ -602,7 +602,7 @@
         .feat:hover .feat-icon polyline { stroke: var(--gold); }
 
         .feat-title {
-            font-family: 'Barlow Condensed', sans-serif;
+            font-family: 'Montserrat', sans-serif;
             font-size: 1.3rem;
             font-weight: 800;
             text-transform: uppercase;
@@ -634,7 +634,7 @@
         .about::after {
             content: 'PADEL';
             position: absolute;
-            font-family: 'Barlow Condensed', sans-serif;
+            font-family: 'Montserrat', sans-serif;
             font-size: 28vw;
             font-weight: 900;
             line-height: 1;
@@ -684,7 +684,7 @@
         }
 
         .meta-label {
-            font-family: 'Barlow Condensed', sans-serif;
+            font-family: 'Montserrat', sans-serif;
             font-size: 0.65rem;
             font-weight: 700;
             letter-spacing: 0.16em;
@@ -701,7 +701,7 @@
         }
 
         .stat-num {
-            font-family: 'Barlow Condensed', sans-serif;
+            font-family: 'Montserrat', sans-serif;
             font-size: 3.8rem;
             font-weight: 800;
             color: var(--white);
@@ -763,7 +763,7 @@
             gap: 1.5rem;
             cursor: pointer;
             text-align: left;
-            font-family: 'Barlow Condensed', sans-serif;
+            font-family: 'Montserrat', sans-serif;
             font-size: 1.05rem;
             font-weight: 700;
             text-transform: uppercase;
@@ -957,7 +957,7 @@
         }
 
         .footer-brand {
-            font-family: 'Barlow Condensed', sans-serif;
+            font-family: 'Montserrat', sans-serif;
             font-size: 0.95rem;
             font-weight: 700;
             letter-spacing: 0.22em;
@@ -1134,7 +1134,7 @@
         .loc-map-frame iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; display: block; }
         .loc-map-label { display: flex; align-items: center; gap: 0.8rem; padding: 1rem 1.3rem; background: var(--mgc-ink); border-top: 1px solid var(--border-light); }
         .loc-map-label svg { width: 22px; height: 22px; fill: var(--gold-lt); flex-shrink: 0; }
-        .loc-map-label strong { display: block; font-family: 'Barlow Condensed', sans-serif; font-size: 1.05rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--white); line-height: 1.2; }
+        .loc-map-label strong { display: block; font-family: 'Montserrat', sans-serif; font-size: 1.05rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--white); line-height: 1.2; }
         .loc-map-label .loc-map-addr { display: block; font-family: 'DM Sans', sans-serif; font-size: 0.78rem; font-weight: 300; letter-spacing: 0; text-transform: none; color: var(--cream-dim); margin-top: 2px; }
 
         /* ── CONTACT ── */
@@ -1408,7 +1408,7 @@
 
         /* the numbered steps in What is padel */
         .what-step-n {
-            font-family: 'Barlow Condensed', sans-serif;
+            font-family: 'Montserrat', sans-serif;
             font-size: 0.85rem;
             font-weight: 700;
             letter-spacing: 0.14em;
@@ -1417,7 +1417,7 @@
             flex-shrink: 0;
         }
         .what-step-h {
-            font-family: 'Barlow Condensed', sans-serif;
+            font-family: 'Montserrat', sans-serif;
             font-size: 1.15rem;
             font-weight: 600;
             letter-spacing: 0.05em;
@@ -1439,15 +1439,15 @@
             padding: 2.4rem 1.8rem 2.6rem;
         }
         .fcard-k {
-            font-family: 'Barlow Condensed', sans-serif;
+            font-family: 'Montserrat', sans-serif;
             font-size: 0.72rem;
             font-weight: 700;
             letter-spacing: 0.18em;
             color: rgba(17,17,17,0.35);
         }
         .fcard h3 {
-            font-family: 'Barlow Condensed', sans-serif;
-            font-size: 1.22rem;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.02rem;
             font-weight: 600;
             letter-spacing: 0.04em;
             text-transform: uppercase;
