@@ -655,3 +655,32 @@
                 background-image: image-set(url('/assets/img/heroes/hero-memberships-800.jpg') type('image/jpeg'));
             }
         }
+
+/* ── New to padel, moved here from the home page ─────────────────── */
+.padel-grid {
+    display: grid; grid-template-columns: 1.15fr 0.85fr; gap: 3.5rem;
+    align-items: center; margin-top: 2.5rem;
+}
+.padel-steps { display: flex; flex-direction: column; }
+.padel-step {
+    display: flex; gap: 1.4rem; padding: 1.5rem 0;
+    border-bottom: 1px solid rgba(234,241,246,0.18);
+}
+.padel-step:first-child { border-top: 1px solid rgba(234,241,246,0.18); }
+.padel-step-n {
+    font-family: 'Montserrat', sans-serif; font-size: 0.8rem; font-weight: 700;
+    letter-spacing: 0.14em; color: var(--accent-lt, #9EC6DC); padding-top: 0.3rem; flex-shrink: 0;
+}
+.padel-step-h {
+    font-family: 'Montserrat', sans-serif; font-size: 1.05rem; font-weight: 600;
+    letter-spacing: 0.04em; text-transform: uppercase; color: #fff; margin-bottom: 0.35rem;
+}
+.padel-step p { font-size: 0.85rem; line-height: 1.8; color: rgba(234,241,246,0.78); margin: 0; }
+.padel-shot { display: grid; gap: 0.75rem; margin: 0; }
+.padel-shot img {
+    display: block; width: 100%; height: clamp(9rem, 18vw, 14rem);
+    object-fit: cover; border-radius: 3px;
+}
+@media (max-width: 900px) {
+    .padel-grid { grid-template-columns: 1fr; gap: 2.2rem; }
+}
