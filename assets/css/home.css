@@ -1091,9 +1091,10 @@
                without touching the wording or the type sizes. */
             .hero-eyebrow { margin-bottom: 1rem; }
             .hero-sub { margin-top: 1.1rem; margin-bottom: 1.6rem; }
-            /* Subscribe already sits in the fixed bar at the bottom of every
-               phone screen, so the duplicate in the hero just costs height. */
-            .hero-actions .btn-hero-ghost { display: none; }
+            /* Hide only the newsletter link, which is duplicated in the pop up
+               and its own section. Book a Court and View Memberships both stay,
+               since they are the two things a visitor came to do. */
+            .hero-actions a[href="#newsletter"] { display: none; }
             .hero-court { display: none; }
             .features, .about, .waitlist, .faq, .what-padel { padding: 5rem 1.5rem; }
             .features-grid { grid-template-columns: 1fr; }
