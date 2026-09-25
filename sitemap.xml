@@ -13,6 +13,12 @@
     <priority>1.0</priority>
   </url>
   <url>
+    <loc>https://padellogan.com.au/book-court</loc>
+    <lastmod>2026-09-25</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
     <loc>https://padellogan.com.au/join</loc>
     <lastmod>2026-09-07</lastmod>
     <changefreq>monthly</changefreq>

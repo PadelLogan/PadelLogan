@@ -340,6 +340,35 @@
 .sec-navy .book-embed p { color: var(--cream-dim); }
 .book-embed .btn-primary { margin-top: 1.6rem; }
 
+/* ── MATCHi widget ─────────────────────────────────────────────────
+   The widget draws into a shadow root, so none of this reaches inside
+   it. All we own is the frame around it: a white card that matches the
+   widget's own surface, and a reserved height so the page does not
+   jump when the grid finally arrives. Its own time row scrolls
+   sideways, so the wrapper must not add a second scroller. */
+.book-widget {
+    margin-top: 2.6rem; min-height: 420px;
+    border: 1px solid var(--border-dark); border-radius: 4px; background: #fff;
+    overflow: hidden;
+}
+.book-widget matchi-widget { display: block; }
+/* Loading state: a quiet placeholder, replaced the moment the grid draws. */
+.book-widget:not(.is-ready)::before {
+    content: 'Loading live availability'; display: block; padding: 3.4rem 2rem; text-align: center;
+    font-family: 'Montserrat', sans-serif; font-size: 0.8rem; font-weight: 600;
+    letter-spacing: 0.18em; text-transform: uppercase; color: var(--body-grey);
+}
+.book-widget.is-ready { min-height: 0; }
+
+.book-note {
+    margin-top: 1.6rem; font-size: 0.9rem; line-height: 1.7; color: var(--body-grey); max-width: 62ch;
+}
+.book-note a { color: var(--green-deep); font-weight: 600; }
+
+@media (max-width: 720px) {
+    .book-widget { min-height: 360px; }
+}
+
 /* ratings key beneath the timetable, matching the sheet */
 .tt-key { margin-top: 2.4rem; border: 1px solid rgba(234,241,246,0.2); border-radius: 4px; padding: 1.6rem 1.8rem; }
 .tt-key-t {

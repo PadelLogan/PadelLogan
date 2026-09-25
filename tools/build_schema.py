@@ -116,6 +116,7 @@ PAGES = {
     'index.html':            [WEBSITE],
     'memberships.html':      [crumbs([HOME, ('Founding Memberships', None)])] + [product(*t) for t in TIERS],
     'join.html':             [crumbs([HOME, ('Founding Memberships', '/memberships'), ('Apply Online', None)])],
+    'book-court.html':       [crumbs([HOME, ('Book a Court', None)])],
     'contact.html':          [crumbs([HOME, ('Contact', None)])],
     'privacy.html':          [crumbs([HOME, ('Privacy Policy', None)])],
     'terms.html':            [crumbs([HOME, ('Membership Terms', None)])],
