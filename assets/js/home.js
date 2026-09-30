@@ -28,9 +28,12 @@
                 data: {
                     type: 'subscription',
                     attributes: {
-                        custom_source: 'Padel Logan Website – Newsletter',
+                        custom_source: 'Padel Logan Website Newsletter',
                         profile: { data: { type: 'profile', attributes: {
                             email: email,
+                            // written to the profile, not just the subscription:
+                            // Klaviyo segments filter on profile properties
+                            properties: { 'Signup Offer': 'Play For Free' },
                             subscriptions: { email: { marketing: { consent: 'SUBSCRIBED' } } }
                         } } }
                     },
@@ -41,6 +44,12 @@
             if (!res.ok) throw new Error('Klaviyo ' + res.status);
             form.style.display = 'none';
             document.getElementById('wlSuccess').style.display = 'block';
+            try {
+                window.dataLayer = window.dataLayer || [];
+                window.dataLayer.push({ event: 'newsletter_signup', signup_source: 'newsletter_section' });
+                window.klaviyo = window.klaviyo || [];
+                window.klaviyo.push(['identify', { email: email }]);
+            } catch (e) {}
         }).catch(function(err) {
             console.error('Newsletter signup failed:', err);
             if (btn) { btn.disabled = false; btn.textContent = label; }
@@ -51,7 +60,7 @@
                 note.style.cssText = 'margin-top:0.9rem;font-size:0.8rem;color:#c0392b;';
                 form.appendChild(note);
             }
-            note.textContent = 'Sorry — something went wrong. Please try again in a moment.';
+            note.textContent = 'Sorry, something went wrong. Please try again in a moment.';
         });
     });
 
@@ -95,7 +104,7 @@
                 note.style.cssText = 'margin-top:0.9rem;font-size:0.8rem;color:#c0392b;';
                 form.appendChild(note);
             }
-            note.textContent = 'Sorry — something went wrong. Please try again in a moment.';
+            note.textContent = 'Sorry, something went wrong. Please try again in a moment.';
         });
     });
 

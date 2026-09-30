@@ -1252,45 +1252,6 @@
         /* urgency badge sits on a white section → logo blue */
         .wl-urgency { color: var(--green-deep); border-color: rgba(15,59,89,0.35); }
 
-        /* ── FOUNDING-LIST POP-UP ──────────────────────────────── */
-        .pl-pop-overlay {
-            position: fixed; inset: 0; z-index: 10000;
-            background: rgba(8,34,48,0.72);
-            display: flex; align-items: center; justify-content: center;
-            padding: 20px;
-            opacity: 0; visibility: hidden; transition: opacity 0.3s ease, visibility 0.3s ease;
-        }
-        .pl-pop-overlay.open { opacity: 1; visibility: visible; }
-        .pl-pop {
-            position: relative; width: 100%; max-width: 440px;
-            background: var(--white); border-radius: 10px; overflow: hidden;
-            box-shadow: 0 30px 80px -20px rgba(0,0,0,0.6);
-            transform: translateY(14px) scale(0.98); transition: transform 0.35s cubic-bezier(.2,.7,.2,1);
-            font-family: 'Montserrat', sans-serif;
-        }
-        .pl-pop-overlay.open .pl-pop { transform: translateY(0) scale(1); }
-        .pl-pop-head { background: var(--green-deep); padding: 20px 44px; text-align: center; }
-        .pl-pop-head img { width: 200px; max-width: 100%; height: auto; display: inline-block; }
-        .pl-pop-body { padding: 28px 30px 30px; text-align: center; }
-        .pl-pop-eyebrow { font-size: 0.6rem; letter-spacing: 0.24em; text-transform: uppercase; color: var(--accent-lt); font-weight: 600; margin-bottom: 0.7rem; }
-        .pl-pop-title { font-family: 'Montserrat', sans-serif; font-size: 1.9rem; line-height: 1.1; color: var(--green-deep); margin-bottom: 0.7rem; }
-        .pl-pop-sub { font-size: 0.86rem; line-height: 1.65; color: #47586A; margin-bottom: 1.3rem; }
-        .pl-pop-form input { width: 100%; box-sizing: border-box; padding: 0.9rem 1rem; margin-bottom: 0.7rem; background: #F2F5F8; border: 1px solid rgba(15,59,89,0.18); color: var(--green-deep); font-family: 'Montserrat', sans-serif; font-size: 0.9rem; outline: none; border-radius: 4px; }
-        .pl-pop-form input:focus { border-color: var(--gold); background: #fff; }
-        .pl-pop-form button { width: 100%; padding: 0.95rem 1rem; background: var(--green-deep); color: #fff; border: none; border-radius: 4px; font-family: 'Montserrat', sans-serif; font-size: 0.72rem; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; cursor: pointer; transition: background 0.2s; }
-        .pl-pop-form button:hover { background: var(--gold); }
-        .pl-pop-fine { font-size: 0.68rem; color: #8090a0; margin-top: 0.8rem; }
-        .pl-pop-close { position: absolute; top: 4px; right: 6px; width: 44px; height: 44px; display: flex; align-items: center; justify-content: center; border: none; background: transparent; color: #fff; font-size: 1.5rem; line-height: 1; cursor: pointer; opacity: 0.85; }
-        .pl-pop-close:hover { opacity: 1; }
-        .pl-pop-success { display: none; }
-        .pl-pop.done .pl-pop-form, .pl-pop.done .pl-pop-sub, .pl-pop.done .pl-pop-fine { display: none; }
-        .pl-pop.done .pl-pop-success { display: block; font-size: 0.95rem; line-height: 1.6; color: var(--green-deep); }
-        .pl-pop-err { display: none; color: #c0392b; font-size: 0.75rem; margin-top: 0.6rem; }
-        @media (max-width: 480px) {
-            .pl-pop-title { font-size: 1.7rem; }
-            .pl-pop-body { padding: 24px 22px 26px; }
-        }
-
         /* ── NAV: Memberships link sits beside the Subscribe button ──
            Stays visible on phones, where .nav-cta is hidden. */
         .nav-right { display: flex; align-items: center; gap: 1.6rem; }

@@ -15,7 +15,9 @@
    ============================================================ */
 
 .plnav {
-    position: fixed; top: 0; left: 0; right: 0; z-index: 400;
+    /* --plo-bar-h is 0 unless offer.js has put the banner up, so the
+       nav sits flush at the top whenever the offer is not running. */
+    position: fixed; top: var(--plo-bar-h, 0px); left: 0; right: 0; z-index: 400;
     display: flex; align-items: center; justify-content: space-between;
     gap: 1.5rem; padding: 1.15rem 2.5rem;
     background: linear-gradient(to bottom, rgba(15,59,89,0.92) 0%, rgba(15,59,89,0.30) 70%, transparent 100%);

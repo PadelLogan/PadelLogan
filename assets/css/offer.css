@@ -1,0 +1,130 @@
+/* ============================================================
+   Play For Free — banner and pop-up. Loaded on every page,
+   so it cannot depend on home.css, which only the home page
+   pulls in. That is why the old pop-up styles could not travel.
+
+   Both components are injected by offer.js.
+   ============================================================ */
+
+:root { --plo-bar-h: 0px; }
+.has-plo-bar { --plo-bar-h: 42px; }
+
+/* ── top banner ─────────────────────────────────────────── */
+.plo-bar {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 500;
+    min-height: var(--plo-bar-h);
+    /* the bar itself owns the notch inset, so the text clears the status bar */
+    padding: 0 2.6rem 0 1rem;
+    padding-top: env(safe-area-inset-top, 0px);
+    background: #0A2B42;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Montserrat', system-ui, sans-serif;
+}
+.plo-bar-link {
+    display: flex; align-items: center; justify-content: center; gap: 0.5rem;
+    color: #ffffff; text-decoration: none;
+    font-size: 0.78rem; font-weight: 600; letter-spacing: 0.01em;
+    line-height: 1.3; text-align: center; padding: 0.7rem 0;
+}
+.plo-bar-link:hover { color: #9EC6DC; }
+.plo-bar-arrow { color: #9EC6DC; font-weight: 700; flex-shrink: 0; }
+.plo-bar-x {
+    position: absolute; right: 0.55rem; top: 50%; transform: translateY(-50%);
+    background: none; border: 0; cursor: pointer; padding: 0.3rem 0.45rem;
+    color: rgba(255,255,255,0.55); font-size: 1.15rem; line-height: 1;
+}
+.plo-bar-x:hover { color: #ffffff; }
+.plo-bar-x:focus-visible, .plo-bar-link:focus-visible { outline: 2px solid #9EC6DC; outline-offset: 2px; }
+
+@media (max-width: 560px) {
+    .has-plo-bar { --plo-bar-h: 50px; }
+    .plo-bar-link { font-size: 0.7rem; }
+}
+
+/* ── pop-up ─────────────────────────────────────────────── */
+.plo-pop-overlay {
+    position: fixed; inset: 0; z-index: 10000;
+    background: rgba(10,43,66,0.62);
+    display: flex; align-items: center; justify-content: center;
+    padding: 1.2rem;
+    opacity: 0; visibility: hidden; transition: opacity 0.3s, visibility 0.3s;
+}
+.plo-pop-overlay.open { opacity: 1; visibility: visible; }
+
+.plo-pop {
+    position: relative; width: 100%; max-width: 380px;
+    background: #0F3B59; border-radius: 8px; overflow: hidden;
+    box-shadow: 0 22px 60px rgba(10,43,66,0.4);
+    transform: translateY(14px); transition: transform 0.3s;
+    max-height: calc(100vh - 2.4rem); overflow-y: auto;
+}
+.plo-pop-overlay.open .plo-pop { transform: translateY(0); }
+
+.plo-pop-img { position: relative; aspect-ratio: 900 / 420; overflow: hidden; }
+.plo-pop-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
+/* fades the photo into the navy panel so there is no hard seam */
+.plo-pop-img::after {
+    content: ''; position: absolute; inset: 0;
+    background: linear-gradient(to bottom, rgba(10,43,66,0.16) 0%, rgba(10,43,66,0.60) 76%, #0F3B59 100%);
+}
+.plo-pop-x {
+    position: absolute; top: 0.5rem; right: 0.65rem; z-index: 3;
+    background: none; border: 0; cursor: pointer; padding: 0.25rem 0.4rem;
+    color: rgba(255,255,255,0.85); font-size: 1.4rem; line-height: 1;
+    text-shadow: 0 1px 6px rgba(10,43,66,0.6);
+}
+.plo-pop-x:hover { color: #ffffff; }
+
+.plo-pop-body { padding: 1rem 1.5rem 1.5rem; text-align: center; }
+.plo-pop-eyebrow {
+    font-family: 'Montserrat', system-ui, sans-serif;
+    font-size: 0.6rem; font-weight: 700; letter-spacing: 0.24em;
+    text-transform: uppercase; color: #9EC6DC;
+}
+.plo-pop-title {
+    font-family: 'Montserrat', system-ui, sans-serif;
+    font-weight: 800; font-size: 1.32rem; line-height: 1.15;
+    letter-spacing: -0.01em; color: #ffffff; margin: 0.45rem 0 0.55rem;
+}
+.plo-pop-sub {
+    font-size: 0.82rem; line-height: 1.6; color: #C6D8E4; margin: 0 0 0.95rem;
+}
+
+.plo-pop-form { display: flex; flex-direction: column; gap: 0.5rem; }
+.plo-pop-form input {
+    width: 100%; padding: 0.72rem 0.85rem;
+    border: 1px solid rgba(255,255,255,0.22); border-radius: 4px;
+    background: #ffffff; color: #16293A;
+    font-family: inherit; font-size: 0.85rem;
+}
+.plo-pop-form input:focus-visible { outline: 2px solid #9EC6DC; outline-offset: 1px; }
+.plo-pop-form button {
+    width: 100%; padding: 0.75rem; border: 0; border-radius: 4px; cursor: pointer;
+    background: #9EC6DC; color: #0A2B42;
+    font-family: 'Montserrat', system-ui, sans-serif;
+    font-weight: 800; font-size: 0.72rem; letter-spacing: 0.11em; text-transform: uppercase;
+    transition: background 0.2s;
+}
+.plo-pop-form button:hover:not(:disabled) { background: #ffffff; }
+.plo-pop-form button:disabled { opacity: 0.6; cursor: default; }
+.plo-pop-err {
+    display: none; margin: 0.2rem 0 0;
+    font-size: 0.72rem; color: #FFB3A7;
+}
+.plo-pop-fine {
+    margin: 0.7rem 0 0; font-size: 0.65rem; line-height: 1.5; color: #9DB4C4;
+}
+
+.plo-pop-success {
+    display: none; color: #ffffff;
+    font-family: 'Montserrat', system-ui, sans-serif;
+    font-weight: 700; font-size: 0.95rem; line-height: 1.5; padding: 1.4rem 0 0.4rem;
+}
+.plo-pop.done .plo-pop-form,
+.plo-pop.done .plo-pop-fine,
+.plo-pop.done .plo-pop-sub { display: none; }
+.plo-pop.done .plo-pop-success { display: block; }
+
+@media (prefers-reduced-motion: reduce) {
+    .plo-pop-overlay, .plo-pop { transition: none; }
+}

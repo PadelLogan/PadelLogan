@@ -48,6 +48,7 @@
     <link rel="stylesheet" href="/assets/css/site.css?v=1">
     <link rel="stylesheet" href="/assets/css/pages.css?v=1">
     <link rel="stylesheet" href="/assets/css/nav.css?v=1">
+    <link rel="stylesheet" href="/assets/css/offer.css?v=1">
 
     <!-- MATCHi booking widget. Must be type="module": as a plain script it
          throws "Cannot use import.meta outside a module" and draws nothing. -->
@@ -423,8 +424,18 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         sent = true;
         window.dataLayer = window.dataLayer || [];
         window.dataLayer.push({ event: 'booking_started' });
+        /* Same signal to Klaviyo, so the welcome flow can stop chasing
+           someone who has already gone to book. klaviyo.js resolves who
+           this is from its own cookie, which is set when they sign up on
+           the site or click through from one of our emails. Anonymous
+           visitors simply record nothing. */
+        try {
+            window.klaviyo = window.klaviyo || [];
+            window.klaviyo.push(['track', 'Started a Booking', { Source: 'Book a Court page' }]);
+        } catch (e3) {}
     }, true);
 })();
 </script>
+<script src="/assets/js/offer.js?v=1"></script>
 </body>
 </html>
