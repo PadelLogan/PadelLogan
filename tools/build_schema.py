@@ -82,6 +82,24 @@ TIERS = [
     ('Founding Silver Membership',   1500, '5 Day Walking Membership at Meadowbrook Golf Club'),
 ]
 
+BRONZE = {
+    '@type': 'Product',
+    'name': 'Bronze Membership',
+    'description': ('Month to month padel membership at Padel Logan. Free off peak court hire, '
+                    '$10 at peak, court bookings two weeks ahead, and discounted league, '
+                    'tournament and coaching clinic entry. No golf at Meadowbrook Golf Club.'),
+    'brand': {'@type': 'Brand', 'name': 'Padel Logan'},
+    'image': SITE + '/assets/img/heroes/hero-memberships.jpg',
+    'offers': {
+        '@type': 'Offer',
+        'url': SITE + '/memberships#bronze',
+        'price': '125',
+        'priceCurrency': 'AUD',
+        'availability': 'https://schema.org/InStock',
+        'seller': {'@id': SITE + '/#club'},
+    },
+}
+
 def product(name, price, golf):
     return {
         '@type': 'Product',
@@ -114,7 +132,7 @@ def crumbs(trail):
 HOME = ('Home', '/')
 PAGES = {
     'index.html':            [WEBSITE],
-    'memberships.html':      [crumbs([HOME, ('Founding Memberships', None)])] + [product(*t) for t in TIERS],
+    'memberships.html':      [crumbs([HOME, ('Founding Memberships', None)])] + [product(*t) for t in TIERS] + [BRONZE],
     'join.html':             [crumbs([HOME, ('Founding Memberships', '/memberships'), ('Apply Online', None)])],
     'book-court.html':       [crumbs([HOME, ('Book a Court', None)])],
     'contact.html':          [crumbs([HOME, ('Contact', None)])],
