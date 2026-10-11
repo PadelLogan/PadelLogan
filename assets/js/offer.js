@@ -17,6 +17,17 @@
 (function () {
     'use strict';
 
+    /* OFFER PAUSED 12 Oct 2026. The free game offer is withdrawn and the
+       welcome flow that delivered the code is back in draft, so a banner or
+       pop-up promising a code would promise something nothing sends.
+
+       Nothing below is deleted. To run the next offer: set OFFER_LIVE back to
+       true, rewrite the banner and pop-up copy, update the Signup Offer
+       property, and switch flow VZZRcy on in Klaviyo. All four, or the site
+       advertises an offer the emails do not carry. */
+    var OFFER_LIVE = false;
+    if (!OFFER_LIVE) return;
+
     var COMPANY  = 'Ycnj4g';
     var REVISION = '2025-07-15';
     var LIST     = 'UrR45w';
