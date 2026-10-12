@@ -33,9 +33,7 @@
                             email: email,
                             // written to the profile, not just the subscription:
                             // Klaviyo segments filter on profile properties
-                            // 'Play For Free' retired 12 Oct 2026; the 141 profiles
-                            // carrying it stay accurate as a historic cohort
-                            properties: { 'Signup Offer': 'Newsletter' },
+                            properties: { 'Signup Offer': 'Half Price' },
                             subscriptions: { email: { marketing: { consent: 'SUBSCRIBED' } } }
                         } } }
                     },

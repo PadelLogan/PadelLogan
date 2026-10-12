@@ -1,5 +1,5 @@
 /* ============================================================
-   Play For Free — top banner + pop-up, on every page.
+   Half price court hire — top banner + pop-up, on every page.
 
    Both are injected from here rather than written into nine
    HTML files, so the copy lives in one place. The old pop-up
@@ -17,30 +17,23 @@
 (function () {
     'use strict';
 
-    /* OFFER PAUSED 12 Oct 2026. The free game offer is withdrawn and the
-       welcome flow that delivered the code is back in draft, so a banner or
-       pop-up promising a code would promise something nothing sends.
+    /* HALF PRICE, live 12 Oct 2026. Code Padel-Logan-50, 50% off court hire,
+       one booking per person, delivered by Klaviyo flow VRTrh6.
 
-       Nothing below is deleted. To run the next offer: set OFFER_LIVE back to
-       true, rewrite the banner and pop-up copy, update the Signup Offer
-       property, and switch flow VZZRcy on in Klaviyo. All four, or the site
-       advertises an offer the emails do not carry. */
-    var OFFER_LIVE = false;
+       There is NO end date, so unlike the last offer nothing switches this off
+       by itself. When it finishes, set OFFER_LIVE to false here AND put flow
+       VRTrh6 back to draft, or the site keeps promising a code the emails stop
+       sending. */
+    var OFFER_LIVE = true;
     if (!OFFER_LIVE) return;
 
     var COMPANY  = 'Ycnj4g';
     var REVISION = '2025-07-15';
     var LIST     = 'UrR45w';
 
-    /* The offer ends 31 October. Past that both pieces take
-       themselves down rather than promise a code that MATCHi
-       will refuse. Parsed as local time, not UTC. */
-    var OFFER_ENDS = new Date(2026, 10, 1, 0, 0, 0); // 1 Nov 2026, month is 0 based
-    if (new Date() >= OFFER_ENDS) return;
-
-    var BAR_KEY = 'pl_offer_bar_dismissed';
-    var POP_KEY = 'pl_freegame_popup_seen';   // new key: everyone who dismissed
-                                              // the old founding pop-up gets this one
+    var BAR_KEY = 'pl_hp_bar_dismissed';
+    var POP_KEY = 'pl_halfprice_popup_seen';  // new key again: 199 people dismissed the
+                                              // free game pop-up and would never see this
 
     function get(k) { try { return localStorage.getItem(k) === '1'; } catch (e) { return false; } }
     function set(k) { try { localStorage.setItem(k, '1'); } catch (e) {} }
@@ -66,7 +59,7 @@
                         custom_source: source,
                         profile: { data: { type: 'profile', attributes: {
                             email: email,
-                            properties: { 'Signup Offer': 'Play For Free' },
+                            properties: { 'Signup Offer': 'Half Price' },
                             subscriptions: { email: { marketing: { consent: 'SUBSCRIBED' } } }
                         } } }
                     },
@@ -94,7 +87,7 @@
         bar.className = 'plo-bar';
         bar.innerHTML =
             '<a class="plo-bar-link" href="/#newsletter">' +
-                '<span>Your first game is on us. Sign up for your free code</span>' +
+                '<span>Half price court hire. Sign up for your code</span>' +
                 '<span class="plo-bar-arrow" aria-hidden="true">&rarr;</span>' +
             '</a>' +
             '<button class="plo-bar-x" type="button" aria-label="Close offer banner">&times;</button>';
@@ -117,7 +110,7 @@
         wrap.className = 'plo-pop-overlay';
         wrap.setAttribute('role', 'dialog');
         wrap.setAttribute('aria-modal', 'true');
-        wrap.setAttribute('aria-label', 'Claim a free game at Padel Logan');
+        wrap.setAttribute('aria-label', 'Claim half price court hire at Padel Logan');
         wrap.innerHTML =
             '<div class="plo-pop">' +
                 '<button class="plo-pop-x" type="button" aria-label="Close">&times;</button>' +
@@ -125,15 +118,15 @@
                     '<img src="/assets/img/popup-hero.jpg" alt="Four players on court at Padel Logan">' +
                 '</div>' +
                 '<div class="plo-pop-body">' +
-                    '<div class="plo-pop-eyebrow">Play for free</div>' +
-                    '<h2 class="plo-pop-title">Your first game is on us</h2>' +
-                    '<p class="plo-pop-sub">Pop your email in and we will send you a code for a free game. Four championship courts at Meadowbrook Golf Club, open 6:00am to 10:00pm.</p>' +
+                    '<div class="plo-pop-eyebrow">Half price</div>' +
+                    '<h2 class="plo-pop-title">Your court, half price</h2>' +
+                    '<p class="plo-pop-sub">Pop your email in and we will send you a code for 50% off court hire. Four championship courts at Meadowbrook Golf Club, open 6:00am to 10:00pm.</p>' +
                     '<form class="plo-pop-form" novalidate>' +
                         '<input type="email" id="ploPopEmail" placeholder="Your email address" autocomplete="email" aria-label="Your email address" required>' +
                         '<button type="submit">Send me the code</button>' +
                         '<p class="plo-pop-err" role="alert">Sorry, something went wrong. Please try again.</p>' +
                     '</form>' +
-                    '<p class="plo-pop-fine">One per person. Offer ends 31 October. No spam, unsubscribe anytime.</p>' +
+                    '<p class="plo-pop-fine">One booking per person. No spam, unsubscribe anytime.</p>' +
                     '<div class="plo-pop-success">Check your inbox. Your code is on its way.</div>' +
                 '</div>' +
             '</div>';
