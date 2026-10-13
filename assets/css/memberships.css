@@ -445,19 +445,20 @@
             .inc-value { padding-left: 0; margin-left: 33px; }
         }
 
-        /* ══ FOUNDING MEMBERSHIP TIERS ══════════════════════════════════════ */
+        /* ══ MEMBERSHIP TIERS ═══════════════════════════════════════════════
+           Four across now that Bronze sits in the grid rather than on its own
+           below. At the 1140px container that is a 266px card, so the price and
+           name come down a size here and go back up at the wider breakpoints
+           where the cards have room again. */
         .tier-grid {
-            display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.6rem; margin-top: 3.5rem;
+            display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.1rem; margin-top: 4rem;
         }
-        /* Bronze sits on its own, so it needs a width of its own. A single
-           card in .tier-grid would render a third of the page wide. */
-        .bronze-wrap { max-width: 560px; margin: 3.2rem auto 0; }
 
         .mcard {
             position: relative; display: flex; flex-direction: column;
             background: linear-gradient(158deg, rgba(255,255,255,0.10) 0%, rgba(255,255,255,0.035) 55%, rgba(255,255,255,0.02) 100%);
             border: 1px solid rgba(190,225,245,0.44); border-radius: 8px;
-            padding: 2.6rem 1.9rem 2rem;
+            padding: 2.4rem 1.35rem 1.9rem;
             box-shadow:
                 inset 0 1px 0 rgba(255,255,255,0.28),
                 0 22px 45px -24px rgba(0,0,0,0.85),
@@ -467,6 +468,25 @@
         }
         .mcard:nth-child(2) { animation-delay: 0.9s; }
         .mcard:nth-child(3) { animation-delay: 1.8s; }
+        .mcard:nth-child(4) { animation-delay: 2.7s; }
+
+        /* Silver is the one we want people to land on. Brighter edge, a lift,
+           and a badge that sits over the top border. */
+        .mcard.is-popular {
+            border-color: rgba(205,240,255,0.92);
+            box-shadow:
+                inset 0 1px 0 rgba(255,255,255,0.4),
+                0 26px 52px -24px rgba(0,0,0,0.9),
+                0 0 62px -6px rgba(143,211,240,0.75);
+        }
+        .mcard-badge {
+            position: absolute; top: 0; left: 50%; transform: translate(-50%, -50%); z-index: 3;
+            background: linear-gradient(180deg, #DCF3FF, #8FD3F0);
+            color: #0F3B59; font-family: 'Montserrat', sans-serif;
+            font-size: 0.56rem; font-weight: 800; letter-spacing: 0.16em; text-transform: uppercase;
+            padding: 0.42rem 0.95rem; border-radius: 100px; white-space: nowrap;
+            box-shadow: 0 4px 14px -4px rgba(0,0,0,0.6);
+        }
         .mcard::after {
             content: ''; position: absolute; top: 0; left: 10%; right: 10%; height: 2px;
             background: linear-gradient(to right, transparent, rgba(205,240,255,1), transparent);
@@ -477,12 +497,12 @@
             color: rgba(234,241,246,0.78); margin-bottom: 0.5rem;
         }
         .mcard-name {
-            font-family: 'Montserrat', sans-serif; font-size: 2.1rem; font-weight: 900;
-            text-transform: uppercase; letter-spacing: 0.04em; color: var(--white); line-height: 1;
+            font-family: 'Montserrat', sans-serif; font-size: 1.72rem; font-weight: 900;
+            text-transform: uppercase; letter-spacing: 0.03em; color: var(--white); line-height: 1;
         }
         .mcard-price {
-            font-family: 'Montserrat', sans-serif; font-weight: 900; font-size: 3.9rem;
-            line-height: 0.95; color: var(--white); letter-spacing: -0.01em; margin-top: 1.3rem;
+            font-family: 'Montserrat', sans-serif; font-weight: 900; font-size: 2.95rem;
+            line-height: 0.95; color: var(--white); letter-spacing: -0.015em; margin-top: 1.2rem;
         }
         .mcard-price sup { font-size: 0.4em; vertical-align: super; font-weight: 800; }
         .mcard-term { font-size: 0.74rem; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(234,241,246,0.78); margin-top: 0.45rem; }
@@ -490,6 +510,11 @@
             margin-top: 0.9rem; font-size: 0.78rem; color: #BEE8FF; letter-spacing: 0.04em;
         }
         .mcard-value strong { font-family: 'Montserrat', sans-serif; font-size: 1.15rem; font-weight: 800; letter-spacing: 0.02em; }
+
+        /* Four across, the golf lockup makes the founding summaries far taller
+           than Bronze, so the tick lists underneath started up to 88px apart and
+           the cards would not scan across. Floor the box so they line up. */
+        .mcard-summary { min-height: 14rem; }
 
         .mcard-golf {
             margin-top: 1.5rem; padding: 1.1rem 1.1rem 1.15rem;
@@ -641,9 +666,21 @@
         }
         .terms-list li::before { content: ''; position: absolute; left: 0; top: 0.6em; width: 4px; height: 4px; border-radius: 50%; background: var(--green-court); }
 
+        /* Two across before one across, so the cards never stretch to a width
+           the type was not drawn for. Both steps get the bigger type back. */
+        @media (max-width: 1040px) {
+            .tier-grid { grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }
+            .mcard-summary { min-height: 0; }
+            .mcard { padding: 2.6rem 1.9rem 2rem; }
+            .mcard-name { font-size: 2.1rem; }
+            .mcard-price { font-size: 3.6rem; }
+        }
         @media (max-width: 960px) {
-            .tier-grid, .hours-grid, .incl-grid, .terms-list { grid-template-columns: 1fr; }
+            .hours-grid, .incl-grid, .terms-list { grid-template-columns: 1fr; }
             .incl-grid { gap: 0; }
+        }
+        @media (max-width: 640px) {
+            .tier-grid { grid-template-columns: 1fr; }
         }
         @media (max-width: 600px) {
             .mcard { padding: 2.2rem 1.5rem 1.8rem; }
