@@ -106,6 +106,14 @@
     function popup() {
         if (get(POP_KEY)) return;
 
+        /* Start the photo downloading now rather than when the card opens
+           three seconds in. It was finishing last and became the page's
+           Largest Contentful Paint at 7.3s on a phone. Warming it here
+           rather than with a <link rel=preload> keeps the cost on people
+           who will actually see it: anyone who dismissed it already
+           returned above. */
+        try { new Image().src = '/assets/img/popup-hero.jpg'; } catch (e) {}
+
         var wrap = document.createElement('div');
         wrap.className = 'plo-pop-overlay';
         wrap.setAttribute('role', 'dialog');

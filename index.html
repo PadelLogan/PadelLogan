@@ -211,8 +211,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <!-- Hero video. The CSS background photo stays as the fallback: it shows
          while the video buffers, if the video fails, and on any browser that
          refuses autoplay. data-mobile="video" means phones get the smaller 854px cut too. -->
+    <!-- No poster attribute on purpose. It used to hardcode the 1920px desktop
+         still, which phones started downloading before site.js could swap it
+         for the mobile one, so a phone paid for both: 666KB of posters where
+         200KB would do. site.js now sets the right one and nothing else does. -->
     <video class="hero-video" data-mobile="video"
-           poster="/assets/img/hero-poster.jpg"
            autoplay muted loop playsinline preload="none"
            aria-hidden="true" tabindex="-1"></video>
     <div class="hero-overlay"></div>

@@ -112,10 +112,17 @@
     var v = document.querySelector('.hero-video');
     if (!v) return;
 
-    var isPhone = window.matchMedia('(max-width: 767px)').matches;
+    /* 800px, not 767px, because home.css switches --hero-img at 800px. When
+       these disagreed, anything between the two widths pulled the mobile
+       poster from the CSS AND the desktop poster from the video element. */
+    var isPhone = window.matchMedia('(max-width: 800px)').matches;
+
+    /* Set it here rather than in the markup, so exactly one poster is ever
+       fetched and it is the same file the CSS background already asked for. */
+    v.setAttribute('poster', isPhone ? '/assets/img/hero-poster-mobile.jpg'
+                                     : '/assets/img/hero-poster.jpg');
 
     if (isPhone && v.getAttribute('data-mobile') === 'poster') {
-        v.setAttribute('poster', '/assets/img/hero-poster-mobile.jpg');
         return;                      // no src, so no download
     }
 
