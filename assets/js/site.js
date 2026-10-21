@@ -126,12 +126,34 @@
         return;                      // no src, so no download
     }
 
-    v.src = isPhone ? '/assets/video/hero-mobile.mp4' : '/assets/video/hero.mp4';
-    v.preload = 'auto';
-    v.load();
+    /* Start the video only once the page has finished loading and the main
+       thread goes quiet. Fetching it immediately saturated a 4G connection:
+       the 3.3MB file took the whole pipe, so the poster and the pop-up photo
+       queued behind it and Largest Contentful Paint landed at 7.1 seconds on
+       a phone. The poster is already painted, so there is nothing to look at
+       while we wait. */
+    function startVideo() {
+        v.src = isPhone ? '/assets/video/hero-mobile.mp4' : '/assets/video/hero.mp4';
+        v.preload = 'auto';
+        v.load();
 
-    /* Autoplay can still be refused (iOS Low Power Mode, data saver). The
-       poster stays up in that case, so there is nothing to clean up. */
-    var p = v.play();
-    if (p && typeof p.catch === 'function') { p.catch(function () {}); }
+        /* Autoplay can still be refused (iOS Low Power Mode, data saver). The
+           poster stays up in that case, so there is nothing to clean up. */
+        var p = v.play();
+        if (p && typeof p.catch === 'function') { p.catch(function () {}); }
+    }
+
+    function whenIdle(fn) {
+        if (typeof window.requestIdleCallback === 'function') {
+            window.requestIdleCallback(fn, { timeout: 2500 });
+        } else {
+            setTimeout(fn, 1200);
+        }
+    }
+
+    if (document.readyState === 'complete') {
+        whenIdle(startVideo);
+    } else {
+        window.addEventListener('load', function () { whenIdle(startVideo); });
+    }
 })();
