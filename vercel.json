@@ -1,4 +1,16 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
-  "cleanUrls": true
+  "cleanUrls": true,
+  "redirects": [
+    {
+      "source": "/book-social",
+      "destination": "/book-court",
+      "permanent": true
+    },
+    {
+      "source": "/book-coach",
+      "destination": "/book-court",
+      "permanent": true
+    }
+  ]
 }
