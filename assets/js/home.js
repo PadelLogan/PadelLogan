@@ -42,6 +42,20 @@
             })
         }).then(function(res) {
             if (!res.ok) throw new Error('Klaviyo ' + res.status);
+            /* Same event the pop-up fires, so someone already on the list who
+               submits here still has something to trigger the code off. */
+            try {
+                fetch('https://a.klaviyo.com/client/events/?company_id=Ycnj4g', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json', 'revision': '2025-07-15' },
+                    body: JSON.stringify({ data: { type: 'event', attributes: {
+                        properties: { Source: 'Padel Logan Website Newsletter', Offer: 'Half Price' },
+                        metric: { data: { type: 'metric', attributes: { name: 'Requested Discount Code' } } },
+                        profile: { data: { type: 'profile', attributes: { email: email } } }
+                    } } })
+                });
+            } catch (e) {}
+
             form.style.display = 'none';
             document.getElementById('wlSuccess').style.display = 'block';
             try {

@@ -45,6 +45,28 @@
         } catch (e) {}
     }
 
+
+    /* Fire an event on every submit, as well as subscribing.
+
+       The welcome flow triggers on Added to List, so it only ever fires for
+       someone genuinely new. Anyone already on the list who fills the form in
+       again is silently updated and gets nothing back, which is exactly what
+       happened to Steve and would happen to the other 315 people already
+       subscribed. This event gives those people something to trigger on. */
+    function requestedCode(source, email) {
+        try {
+            return fetch('https://a.klaviyo.com/client/events/?company_id=' + COMPANY, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json', 'revision': REVISION },
+                body: JSON.stringify({ data: { type: 'event', attributes: {
+                    properties: { Source: source, Offer: 'Half Price' },
+                    metric: { data: { type: 'metric', attributes: { name: 'Requested Discount Code' } } },
+                    profile: { data: { type: 'profile', attributes: { email: email } } }
+                } } })
+            });
+        } catch (e) {}
+    }
+
     /* Shared subscribe call. `Signup Offer` is written to the profile,
        not just the subscription, because Klaviyo segments filter on
        profile properties. */
@@ -170,6 +192,7 @@
             err.style.display = 'none';
 
             subscribe(email, 'Padel Logan Website Popup').then(function () {
+                requestedCode('Padel Logan Website Popup', email);
                 track('popup');
                 panel.classList.add('done');
                 set(POP_KEY);
