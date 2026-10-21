@@ -1,0 +1,77 @@
+/* ============================================================
+   WhatsApp community block.
+
+   Used in three places: below the court hire rates on /book-court,
+   between the membership tiers and the rates on /memberships, and
+   as the body of /whatsapp.
+
+   On a phone the button is what people use, so it comes first and
+   the code is a secondary option. On a desktop nobody can scan
+   their own screen, so the code is there for the phone in their
+   hand and the button still works.
+   ============================================================ */
+.wa-sec { --wa: #25D366; }
+
+.wa-wrap {
+    display: grid; grid-template-columns: 1.15fr 0.85fr; gap: 3rem;
+    align-items: center; margin-top: 2.6rem;
+}
+.wa-copy { min-width: 0; }
+
+.wa-badge {
+    display: inline-flex; align-items: center; gap: 0.6rem;
+    background: rgba(37,211,102,0.12); border: 1px solid rgba(37,211,102,0.42);
+    border-radius: 100px; padding: 0.42rem 0.95rem 0.42rem 0.7rem;
+}
+.wa-badge svg { width: 17px; height: 17px; display: block; fill: var(--wa); }
+.wa-badge span {
+    font-family: 'Montserrat', sans-serif; font-size: 0.64rem; font-weight: 700;
+    letter-spacing: 0.16em; text-transform: uppercase; color: #BEE8FF;
+}
+
+.wa-list { list-style: none; margin: 1.8rem 0 0; padding: 0; display: grid; gap: 0.85rem; }
+.wa-list li { display: flex; align-items: flex-start; gap: 0.85rem; }
+.wa-list .wa-tick {
+    flex: 0 0 auto; width: 22px; height: 22px; margin-top: 1px; border-radius: 50%;
+    background: var(--wa); display: flex; align-items: center; justify-content: center;
+}
+.wa-list .wa-tick svg { width: 12px; height: 12px; display: block; }
+.wa-list span:last-child { font-size: 0.95rem; line-height: 1.55; color: rgba(234,241,246,0.9); }
+
+.wa-cta {
+    display: inline-flex; align-items: center; gap: 0.7rem; margin-top: 2rem;
+    background: var(--wa); color: #06331A; text-decoration: none;
+    font-family: 'Montserrat', sans-serif; font-size: 0.82rem; font-weight: 800;
+    letter-spacing: 0.08em; text-transform: uppercase;
+    padding: 1rem 1.9rem; border-radius: 4px;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.wa-cta svg { width: 19px; height: 19px; display: block; fill: #06331A; }
+.wa-cta:hover { transform: translateY(-2px); box-shadow: 0 10px 26px -10px rgba(37,211,102,0.8); }
+.wa-cta:focus-visible { outline: 2px solid #fff; outline-offset: 3px; }
+
+/* ── the code ─────────────────────────────────────────────── */
+.wa-code { text-align: center; }
+.wa-code-card {
+    background: #fff; border-radius: 10px; padding: 1.1rem;
+    width: 100%; max-width: 232px; margin: 0 auto;
+    box-shadow: 0 18px 40px -22px rgba(0,0,0,0.9);
+}
+.wa-code-card img { width: 100%; height: auto; display: block; }
+.wa-code-note {
+    margin: 0.85rem 0 0; font-size: 0.74rem; line-height: 1.55; color: rgba(234,241,246,0.66);
+}
+
+/* On a phone the code is pointless, so it stops competing for space:
+   the button does the job and the code drops below it, smaller. */
+@media (max-width: 860px) {
+    .wa-wrap { grid-template-columns: 1fr; gap: 2.2rem; }
+    .wa-code-card { max-width: 184px; }
+}
+
+/* On the white sections the type has to flip */
+.wa-sec.on-white .wa-badge span { color: #1E6F94; }
+.wa-sec.on-white .wa-badge { background: rgba(37,211,102,0.10); border-color: rgba(37,211,102,0.5); }
+.wa-sec.on-white .wa-list span:last-child { color: rgba(15,59,89,0.84); }
+.wa-sec.on-white .wa-code-note { color: rgba(15,59,89,0.6); }
+.wa-sec.on-white .wa-code-card { box-shadow: 0 14px 34px -20px rgba(15,59,89,0.5); border: 1px solid rgba(15,59,89,0.1); }
