@@ -39,6 +39,7 @@
     <link rel="stylesheet" href="/assets/css/site.css?v=1">
     <link rel="stylesheet" href="/assets/css/pages.css?v=1">
     <link rel="stylesheet" href="/assets/css/nav.css?v=1">
+    <script type="module" src="https://widget.matchi.com/widget.js"></script>
 </head>
 <body>
 <!-- Google Tag Manager (noscript) -->
@@ -86,9 +87,17 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <span class="p-eyebrow">Book a Social</span>
         <h1 class="p-title">Social <em>sessions</em></h1>
         <p class="p-sub">
-            Turn up on your own or with a friend, get put into games with players at your level, and
-            play for doubles. No team to organise, no fixed partner. Socials are how most people at
-            Padel Logan get their court time and meet everyone else at the club.
+            Padel Socials are organised group sessions where players can meet new people, enjoy
+            friendly matches and improve their padel skills in a fun, relaxed environment.
+        </p>
+        <p class="p-sub">
+            Sessions are organised by playing ability, from beginners through to advanced players,
+            so everyone can enjoy games with others at a similar level.
+        </p>
+        <p class="p-sub">
+            You don't need to organise your own group of four players. Simply book your place
+            through MATCHi, turn up and play! Socials are a great way to build confidence, get more
+            court time and become part of the Padel Logan community.
         </p>
         <div class="p-hero-actions">
             <a href="#timetable" class="btn-primary">See the Timetable</a>
@@ -191,13 +200,24 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           </div>
         </div>
 
-        <div class="book-embed">
+        <!-- Live sessions, straight from MATCHi. types="ACTIVITIES" is what
+             makes it show socials rather than the court grid: without it the
+             widget opens on Courts and these sessions are a tab away. The
+             widget draws into a shadow root, so nothing here can style it.
+             The fallback stays hidden unless the widget fails to appear. -->
+        <div class="book-widget" id="social-widget">
+            <matchi-widget
+                facility-ids="3234"
+                types="ACTIVITIES"
+                api-key="padellogan_@sB76No1tV47ap$OqPHC"></matchi-widget>
+        </div>
+
+        <div class="book-embed" id="social-fallback" hidden>
           <div class="book-embed-icon"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2"/><line x1="3" y1="10" x2="21" y2="10"/><line x1="8" y1="3" x2="8" y2="7"/><line x1="16" y1="3" x2="16" y2="7"/></svg></div>
           <div class="book-embed-t">Book a Social Session</div>
-          <p>Social sessions are booked through MATCHi. Choose your session, pay your spot and you are in.</p>
-          <a class="btn-primary" href="https://www.matchi.se/facilities/Padellogan/activities" target="_blank" rel="noopener">Create a MATCHi Account</a>
+          <p>The session list did not load. You can book on our MATCHi page instead, or call the club on 07 3299 6653 and we will do it for you.</p>
+          <a class="btn-primary" href="https://www.matchi.se/facilities/Padellogan/activities" target="_blank" rel="noopener">Open the Booking Page</a>
         </div>
-    </div>
 </section>
 
 <!-- ── WHAT TO EXPECT ── -->
@@ -402,5 +422,20 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <script src="/assets/js/site.js?v=1"></script>
 
+<script>
+/* Show the fallback only if the widget never renders. Same guard as
+   /book-court: a blocked script or a rejected key should not leave a hole
+   where the session list belongs. */
+(function socialWidgetGuard() {
+    var host = document.getElementById('social-widget');
+    var fb = document.getElementById('social-fallback');
+    if (!host || !fb) return;
+    setTimeout(function () {
+        var el = host.querySelector('matchi-widget');
+        var drew = el && el.shadowRoot && el.shadowRoot.childElementCount > 0;
+        if (!drew) { host.hidden = true; fb.hidden = false; }
+    }, 8000);
+})();
+</script>
 </body>
 </html>
