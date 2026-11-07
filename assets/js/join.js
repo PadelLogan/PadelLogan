@@ -1,10 +1,12 @@
 /* ============================================================
    PADEL LOGAN — membership application submission
 
-   Two destinations, fired together:
+   Three destinations, fired together:
      1. Formspree  -> emails the application to info@padellogan.com.au
      2. Klaviyo    -> stores the applicant as a profile + event so they
                       are segmentable and reachable later
+     3. Formspree  -> emails the same application to the Meadowbrook pro
+                      shop, who set the golf membership up at their end
 
    Delivery to the club is what counts, so the success screen is shown
    only when Formspree accepts. If it fails we surface a mailto fallback
@@ -18,6 +20,16 @@
     // and never buried in this file. Read lazily at submit time.
     function formspreeId() {
         return (form.getAttribute('data-formspree') || '').trim();
+    }
+
+    // Second Formspree form, target proshop@meadowbrookgolfclub.com.au. A form
+    // has exactly one target email and multiple recipients need Formspree's
+    // Business plan, so a separate form is the way to reach a second inbox.
+    // Blank is not an error: the pro shop step is skipped and the application
+    // still lands at the club, so a half-configured site never loses anyone.
+    // The pro shop gets the SAME application the club gets, not a subset.
+    function proShopId() {
+        return (form.getAttribute('data-formspree-proshop') || '').trim();
     }
 
     var KLAVIYO_COMPANY = 'Ycnj4g';
@@ -235,9 +247,9 @@
     }
 
     /* ── destinations ── */
-    function sendToFormspree(app) {
-        var id = formspreeId();
-        if (!id) return Promise.reject(new Error('Formspree form ID is not configured'));
+    // Built once and posted to both Formspree forms, so the club copy and the
+    // pro shop copy are the same application and cannot drift apart.
+    function formspreeBody(app) {
         var body = {
             // Formspree reads these plain names for the reply-to and subject line
             name: app['First Name'] + ' ' + app['Surname'],
@@ -246,6 +258,13 @@
             _gotcha: val('_gotcha')
         };
         Object.keys(app).forEach(function (k) { body[k] = app[k]; });
+        return body;
+    }
+
+    function sendToFormspree(app) {
+        var id = formspreeId();
+        if (!id) return Promise.reject(new Error('Formspree form ID is not configured'));
+        var body = formspreeBody(app);
 
         return fetch('https://formspree.io/f/' + id, {
             method: 'POST',
@@ -253,6 +272,23 @@
             body: JSON.stringify(body)
         }).then(function (res) {
             if (!res.ok) throw new Error('Formspree ' + res.status);
+            return true;
+        });
+    }
+
+    /* The pro shop needs the application too, because every Founding
+       Membership carries unlimited golf at Meadowbrook and they open the golf
+       membership at their end. Same payload as the club copy. */
+    function sendToProShop(app) {
+        var id = proShopId();
+        if (!id) return Promise.resolve(false);   // not configured yet, skip quietly
+
+        return fetch('https://formspree.io/f/' + id, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+            body: JSON.stringify(formspreeBody(app))
+        }).then(function (res) {
+            if (!res.ok) throw new Error('Formspree pro shop ' + res.status);
             return true;
         });
     }
@@ -430,8 +466,12 @@
         submitBtn.disabled = true;
         submitBtn.textContent = 'Sending…';
 
+        // Order matters below: results[0] and results[1] are read by index, so
+        // anything new goes on the end. The pro shop notice is internal, so it
+        // never gates the applicant's confirmation.
         var jobs = [sendToFormspree(app), sendToKlaviyo(app)];
         jobs.push(subscribeToNewsletter(app));
+        jobs.push(sendToProShop(app));
 
         Promise.allSettled(jobs).then(function (results) {
             var delivered = results[0].status === 'fulfilled';

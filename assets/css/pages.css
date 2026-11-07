@@ -502,3 +502,80 @@
 .p-hero .p-eyebrow, .p-hero .p-title, .p-hero .p-sub {
     text-shadow: 0 0.06em 0.5em rgba(10,43,66,0.55);
 }
+
+
+/* ── question and answer list ─────────────────────────────────
+   Plain list, deliberately not an accordion: the answers are the
+   reason the page exists, so they are all open and all crawlable.
+   home.css carries a .faq-* accordion that no page uses, hence the
+   separate names here. */
+.qa-list { margin-top: 2.4rem; display: grid; gap: 0; }
+.qa-item { padding: 1.7rem 0; border-top: 1px solid var(--border-light); }
+.qa-item:last-child { border-bottom: 1px solid var(--border-light); }
+.qa-q {
+    font-size: 1.12rem; font-weight: 700; line-height: 1.35;
+    color: var(--mgc-ink); margin: 0 0 0.55rem;
+}
+.qa-a { font-size: 1rem; line-height: 1.65; color: var(--body-grey); margin: 0; max-width: 60ch; }
+.sec-navy .qa-item { border-color: var(--border-dark); }
+.sec-navy .qa-q { color: var(--white); }
+.sec-navy .qa-a { color: var(--cream-dim); }
+
+/* On a wide screen a single column of short answers leaves half the page
+   empty, so the list runs in two columns from 1000px up. The answers keep
+   their 60ch measure, which is what makes them readable in the first place. */
+@media (min-width: 1000px) {
+    .qa-list { grid-template-columns: 1fr 1fr; column-gap: 3.5rem; }
+    .qa-item:nth-child(2) { border-top: 1px solid var(--border-light); }
+    .qa-item:last-child { border-bottom: none; }
+    .sec-navy .qa-item:nth-child(2) { border-color: var(--border-dark); }
+}
+
+@media (max-width: 800px) {
+    .qa-item { padding: 1.4rem 0; }
+    .qa-q { font-size: 1.04rem; }
+}
+
+
+/* ── social sessions (socials page) ───────────────────────────
+   Two days, so the grid is two columns and collapses to one on
+   phones. Deliberately not the six column print timetable: that
+   sheet is a wall poster, this has to read on a 390px screen. */
+.ss-grid { margin-top: 2.4rem; display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.6rem; align-items: start; }
+.ss-day { display: flex; flex-direction: column; gap: 0.9rem; }
+.ss-dayname {
+    font-size: 0.78rem; font-weight: 700; letter-spacing: 0.18em;
+    text-transform: uppercase; color: var(--accent-lt, #A8D6EC);
+}
+.ss-card {
+    background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.16);
+    border-radius: 8px; padding: 1.3rem 1.4rem;
+}
+.ss-name { font-size: 1.15rem; font-weight: 700; line-height: 1.3; color: #fff; }
+.ss-level { margin-top: 0.4rem; font-size: 0.9rem; line-height: 1.5; color: rgba(234,241,246,0.8); }
+.ss-time { margin-top: 0.7rem; font-size: 1.05rem; font-weight: 700; color: #A8D6EC; }
+
+@media (max-width: 800px) {
+    .ss-grid { grid-template-columns: 1fr; gap: 2rem; }
+}
+
+/* hero art for the socials page */
+.p-hero--socials { background-image: linear-gradient(to right, rgba(15,59,89,0.72) 0%, rgba(15,59,89,0.42) 58%, rgba(15,59,89,0.20) 100%),
+        linear-gradient(to bottom, rgba(15,59,89,0.34) 0%, rgba(15,59,89,0.48) 45%, rgba(15,59,89,0.72) 100%),
+        url('/assets/img/heroes/hero-socials.jpg'); }
+@media (max-width: 800px) {
+    .p-hero--socials { background-image: linear-gradient(to right, rgba(15,59,89,0.72) 0%, rgba(15,59,89,0.42) 58%, rgba(15,59,89,0.20) 100%),
+            linear-gradient(to bottom, rgba(15,59,89,0.34) 0%, rgba(15,59,89,0.48) 45%, rgba(15,59,89,0.72) 100%),
+            url('/assets/img/heroes/hero-socials-800.jpg'); }
+}
+
+
+/* a day with no social keeps its column so the week holds its shape */
+.tt-none {
+    flex: 1; display: flex; align-items: center; justify-content: center;
+    min-height: 120px; text-align: center; font-size: 0.82rem;
+    letter-spacing: 0.05em; color: rgba(15,59,89,0.34);
+}
+.sec-navy .tt-none { color: rgba(234,241,246,0.42); }
+/* equal height columns so the bottoms line up whatever the level name length */
+.tt-grid { align-items: stretch; }

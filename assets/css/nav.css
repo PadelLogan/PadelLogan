@@ -172,3 +172,22 @@
 @media (prefers-reduced-motion: reduce) {
     .plnav, .plnav-sub, .plnav-panel, .plnav-chev, .plnav-burger span { transition: none; }
 }
+
+
+/* Visually hidden, still read by screen readers and search engines.
+   Used to complete a heading whose visible form is a wordmark: the hero H1
+   reads "Padel LOGAN" on screen, which tells a first time visitor nothing
+   about what this is or where it is.
+
+   Lives here because nav.css is the only stylesheet loaded by every page.
+   site.css is NOT global: index.html and memberships.html do not load it. */
+.sr-only {
+    position: absolute;
+    width: 1px; height: 1px;
+    padding: 0; margin: -1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    clip-path: inset(50%);
+    white-space: nowrap;
+    border: 0;
+}
