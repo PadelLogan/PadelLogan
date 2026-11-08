@@ -25,6 +25,10 @@
 }
 .p-title em { font-style: normal; }
 .p-sub { font-size: 0.95rem; line-height: 1.8; max-width: 60ch; color: var(--cream-dim); }
+/* site.css zeroes every margin, so stacked hero paragraphs ran together as
+   one slab with only the line height between them. Only consecutive ones get
+   the gap, so a lone .p-sub keeps sitting tight against whatever follows it. */
+.p-sub + .p-sub { margin-top: 0.9rem; }
 .p-hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 2rem; }
 
 /* ── RATE CARDS ── */
