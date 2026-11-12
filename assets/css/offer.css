@@ -33,8 +33,13 @@
 .plo-bar-arrow { color: #1E6F94; font-weight: 800; flex-shrink: 0; }
 .plo-bar-x {
     position: absolute; right: 0.55rem; top: 50%; transform: translateY(-50%);
-    background: none; border: 0; cursor: pointer; padding: 0.3rem 0.45rem;
+    background: none; border: 0; cursor: pointer; padding: 0;
     color: rgba(15,59,89,0.40); font-size: 1.15rem; line-height: 1;
+    /* was 25x28, under the 44px the rest of the site holds to. Sized rather
+       than padded so the glyph stays optically where it was and the bar does
+       not get taller on mobile. */
+    width: 44px; height: 44px;
+    display: flex; align-items: center; justify-content: center;
 }
 .plo-bar-x:hover { color: #0F3B59; }
 .plo-bar-x:focus-visible, .plo-bar-link:focus-visible { outline: 2px solid #1E6F94; outline-offset: 2px; }
@@ -75,7 +80,9 @@
 }
 .plo-pop-x {
     position: absolute; top: 0.6rem; right: 0.6rem; z-index: 3;
-    width: 1.9rem; height: 1.9rem; border-radius: 50%;
+    /* was 1.9rem (30px); 44px is the touch target the rest of the site uses,
+       and this one sits over a photo where a mis-tap is most likely. */
+    width: 44px; height: 44px; border-radius: 50%;
     background: rgba(255,255,255,0.92); border: 0; cursor: pointer;
     color: #0F3B59; font-size: 1.15rem; line-height: 1;
     display: flex; align-items: center; justify-content: center;
